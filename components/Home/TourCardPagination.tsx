@@ -35,6 +35,7 @@ const TourCardPagination: NextPage<Props> = ({
       <div className="flex md:flex-row flex-col md:gap-4 gap-4 justify-center items-center lg:w-[85%] w-[100%]  ">
         {featuredata.slice(startIndex, endIndex).map((item, index) => (
           <TourCard
+          key={index}
             pic={item?.img}
             loc={item?.location}
             title={item?.title}

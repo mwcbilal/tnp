@@ -13,12 +13,11 @@ const CarListing: NextPage<Props> = ({ }) => {
   return <div className='flex flex-col lg:flex-row justify-center items-center'>
 
     <List
-      grid={{ gutter: 16, column: 3 }}
+      grid={{ gutter: 8, sm: 1, md: 2, lg:3, xl:3, xxl:3 }}
       pagination={{ position, align, hideOnSinglePage: false }}
-
       dataSource={availableCars}
       renderItem={(item) => (
-        <List.Item>
+        <List.Item className='w-full'>
           <CarCard
             CarImage={item.CarImage}
             CarTitle={item.CarTitle}

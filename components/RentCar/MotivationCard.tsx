@@ -10,17 +10,17 @@ interface Props {
 const MotivationCard: NextPage<Props> = ({ Title, Description, IconImage }) => {
   if (Title === "Right") {
     return (
-      <Image className="hidden lg:flex" src={IconImage} alt="image_not_found" />
+      <Image className="hidden xl:flex" src={IconImage} alt="image_not_found" />
     );
   } else if (Title === "Left") {
     return (
-      <Image className="hidden lg:flex" src={IconImage} alt="image_not_found" />
+      <Image className="hidden xl:flex" src={IconImage} alt="image_not_found" />
     );
   }
 
   return (
     <div
-      className="p-8 my-8 mx-3 w-72 sm:w-80 flex flex-col items-center rounded-xl"
+      className="p-8 my-8 mx-3 w-72 sm:w-80 flex flex-col h-60 items-center rounded-xl"
       style={{ boxShadow: "-1px -1px 20px -6px #ccc" }}
     >
       <Image className="mb-4" src={IconImage} alt="image_not_found" />

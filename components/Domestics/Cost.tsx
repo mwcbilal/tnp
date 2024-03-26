@@ -12,8 +12,8 @@ const Cost = ({includeCost,costExclude}:any) => {
         <div className="flex flex-col gap-4">
           <p className="text-2xl">The Cost Includes</p>
           <div className="flex flex-col gap-2">
-            {includeCost.map((item, index) => (
-              <div className="flex flex-row gap-4">
+            {includeCost.map((item : any, index :any) => (
+              <div key={index} className="flex flex-row gap-4">
                 <Image
                   src={check}
                   alt="checkbox.."
@@ -26,8 +26,8 @@ const Cost = ({includeCost,costExclude}:any) => {
           <div className="flex flex-col gap-4">
             <p className="text-2xl ">The Cost Excludes</p>
             <div className="flex flex-col gap-2">
-                {costExclude.map((item , index)=>(
-                    <div className="flex flex-row gap-4">
+                {costExclude.map((item : any, index : any)=>(
+                    <div key={index} className="flex flex-row gap-4">
                         <Image src={cancel} alt="cancel icon.." className="h-4 w-4 mt-[4px]"/>
                         <p>{item}</p>
 

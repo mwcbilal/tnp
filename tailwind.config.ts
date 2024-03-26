@@ -21,7 +21,11 @@ const config: Config = {
           'primary':'#00ADEE',
           'golden':"#FF970D",
           'secon':'#A3A3A3'
-      }
+      },
+       screens: {
+        '2xl': '1820px',
+        // => @media (min-width: 992px) { ... }
+      },
     },
   },
   plugins: [

@@ -124,7 +124,7 @@ const LoginForm = () => {
                 </div>
 
                 <div className="flex items-center justify-center lg:justify-normal ">
-                    <p className="text-gray-700">Don't have an account?</p>
+                    <p className="text-gray-700">Don&apos;t have an account?</p>
                     <button className="ml-2 bg-primary hover:bg-blue-600 text-white  py-2 px-4 rounded">
                         Register
                     </button>

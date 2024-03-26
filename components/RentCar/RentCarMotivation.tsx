@@ -14,7 +14,7 @@ const RentCarMotivation: NextPage<Props> = ({}) => {
         Description="In hac habitasse platea dictumst. In pharetra tellus eu justo tincidunt bibendum. Morbi rutrum elit ligula, eget fringilla sem pellentesque aliquam suspendisse."
       />
 
-      <div className="flex flex-col md:flex-row justify-center items-center">
+      <div className="flex flex-col md:flex-row flex-wrap justify-center items-center">
         {getCarMotivationData.map((e, i) => (
           <MotivationCard
             Title={e.Title}

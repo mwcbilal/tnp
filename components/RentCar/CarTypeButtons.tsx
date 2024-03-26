@@ -11,7 +11,7 @@ interface Props {
 const CarTypeButtons: NextPage<Props> = ({ selectedCarType, setSelectedCarType }) => {
   return (
     <div className="flex justify-center py-4">
-      <div className="w-[750px] flex justify-between">
+      <div className="md:w-[750px] w-auto flex flex-col md:flex-row justify-between">
         {carTypes.map((e, i) => {
           return (
             <Button
@@ -19,7 +19,7 @@ const CarTypeButtons: NextPage<Props> = ({ selectedCarType, setSelectedCarType }
               key={"cartypebtn-" + i}
               className={`h-12 w-40 text-lg ${
                 selectedCarType === e.name ? `bg-[#4096FF] text-white` : "bg-white text-black"
-              } flex items-center `}
+              } flex items-center my-4`}
               type="primary"
               onClick={()=> setSelectedCarType(e.name)}
             >
@@ -35,7 +35,7 @@ const CarTypeButtons: NextPage<Props> = ({ selectedCarType, setSelectedCarType }
 const IconComponent: NextPage<{ iconImage: any }> = ({ iconImage }) => {
   return (
     <div className="mr-1">
-      <Image height={30} width={30} src={iconImage} />
+      <Image alt="hello" height={30} width={30} src={iconImage} />
     </div>
   );
 };

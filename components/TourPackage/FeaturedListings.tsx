@@ -278,6 +278,7 @@ const FeaturedListings = () => {
         <div className="w-full flex flex-row flex-wrap gap-10 xl:gap-24">
           {currentItems.map((item, index) => (
             <TourCard
+              key={index}
               id={item?.id}
               pid={item?.pid}
               pic={item?.img}

@@ -645,7 +645,7 @@ export default function Home() {
                                 </h1>
                             </div>
                             <button className="bg-white text-sm md:my-0 mt-5 md:px-5 px-3 py-2 shadow text-primary">
-                                Let's get started
+                                Let&apos;s get started
                             </button>
                         </div>
 

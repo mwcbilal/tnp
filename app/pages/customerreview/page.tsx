@@ -98,7 +98,7 @@ export default function CustomerReview() {
           <div className="mt-20 w-full order-1">
             <div className="flex flex-col md:flex-row justify-between mb-3">
               <h2 className="text-sm lg:text-xl font-bold mb-4 border-l-2 border-l-[#00ADEE] px-1">
-                Client's Review
+                Client&apos;s Review
               </h2>
               <div className="flex flex-col md:flex-row gap-2">
                 <div className=" font-semibold">6 reviews</div>
