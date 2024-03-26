@@ -192,14 +192,14 @@ const Page: NextPage<Props> = ({}) => {
                   <ul>
                     <li
                       onMouseOver={() => setCurrTour("International")}
-                      className="hover:text-[#FBAD17] flex cursor-pointer items-center py-5 justify-between px-2 py-1 text-black rounded"
+                      className="hover:text-[#FBAD17] flex cursor-pointer items-center justify-between px-2 py-1 text-black rounded"
                     >
                       <a href="#">International</a>
                       <IoIosArrowForward className="ms-5" />
                     </li>
                     <li
                       onMouseOver={() => setCurrTour("Domestic")}
-                      className="hover:text-[#FBAD17] flex items-center cursor-pointer py-5 justify-between px-2 py-1 text-black rounded"
+                      className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded"
                     >
                       <Link href="/pages/tourpackages">Domestic</Link>
                       <IoIosArrowForward className="ms-5" />
@@ -265,7 +265,7 @@ const Page: NextPage<Props> = ({}) => {
               onMouseOver={() => setShowPackageDropdown(true)}
               className="cursor-pointer font-bold relative"
             >
-              <p>Packages</p>
+              <Link href="/pages/tourpackages">Packages</Link>
               <div
                 onMouseOut={() => setShowPackageDropdown(false)}
                 className={` ${
@@ -276,25 +276,25 @@ const Page: NextPage<Props> = ({}) => {
                   <ul>
                     <li
                       onMouseOver={() => setCurrTour("International")}
-                      className="hover:text-[#FBAD17] flex cursor-pointer items-center py-2 justify-between px-2 py-1 text-black rounded"
+                      className="hover:text-[#FBAD17] flex cursor-pointer items-center justify-between px-2 py-1 text-black rounded"
                     >
                       <a href="#">Group</a>
                     </li>
                     <li
                       onMouseOver={() => setCurrTour("Domestic")}
-                      className="hover:text-[#FBAD17] flex items-center cursor-pointer py-2 justify-between px-2 py-1 text-black rounded"
+                      className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded"
                     >
                       <a href="#">Honeymoon</a>
                     </li>
                     <li
                       onMouseOver={() => setCurrTour("Domestic")}
-                      className="hover:text-[#FBAD17] flex items-center cursor-pointer py-2 justify-between px-2 py-1 text-black rounded"
+                      className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded"
                     >
                       <a href="#">Private Family</a>
                     </li>
                     <li
                       onMouseOver={() => setCurrTour("Domestic")}
-                      className="hover:text-[#FBAD17] flex items-center cursor-pointer py-2 justify-between px-2 py-1 text-black rounded"
+                      className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded"
                     >
                       <a href="#">Corporate</a>
                     </li>
