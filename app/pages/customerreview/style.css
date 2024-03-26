@@ -1,0 +1,25 @@
+body {
+    background-color: #fff;
+}
+
+:where(.css-dev-only-do-not-override-djtmh8).ant-progress .ant-progress-bg {
+    position: relative;
+    background: #00ADEE !important;
+    border-radius: 100px;
+    transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+
+:where(.css-dev-only-do-not-override-djtmh8).ant-progress .ant-progress-inner:not(.ant-progress-circle-gradient) .ant-progress-circle-path {
+    stroke: #00ADEE !important;
+}
+
+:where(.css-dev-only-do-not-override-djtmh8).ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item.ant-dropdown-menu-item-danger:not(.ant-dropdown-menu-item-disabled),
+:where(.css-dev-only-do-not-override-djtmh8).ant-dropdown-menu-submenu .ant-dropdown-menu .ant-dropdown-menu-item.ant-dropdown-menu-item-danger:not(.ant-dropdown-menu-item-disabled) {
+    color: #00ADEE !important;
+}
+
+:where(.css-dev-only-do-not-override-djtmh8).ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item.ant-dropdown-menu-item-danger:not(.ant-dropdown-menu-item-disabled):hover,
+:where(.css-dev-only-do-not-override-djtmh8).ant-dropdown-menu-submenu .ant-dropdown-menu .ant-dropdown-menu-item.ant-dropdown-menu-item-danger:not(.ant-dropdown-menu-item-disabled):hover {
+    color: #fff !important;
+    background-color: #00ADEE !important;
+}

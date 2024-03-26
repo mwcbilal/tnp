@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 40, 40, 40;
+    --background-end-rgb: 40, 40, 40;
+  }
+} */
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.hero-bg {
+  background-image: url("../public/home/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: auto; 
+}
+.ant-drawer-body{
+    padding: 0px !important;
+}
+
+.hover-animation{
+    transition: all 0.3s ease-in-out;
+}
+
+.hover-animation:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+
+}
+
+.height-animation{
+    transition: height 0.3s ease-in-out !important;
+}
+
+.grad {
+  background-color: transparent !important; /* For browsers that do not support gradients */
+  background-image: linear-gradient(transparent, black) !important;
+}
