@@ -25,7 +25,7 @@ const TestimonialCarousel: React.FC = () => {
             {
                 new Array(3).fill(0).map((_, index) => {
                     return (
-                        <div>
+                        <div key={index}>
                             <div className='flex md:flex-row flex-col w-full justify-center items-center'>
 
                                 <div className="relative w-full md:w-[32rem] my-5 h-[17rem] flex flex-col bg-white mx-5 px-10 py-10 border">
