@@ -11,7 +11,19 @@ const FollowUs = () => {
                     <h1 className="text-1xl text-gray-400 mx-1 uppercase ">Where we are now</h1>
                     <div className="lg:w-[4rem] w-[3rem] h-[2px] bg-gray-400 my-auto"></div>
                 </div>
-                <Image src={Bg} alt="Instagram" className='w-full h-44' />
+                <div 
+                    className="mapouter" 
+                    style={{
+                        position: 'relative',
+                        textAlign: 'right',
+                        width: "100%"
+                    }}  
+                >
+                    <div className="gmap_canvas">
+                        <iframe className="gmap_iframe" width="100%" frameBorder="0" scrolling="no" marginHeight={0} marginWidth={0} src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=millennium mall karachi&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                        </iframe>
+                    </div>
+                </div>
             </div>
             <div className='lg:w-[30%]  '>
                 <div className="flex  relative item-center justify-center items-center ">

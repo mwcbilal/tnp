@@ -149,7 +149,7 @@ const Page: NextPage<Props> = ({}) => {
 
         <div className="flex">
           <div className="flex py-2 items-center">
-            <p className="mx-2">About Us</p>
+            <Link href={"/pages/aboutus"} className="mx-2">About Us</Link>
             <p className="mx-2">Blogs</p>
 
             <p className="mx-2">Gallery</p>
