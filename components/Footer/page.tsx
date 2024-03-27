@@ -46,12 +46,12 @@ const Footer = () => {
       <div className="w-[90%] border h-[1px] bg-gray-300"></div>
       <div className="w-[90%] flex justify-between">
         <div>
-          <p> © Copyright <span className="text-[#00ADEE]">©2023</span> . All Rights Reserved Copyright</p>
+          <p className="font-medium"> © Copyright <span className="text-[#00ADEE]">©2023</span> . All Rights Reserved Copyright</p>
         </div>
         <div className="flex gap-7">
-          <div>Terms and conditions</div>
-          <div>Privacy policy</div>
-          <div>Login / Signup</div>
+          <p className="font-medium">Terms and conditions</p>
+          <p className="font-medium">Privacy policy</p>
+          <p className="font-medium">Login / Signup</p>
         </div>
       </div>
     </div>
