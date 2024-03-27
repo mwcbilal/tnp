@@ -170,12 +170,12 @@ const Page: NextPage<Props> = ({}) => {
       </header>
 
       <header className="w-full text-sm flex justify-between px-10 bg-white">
-        <div className="flex py-2 items-center">
-          <Image src={Logo} alt="logo image" width={150} />
+        <div className="flex py- items-center">
+          <Image src={Logo} alt="logo image" height={60} width={200} />
         </div>
 
         <div className="bg-white-500 relative w-3/5">
-          <div className="text-black items-center py-2  h-full w-full justify-around flex">
+          <div className="text-black items-center py-  h-full w-full justify-around flex">
             <Link href={"/"} className="cursor-pointer font-bold">Home</Link>
             <div
               onMouseOver={() => setShowTourDropdown(true)}
@@ -310,8 +310,8 @@ const Page: NextPage<Props> = ({}) => {
           <div
             style={{
               borderTop: "25px solid white",
-              borderLeft: "12px solid transparent",
-              borderRight: "12px solid transparent",
+              borderLeft: "24px solid transparent",
+              borderRight: "24px solid transparent",
               bottom: "-20px",
             }}
             className="w-full absolute z-10 bg-transparent-500 items-center"
@@ -319,7 +319,7 @@ const Page: NextPage<Props> = ({}) => {
         </div>
 
         <div className="flex">
-          <div className="flex py-2 items-center ms-8">
+          <div className="flex py- items-center ms-8">
             <p className="flex items-center text-black mx-1">
               <FaGlobeEurope className="mx-1" />
               English
