@@ -1,6 +1,7 @@
 'use client';
 
 
+import Rings from '../public/home/rungs.png'
 import BannerDesign from '../public/home/bgleft.png'
 import UselessImage from '../public/home/useless.png'
 import { Button, Modal } from 'antd';
@@ -528,8 +529,13 @@ export default function Home() {
 
                 <div className="flex flex-col flex-w w-full relative">
                     <Image
+                        src={Rings}
+                        className="absolute z-[200 top-[0]  md:block  right-0 "
+                        alt="rect1"
+                    />
+                    <Image
                         src={PlanePNG2}
-                        className="absolute z-[200 top-[-15%] hidden md:block w-32 h-20  right-[8%] "
+                        className="absolute z-[200 top-[-16%] hidden md:block w-46 h-28 right-[8%]  xl:right-[18%] "
                         alt="rect1"
                     />
                     <div className="flex relative flex-wrap justify-center">

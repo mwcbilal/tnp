@@ -303,7 +303,7 @@ const Page: NextPage<Props> = ({}) => {
               </div>
             </div>
             <Link href="/pages/contactus" className="cursor-pointer font-bold">Contact Us</Link>
-            <p className="bg-primary px-2 py-2 rounded shadow cursor-pointer text-white">
+            <p className="bg-primary px-4 py-2 rounded shadow-lg cursor-pointer text-white">
               Make your trip
             </p>
           </div>
