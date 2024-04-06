@@ -36,24 +36,23 @@ body {
   background-image: url("../public/home/bg.png");
   background-size: cover;
   background-repeat: no-repeat;
-  height: auto; 
+  height: auto;
 }
-.ant-drawer-body{
-    padding: 0px !important;
-}
-
-.hover-animation{
-    transition: all 0.3s ease-in-out;
+.ant-drawer-body {
+  padding: 0px !important;
 }
 
-.hover-animation:hover{
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-
+.hover-animation {
+  transition: all 0.3s ease-in-out;
 }
 
-.height-animation{
-    transition: height 0.3s ease-in-out !important;
+.hover-animation:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.height-animation {
+  transition: height 0.3s ease-in-out !important;
 }
 
 .grad {
@@ -62,5 +61,5 @@ body {
 }
 .grad2 {
   background-color: transparent !important; /* For browsers that do not support gradients */
-  background-image: linear-gradient(transparent,rgba(0,0,0,1)) !important;
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 1)) !important;
 }
