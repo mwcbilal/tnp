@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TourCard from "./TourCard";
+import HomeTourCard from "./HomeTourCard";
 import { GrFormNext } from "react-icons/gr";
 import { GrFormPrevious } from "react-icons/gr";
 import { NextPage } from "next";
@@ -34,7 +34,7 @@ const TourCardPagination: NextPage<Props> = ({
     return (
       <div className="flex md:flex-row flex-col md:gap-4 gap-4 justify-center items-center lg:w-[85%] w-[100%]  ">
         {featuredata.slice(startIndex, endIndex).map((item, index) => (
-          <TourCard
+          <HomeTourCard
           key={index}
             pic={item?.img}
             loc={item?.location}

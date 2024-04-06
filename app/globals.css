@@ -60,3 +60,7 @@ body {
   background-color: transparent !important; /* For browsers that do not support gradients */
   background-image: linear-gradient(transparent, black) !important;
 }
+.grad2 {
+  background-color: transparent !important; /* For browsers that do not support gradients */
+  background-image: linear-gradient(transparent,rgba(0,0,0,1)) !important;
+}
