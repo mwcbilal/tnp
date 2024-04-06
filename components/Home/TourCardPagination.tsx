@@ -44,6 +44,8 @@ const TourCardPagination: NextPage<Props> = ({
             price={item?.price}
             dprice={item?.discountedPrice}
             review={item?.reviewCount}
+            imageCount={item?.imageCount}
+            videoCount={item?.videoCount}
           />
         ))}
       </div>

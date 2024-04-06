@@ -32,9 +32,14 @@ import { FaCircleCheck } from "react-icons/fa6";
 import { CiCalendar } from "react-icons/ci";
 import BlueBanner from "../public/home/banner.png";
 
-import img1 from "../public/TourPackage/FeaturedListing/featured listing 1.png";
-import img2 from "../public/TourPackage/FeaturedListing/featured listing 2.png";
-import img3 from "../public/TourPackage/FeaturedListing/featured listing 3.png";
+import img1 from "../public/TourPackage/FeaturedListing/6dayshunzaandnaltar.png";
+import img2 from "../public/TourPackage/FeaturedListing/6dayshunzaandskardu.png";
+import img3 from "../public/TourPackage/FeaturedListing/6dayssakrduandbasho.png";
+import img4 from "../public/TourPackage/FeaturedListing/allgirlstriptokashmir.png";
+import img5 from "../public/TourPackage/FeaturedListing/Rectangle 19370 (1).png";
+import img6 from "../public/TourPackage/FeaturedListing/Rectangle 19370 (2).png";
+import img7 from "../public/TourPackage/FeaturedListing/Rectangle 19370 (3).png";
+import img8 from "../public/TourPackage/FeaturedListing/Rectangle 19370.png";
 
 import packbg from "../public/home/package bg.png";
 import TourCardPagination from "@/components/Home/TourCardPagination";
@@ -78,82 +83,98 @@ const featuredata = [
     {
         img: img1,
         location: "Pakistan-North",
-        title: "All Girls Trip to Kashmir",
-        duration: "7days",
+        title: "6 Days Hunza and Naltar",
+        duration: "6days",
         people: 12,
-        price: 32000,
-        discountedPrice: 20987,
+        price: 34000,
+        discountedPrice: 31950,
         reviewCount: 1,
+        imageCount: 5,
+        videoCount: 2
     },
     {
         img: img2,
         location: "Pakistan-North",
-        title: "All Girls Trip to Kashmir ",
-        duration: "7days",
+        title: "8 days Hunza and Skardu",
+        duration: "8days",
         people: 12,
-        price: 32000,
-        discountedPrice: 20987,
+        price: 45000,
+        discountedPrice: 42950,
         reviewCount: 1,
+        imageCount: 5,
+        videoCount: 2
     },
     {
         img: img3,
         location: "Pakistan-North",
-        title: "All Girls Trip to Kashmir",
-        duration: "7days",
+        title: "6 days Skardu and Bashu Valley",
+        duration: "6days",
         people: 12,
-        price: 32000,
-        discountedPrice: 20987,
+        price: 37000,
+        discountedPrice: 34950,
         reviewCount: 1,
+        imageCount: 5,
+        videoCount: 2
     },
     {
-        img: img2,
+        img: img4,
         location: "Pakistan-North",
         title: "All Girls Trip to Kashmir",
         duration: "7days",
         people: 12,
         price: 32000,
-        discountedPrice: 20987,
+        discountedPrice: 29500,
         reviewCount: 1,
+        imageCount: 5,
+        videoCount: 2
     },
     {
-        img: img1,
+        img: img5,
         location: "Pakistan-North",
-        title: "All Girls Trip to Kashmir ",
+        title: "7 days Hunza and Skardu",
         duration: "7days",
+        people: 12,
+        price: 37500,
+        discountedPrice: 35450,
+        reviewCount: 1,
+        imageCount: 5,
+        videoCount: 2
+    },
+    {
+        img: img6,
+        location: "Pakistan-North",
+        title: "6 Days Hunza and Naltar",
+        duration: "6days",
+        people: 12,
+        price: 37500,
+        discountedPrice: 37500,
+        reviewCount: 1,
+          imageCount: 5,
+        videoCount: 2
+    },
+    {
+        img: img7,
+        location: "Pakistan-North",
+        title: "8 days Skardu and Bashu",
+        duration: "8days",
         people: 12,
         price: 32000,
         discountedPrice: 20987,
         reviewCount: 1,
+        imageCount: 5,
+        videoCount: 2
     },
     {
-        img: img3,
+        img: img8,
         location: "Pakistan-North",
-        title: "All Girls Trip to Kashmir",
+        title: "7 Days Hunza and Fairy Meadows",
         duration: "7days",
         people: 12,
-        price: 32000,
-        discountedPrice: 20987,
+        price: 37500,
+        discountedPrice: 35450,
         reviewCount: 1,
-    },
-    {
-        img: img2,
-        location: "Pakistan-North",
-        title: "All Girls Trip to Kashmir",
-        duration: "7days",
-        people: 12,
-        price: 32000,
-        discountedPrice: 20987,
-        reviewCount: 1,
-    },
-    {
-        img: img2,
-        location: "Pakistan-North",
-        title: "All Girls Trip to Kashmir ",
-        duration: "7days",
-        people: 12,
-        price: 32000,
-        discountedPrice: 20987,
-        reviewCount: 1,
+        imageCount: 5,
+        videoCount: 2
     },
 ];
 

@@ -3,6 +3,10 @@ import { MdLocationPin } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { IoMdTime } from "react-icons/io";
 import { IoPersonAddOutline } from "react-icons/io5";
+import image from "../../public/TourPackage/FeaturedListing/imageicon.png"; 
+import video from "../../public/TourPackage/FeaturedListing/videoicon.png";
+import { MdPhotoCamera } from "react-icons/md";
+import { BiSolidVideos } from "react-icons/bi";
 import Link from 'next/link';
 
 interface TourCardProps {
@@ -16,17 +20,27 @@ interface TourCardProps {
   price: number;
   dprice: number;
   review: number;
+  imageCount: number;
+  videoCount: number
 }
-const TourCard: React.FC<TourCardProps> = ({ id, pid, pic, loc, title, duration, people, price, dprice, review }) => {
+const TourCard: React.FC<TourCardProps> = ({ id, pid, pic, loc, title, duration, people, price, dprice, review, imageCount , videoCount }) => {
 
   return (
     <Link href={`/pages/domestic/${id}/${pid}`} className="flex flex-col  md:h-[21rem] xl:h-auto h-auto items-center justify-center lg:w-[30%] xl:w-[300px] md:w-[45%] w-[100%] shadow-lg shadow-gray-400 rounded-lg">
 
-      <div className=" w-full">
-        <Image src={pic} alt="tour image " className="w-full" />
+      <div className=" w-full relative bg-pink-400">
+      
+        <Image src={pic} alt="tour image " className="w-full absolute z-0" />
+        <div className="absolute z-10 flex flex-row justify-between w-full">
+        <p className="bg-sky-500 text-white text-sm px-2 py-[2px] m-2 rounded-md w-[30%]">Featured</p>
+        <div className="flex flex-row gap-2  ">
+          <div className="flex flex-row bg-gray-400 blur-20  gap-[2px] m-2 px-2 py-[2px] rounded-md "><MdPhotoCamera size={14} className="text-white mt-[3px]"/><p className="text-white text-sm">{imageCount}</p></div>
+          <div className="flex flex-row gap-2 bg-sky-500 text-white gap-[2px] m-2 px-2 py-[2px] rounded-md"><BiSolidVideos size={14} className="text-white mt-[3px] " /><p className="text-sm ">{videoCount}</p></div>
+        </div>
+        </div>
       </div>
 
-      <div className="flex flex-col gap-2 h-full w-full bg-white-300 px-5 rounded-lg py-5 ">
+      <div className="flex flex-col gap-2 h-full w-full bg-white-300 px-5 rounded-lg py-5 mt-[12.5rem] ">
         <div className="flex flex-row gap-2">
           <MdLocationPin size={15} className="text-blue-500" />
           <p className="text-xs font-light text-gray-500">{loc}</p>

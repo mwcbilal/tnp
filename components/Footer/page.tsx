@@ -43,6 +43,17 @@ const Footer = () => {
           return <div key={"rendering-id-" + i} ></div>;
         })}
       </div>
+      <div className="w-[90%] border h-[1px] bg-gray-300"></div>
+      <div className="w-[90%] flex justify-between">
+        <div>
+          <p> © Copyright <span className="text-[#00ADEE]">©2023</span> . All Rights Reserved Copyright</p>
+        </div>
+        <div className="flex gap-7">
+          <div>Terms and conditions</div>
+          <div>Privacy policy</div>
+          <div>Login / Signup</div>
+        </div>
+      </div>
     </div>
   );
 };

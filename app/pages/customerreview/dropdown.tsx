@@ -43,13 +43,16 @@ const menuProps = {
   onClick: handleMenuClick,
 };
 
-const Ticket_Dropdown: React.FC = () => (
+const Ticket_Dropdown: React.FC<{ selectedNum: number }> = ({
+  selectedNum,
+}) => (
   <Space wrap>
     <Dropdown menu={menuProps}>
-      <Button>
+      <Button
+        style={{ width: 90, display: "flex", justifyContent: "space-between" }}>
         <Space>
-          Button
-          <DownOutlined />
+          {selectedNum}
+          <DownOutlined style={{marginLeft:30}} />
         </Space>
       </Button>
     </Dropdown>

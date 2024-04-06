@@ -3,7 +3,7 @@ import TourPackHero from "@/components/TourPackage/TourPackHero";
 
 const tourpackages= ()=>{
     return(
-        <div className="w-screen ">
+        <div className="w-screen">
             <TourPackHero/>
             <FeaturedListings/>
         </div>

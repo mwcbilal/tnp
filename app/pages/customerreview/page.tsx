@@ -12,6 +12,8 @@ import Activties from "../../../assets/customer_review/approve1.png";
 import Insurance from "../../../assets/customer_review/Vector22.png";
 import Price_Guranttee from "../../../assets/customer_review/Vector (11).png";
 import News_img from "../../../assets/customer_review/image (1).png";
+import User_Img from "../../../assets/customer_review/user (1) 1.svg";
+
 import "./style.css";
 
 import ProgressBar from "./progressBar";
@@ -24,7 +26,7 @@ export default function CustomerReview() {
   return (
     <div className="bg-white mb-96">
       <div>
-        <Image className="w-full" src={Background_img} alt=".." />
+        <Image src={Background_img} alt=".." />
       </div>
       <div className="w-11/12 px-6 md:p-0 sm:w-[97%] md:w-5/6 lg:p-4 bg-white relative font-medium mt-5 md:-mt-11 z-50 m-auto flex flex-col items-start md:flex-row md:items-center justify-around rounded-none sm:rounded-full shadow-2xl">
         <div className="flex items-center gap-2 py-4 px-2 lg:p-3 hover:bg-[#F4F6F8] cursor-pointer rounded-full">
@@ -170,55 +172,62 @@ export default function CustomerReview() {
                 </div>
               </div>
               <div className=" bg-[#F6F6F6] rounded-sm px-6 py-8">
-                <h2 className="text-xl font-bold mt-4 mb-8 border-l-2 border-l-[#00ADEE] px-1">
+                <h2 className="text-xl font-bold mt-4 mb-8 border-l-2 border-l-[#00ADEE] md:ml-4 px-1">
                   leave a comment
                 </h2>
-                <div className="flex flex-wrap md:flex-row justify-between">
-                  <div>
-                    <h3 className=" text-md md:text-lg font-semibold mb-2">
-                      Value for Money*
-                    </h3>
-                    <Rating />
+                <div className="flex justify-around lg:gap-1 xl:gap-4 flex-wrap md:flex-row">
+                  <div className="flex flex-col gap-y-3 lg:flex-row xl:gap-4">
+                    <div>
+                      <h3 className="text-sm font-semibold mb-2">
+                        Value for Money*
+                      </h3>
+                      <Rating fontSize={13} />
+                    </div>
+                    <div>
+                      <h3 className=" text-sm font-semibold mb-2">
+                        Destination*
+                      </h3>
+                      <Rating fontSize={13} />
+                    </div>
                   </div>
-                  <div>
-                    <h3 className=" text-md md:text-lg font-semibold mb-2">
-                      Destination*
-                    </h3>
-                    <Rating />
-                  </div>
-                  <div>
-                    <h3 className=" text-md md:text-lg font-semibold mb-2">
-                      Accommodation*
-                    </h3>
-                    <Rating />
-                  </div>
-                  <div>
-                    <h3 className=" text-md md:text-lg font-semibold mb-2">
-                      Transport*
-                    </h3>
-                    <Rating />
+                  <div className="flex flex-col gap-y-3 lg:flex-row xl:gap-4">
+                    <div>
+                      <h3 className=" text-sm font-semibold mb-2">
+                        Accommodation*
+                      </h3>
+                      <Rating fontSize={13} />
+                    </div>
+                    <div>
+                      <h3 className=" text-sm font-semibold mb-2">
+                        Transport*
+                      </h3>
+                      <Rating fontSize={13} />
+                    </div>
                   </div>
                 </div>
                 <div className="w-full flex justify-center gap-y-5 items-center flex-col mt-6">
-                  <div className="flex flex-col md:flex-row gap-5 md:gap-2 lg:gap-10">
+                  <div className="flex flex-col md:flex-row gap-5 md:gap-2 lg:gap-2 xl:gap-10">
                     <input
                       type="text"
-                      className="lg:py-3 xl:px-6 outline-none border-none"
+                      className="w-full lg:py-3 lg:px-2 xl:px-4 outline-none border-none"
                       placeholder="First name"
                       value=""
                     />
-                    <input
-                      type="email"
-                      className="lg:py-3 xl:px-6 outline-none border-none"
-                      placeholder="Email Address"
-                      name=""
-                      id=""
-                    />
+                    <div className="w-full flex items-center">
+                      {/* <Image className="absolute" src={User_Img} alt="" /> */}
+                      <input
+                        type="email"
+                        className="w-full lg:py-3 xl:px-4 outline-none border-none"
+                        placeholder="Email Address"
+                        name=""
+                        id=""
+                      />
+                    </div>
                   </div>
 
                   <div>
                     <input
-                      className="outline-none relative py-20 md:px-28 lg:px-32 xl:px-40 lg:py-20 border-none"
+                      className="w-full outline-none relative py-20 md:px-28 lg:px-32 xl:px-40 lg:py-20 border-none"
                       placeholder="Write Review"
                       type="text"
                       name=""
@@ -228,7 +237,7 @@ export default function CustomerReview() {
                   <div className="flex flex-col items-center">
                     <div className="flex items-center gap-3">
                       <input type="checkbox" name="" id="" />
-                      <p className="lg:text-sm">
+                      <p className="text-sm">
                         I agree to Terms & Conditions, Refund Policy and Privacy
                         Policy of Fabrilife.
                       </p>
@@ -259,7 +268,17 @@ export default function CustomerReview() {
             </div>
             <div className="w-full items-center flex gap-4 mt-4">
               <h2 className=" font-semibold">Time:</h2>
-              <input className="w-full p-1" type="time" name="" id="" />
+              {/* <input className="w-full p-1" type="time" name="" id="" /> */}
+              <div className="flex gap-4">
+                <div className=" flex items-center gap-2">
+                  <input type="radio" name="" id="" />
+                  <p className="text-gray-400">14.00</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <input type="radio" name="" id="" />
+                  <p className=" text-gray-400">16.00</p>
+                </div>
+              </div>
             </div>
             <div className="w-full mt-4">
               <h2 className="font-semibold">Tickets:</h2>
@@ -267,19 +286,19 @@ export default function CustomerReview() {
                 <p className="w-full text-[13px] text-gray-400">
                   Children(0-12 years)$129
                 </p>
-                <Ticket_Dropdown />
+                <Ticket_Dropdown selectedNum={2} />
               </div>
               <div className="flex items-center justify-between my-2">
                 <p className="w-full text-[13px] text-gray-400">
                   Youth(13-17 years)$169
                 </p>
-                <Ticket_Dropdown />
+                <Ticket_Dropdown selectedNum={4} />
               </div>
               <div className="flex items-center justify-between">
                 <p className="w-full text-[13px] text-gray-400">
                   Adult (18+ years)$189.00
                 </p>
-                <Ticket_Dropdown />
+                <Ticket_Dropdown selectedNum={6} />
               </div>
             </div>
             <div className="w-full gap-4 mt-4">

@@ -9,7 +9,7 @@ const TourPackHero = () => {
     <div className="w-full">
       <div className="w-full ">
         <HeroBanner Heading="Domestic" Subheading="" UpcommingImage={bg} />
-        <div className="w-full relative xl:h-16 h-60 md:h-20 xl:-top-16 -top-32">
+        <div className="w-full relative xl:h-16 h-60 md:h-20 xl:-top-16 -top-10">
           <div className="w-full flex justify-center">
             <TourpackSearch />
           </div>
