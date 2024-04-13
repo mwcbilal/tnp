@@ -20,7 +20,8 @@ const config: Config = {
       colors:{
           'primary':'#00ADEE',
           'golden':"#FF970D",
-          'secon':'#A3A3A3'
+          'secon':'#A3A3A3',
+          'grayy':'#E4E4E4'
       },
        screens: {
         '2xl': '1820px',

@@ -11,13 +11,13 @@ import { useParams } from "next/navigation";
 
 
 const Domestic = () => {
-  const params= useParams()
-  console.log(params,"param")
-  const bannerData= data.filter((item)=>{return item.id.toString() === params?.id[0]})[0]
-  const renderedData= bannerData?.packages?.filter((item)=>{return item.pid.toString()===params?.id[1]})[0]
-  console.log(renderedData,"rrrr")
-    console.log(data)
-  
+  const params = useParams()
+  console.log(params, "param")
+  const bannerData = data.filter((item) => { return item.id.toString() === params?.id[0] })[0]
+  const renderedData = bannerData?.packages?.filter((item) => { return item.pid.toString() === params?.id[1] })[0]
+  // console.log(renderedData, "rrrr");
+  // console.log(data);
+
   return (
     <div>
       <HeroDomestic heading={bannerData.type} paragraph={bannerData.pTag} />
@@ -58,7 +58,7 @@ const Domestic = () => {
             data={renderedData?.highlights}
           />
           <Itinerary data={renderedData?.itineraryData} />
-          <Cost includeCost={renderedData.includeCost} costExclude={renderedData.costExclude}/>
+          <Cost includeCost={renderedData.includeCost} costExclude={renderedData.costExclude} />
         </div>
 
         {/* aqsa add your compoennts here */}

@@ -1,5 +1,5 @@
 const data = [
-    { 
+    {
         id: 0,
         type: "DOMESTICS",
         pTag: "North Tour Packages",
@@ -14,7 +14,8 @@ const data = [
                     "Travel through the Sherpa villages of Namche, Khumjung, Khunde, and Dingboche",
                     "Visit Tengboche the biggest and oldest monastery n the region.",
                 ]
-                , itineraryData: [
+                ,
+                itineraryData: [
                     {
                         title:
                             "Day 1 : Kathmandu to Pokhara (By flight or Bus), the city of Lakes, adventures and serenity.",
@@ -42,7 +43,6 @@ const data = [
                         desc: "The Big Oxmox advised her not to do so because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.",
                     },
                 ],
-
                 includeCost: [
                     "Pick-up or Drop-off service from and to Airport(in our own vehicle)",
                     "Transportation to and from!!",
@@ -62,14 +62,9 @@ const data = [
                     "Services not mentioned or not promised by the agent/agency",
                     "Emergency expenses such as expenses on chartered helicopter.",
                 ]
-
-
-
-
             }
         ]
-    }
-    ,
+    },
     {
         id: 1,
         type: "HONEYMOON",
@@ -113,7 +108,6 @@ const data = [
                         desc: "The Big Oxmox advised her not to do so because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.",
                     },
                 ],
-
                 includeCost: [
                     "Pick-up or Drop-off service from and to Airport(in our own vehicle)",
                     "Transportation to and from!!",
@@ -133,14 +127,9 @@ const data = [
                     "Services not mentioned or not promised by the agent/agency",
                     "Emergency expenses such as expenses on chartered helicopter.",
                 ]
-
-
-
-
             }
         ]
     }
 ]
-
 
 export default data

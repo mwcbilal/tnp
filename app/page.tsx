@@ -10,7 +10,7 @@ import PlanePath2 from "../public/home/arrLeft (3).png";
 import PlanePNG from "../public/home/plane.png";
 import PlanePNG2 from "../public/home/Plane2.png";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TestimonialBackground from "../public/home/termonials_bg.png";
 import BadgeImage from "../public/home/_x33_8-Award_symbol.png";
 import Hike from "../public/home/Hike.png";
@@ -54,10 +54,10 @@ import SkarduImage from "../public/home/skardu.png";
 import BashaImage from "../public/home/basha.png";
 import GalsImage from "../public/home/gals.png";
 
-import img1 from "../public/TourPackage/FeaturedListing/6dayshunzaandnaltar.png";
-import img2 from "../public/TourPackage/FeaturedListing/6dayshunzaandskardu.png";
-import img3 from "../public/TourPackage/FeaturedListing/6dayssakrduandbasho.png";
-import img4 from "../public/TourPackage/FeaturedListing/allgirlstriptokashmir.png";
+// import img1 from "../public/TourPackage/FeaturedListing/6dayshunzaandnaltar.png";
+// import img2 from "../public/TourPackage/FeaturedListing/6dayshunzaandskardu.png";
+// import img3 from "../public/TourPackage/FeaturedListing/6dayssakrduandbasho.png";
+// import img4 from "../public/TourPackage/FeaturedListing/allgirlstriptokashmir.png";
 import img5 from "../public/TourPackage/FeaturedListing/Rectangle 19370 (1).png";
 import img6 from "../public/TourPackage/FeaturedListing/Rectangle 19370 (2).png";
 import img7 from "../public/TourPackage/FeaturedListing/Rectangle 19370 (3).png";
@@ -66,34 +66,35 @@ import img8 from "../public/TourPackage/FeaturedListing/Rectangle 19370.png";
 import packbg from "../public/home/package bg.png";
 import TourCardPagination from "@/components/Home/TourCardPagination";
 import TestimonialCarousel from "@/components/Home/TestimonialCarousel";
+import NewCustomerOfferModel from "@/components/Home/NewCustomerOfferModel";
 
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 3,
-};
+// const settings = {
+//   dots: true,
+//   infinite: true,
+//   speed: 500,
+//   slidesToShow: 3,
+//   slidesToScroll: 3,
+// };
 
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
+// const responsive = {
+//   superLargeDesktop: {
+//     // the naming can be any, depends on you.
+//     breakpoint: { max: 4000, min: 3000 },
+//     items: 5,
+//   },
+//   desktop: {
+//     breakpoint: { max: 3000, min: 1024 },
+//     items: 3,
+//   },
+//   tablet: {
+//     breakpoint: { max: 1024, min: 464 },
+//     items: 2,
+//   },
+//   mobile: {
+//     breakpoint: { max: 464, min: 0 },
+//     items: 1,
+//   },
+// };
 
 const inter = Yesteryear({
   subsets: ["latin"],
@@ -233,7 +234,15 @@ const featuredata = [
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsOfferModalOpen(true);
+    }, 5000);
+  }, []);
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -258,6 +267,7 @@ export default function Home() {
   };
   return (
     <div className="w-full bg-white min-w-mi">
+      <NewCustomerOfferModel />
       <Modal
         title="Video"
         open={isModalOpen}

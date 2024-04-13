@@ -82,59 +82,59 @@ const Page: NextPage<Props> = ({}) => {
                       onMouseOver={() => setCurrTour("International")}
                       className="hover:text-[#FBAD17] flex cursor-pointer items-center justify-between px-2 py-1 text-black rounded"
                     >
-                      <a href="#">International</a>
+                      <Link href="/pages/tourpackages/international">International</Link>
                       <IoIosArrowForward className="ms-5" />
                     </li>
                     <li
                       onMouseOver={() => setCurrTour("Domestic")}
                       className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded"
                     >
-                      <Link href="/pages/tourpackages">Domestic</Link>
+                      <Link href="/pages/tourpackages/domestic">Domestic</Link>
                       <IoIosArrowForward className="ms-5" />
                     </li>
                   </ul>
 
                   <div
-                    className={`bg-white flex flex-col flex-wrap ${
-                      currTour === "International" ? "" : "w-0 overflow-hidden"
+                    className={`flex flex-col flex-wrap ${
+                      currTour === "International" ? "min-w-96" : "w-0 overflow-hidden"
                     }`}
                   >
-                    <p className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
+                    <Link href={"/pages/tourpackages/international/dubai"} className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Dubai
-                    </p>
-                    <p className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
+                    </Link>
+                    <Link href={"/pages/tourpackages/international/thailand"} className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Thailand
-                    </p>
-                    <p className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
+                    </Link>
+                    <Link href={"/pages/tourpackages/international/turkey"} className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Turkey
-                    </p>
-                    <p className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2 ">
+                    </Link>
+                    <Link href={"/pages/tourpackages/international/malaysia"} className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2 ">
                       Malaysia
-                    </p>
-                    <p className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
+                    </Link>
+                    <Link href={"/pages/tourpackages/international/baku"} className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Baku
-                    </p>
-                    <p className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
+                    </Link>
+                    <Link href={"/pages/tourpackages/international/singapore"} className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Singapore
-                    </p>
-                    <p className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
-                      Sri Lanka
-                    </p>
-                    <p className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
+                    </Link>
+                    <Link href={"/pages/tourpackages/international/srilanka"} className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
+                      Srilanka
+                    </Link>
+                    <Link href={"/pages/tourpackages/international/maldives"} className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Maldives
-                    </p>
+                    </Link>
                   </div>
                   <div
-                    className={`bg-white flex flex-col flex-wrap ${
+                    className={`flex flex-col flex-wrap ${
                       currTour === "Domestic" ? "" : "w-0 overflow-hidden"
                     }`}
                   >
-                    <p className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
+                    <Link href={"/pages/tourpackages/domestic/north"} className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       North
-                    </p>
-                    <p className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
+                    </Link>
+                    <Link href={"/pages/tourpackages/domestic/south"} className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       South
-                    </p>
+                    </Link>
                   </div>
                 </div>
               </div>
