@@ -5,7 +5,7 @@ type ResponseData = {
   message: string;
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
+export default async function GET(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
   try {
     // Your logic here (for both GET and POST requests)
     // ...
