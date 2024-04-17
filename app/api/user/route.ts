@@ -1,28 +1,21 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiRequest, NextApiResponse } from 'next';
 import { NextResponse } from 'next/server';
 
 type ResponseData = {
-  message: string
-}
+  message: string;
+};
 
-export async function GET(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
   try {
-    // Your logic here
+    // Your logic here (for both GET and POST requests)
     // ...
-    return new NextResponse('Success', { status: 200 });
-  } catch (error) {
-    console.error('Error in GET handler:', error);
-    return new NextResponse('Internal Server Error', { status: 500 });
-  }
-}
 
-export async function POST(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
-  try {
-    // Your logic here
-    // ...
-    return new NextResponse('Success', { status: 200 });
+    // Return a success response
+    return new NextResponse<ResponseData>('Success', { status: 200 });
   } catch (error) {
-    console.error('Error in POST handler:', error);
+    console.error('Error in handler:', error);
+
+    // Return an internal server error response
     return new NextResponse('Internal Server Error', { status: 500 });
   }
 }
