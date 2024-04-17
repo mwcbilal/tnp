@@ -196,9 +196,9 @@ const Page: NextPage<Props> = ({}) => {
               </div>
             </div>
             <Link href="/pages/contactus" className="cursor-pointer font-bold">Contact Us</Link>
-            <p className="bg-primary px-4 py-2 rounded shadow-lg cursor-pointer text-white">
+            <Link href={"/pages/offer"} className="bg-primary px-4 py-2 rounded shadow-lg cursor-pointer text-white">
               Make your trip
-            </p>
+            </Link>
           </div>
           <div
             style={{
