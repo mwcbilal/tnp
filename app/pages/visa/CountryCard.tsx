@@ -1,4 +1,4 @@
-import { countryDetailsArray } from "../../../assets/Strings/visaScreenData";
+import { countryDetailsArray } from "@/assets/strings/visaScreenData";
 import Image from "next/image";
 import WhatsApp_Img from "../../../assets/visa/Whatsapp.svg";
 import Rating from "../customerreview/rating";
