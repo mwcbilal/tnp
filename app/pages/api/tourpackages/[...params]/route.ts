@@ -14,19 +14,6 @@ interface PackageStructure {
   package_details: string | null;
 }
 
-interface InsertBodyRequest {
-  package_id: number;
-  package_name: string;
-  package_total_persons: number;
-  package_category_id: number;
-  package_type_id: number;
-  package_region_id: number;
-  package_description: string;
-  package_rate_normal: number;
-  package_rate_deluxe: number;
-  package_details: string | null;
-}
-
 interface PackagesRequestParams {
   params: string[];
 }
@@ -160,40 +147,5 @@ export async function GET(
     return new NextResponse("Internal Server Error", { status: 500 });
   } finally {
     await prisma.$disconnect();
-  }
-}
-
-export async function POST(request: InsertBodyRequest) {
-  const prisma = new PrismaClient();
-  try {
-    // Insert logic here
-    const insert = await prisma.tnp_packages.create({
-      data: {
-        package_name: request.package_name,
-        package_description: request.package_description,
-        package_rate_normal: request.package_rate_normal,
-        package_rate_deluxe: request.package_rate_deluxe,
-        package_total_persons: request.package_total_persons,
-        package_category_id: request.package_category_id,
-        package_details: request.package_details,
-        package_region_id: request.package_region_id,
-        package_type_id: request.package_type_id,
-      },
-    });
-    console.log("Body", insert);
-    return NextResponse.json({ status: 200, message: "Success", data: insert });
-  } catch (error) {
-    console.error("Error in POST handler:", error);
-    return new NextResponse("Internal Server Error", { status: 500 });
-  }
-}
-
-export async function PUT(request: Request) {
-  try {
-    //update logic here
-    return new NextResponse("Success", { status: 200 });
-  } catch (error) {
-    console.error("Error in POST handler:", error);
-    return new NextResponse("Internal Server Error", { status: 500 });
   }
 }
