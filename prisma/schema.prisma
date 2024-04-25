@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tnp_package_categories {
+  package_category_id   Int            @id @default(autoincrement())
+  package_category_name String         @db.VarChar(255)
+  tnp_packages          tnp_packages[]
+}
+
+model tnp_package_regions {
+  region_id    Int            @id @default(autoincrement())
+  region_name  String         @db.VarChar(255)
+  tnp_packages tnp_packages[]
+}
+
+model tnp_package_types {
+  package_type_id   Int            @id @default(autoincrement())
+  package_type_name String         @db.VarChar(255)
+  tnp_packages      tnp_packages[]
+}
+
+model tnp_packages {
+  package_id             Int                    @id @default(autoincrement())
+  package_name           String                 @db.VarChar(255)
+  package_total_persons  Int
+  package_category_id    Int
+  package_type_id        Int
+  package_region_id      Int
+  package_description    String                 @db.Text
+  package_rate_normal    Int
+  package_rate_deluxe    Int
+  package_details        String?                @db.LongText
+  package_duration       Int?
+  tnp_package_categories tnp_package_categories @relation(fields: [package_category_id], references: [package_category_id], onUpdate: Restrict, map: "tnp_packages_ibfk_1")
+  tnp_package_regions    tnp_package_regions    @relation(fields: [package_region_id], references: [region_id], onUpdate: Restrict, map: "tnp_packages_ibfk_2")
+  tnp_package_types      tnp_package_types      @relation(fields: [package_type_id], references: [package_type_id], onUpdate: Restrict, map: "tnp_packages_ibfk_3")
+
+  @@index([package_category_id], map: "package_category_id")
+  @@index([package_region_id], map: "package_region_id")
+  @@index([package_type_id], map: "package_type_id")
+}
+
+model tnp_user {
+  id                 Int                  @id @default(autoincrement())
+  createdAt          DateTime             @default(now())
+  name               String               @db.VarChar(255)
+  lname              String               @db.VarChar(255)
+  email              String               @unique
+  password           String
+  tnp_hotel_bookings tnp_hotel_bookings[]
+}
+
+model tnp_destinations {
+  destination_id   Int          @id @default(autoincrement())
+  destination_name String?      @db.VarChar(255)
+  tnp_hotels       tnp_hotels[]
+}
+
+model tnp_hotel_bookings {
+  booking_id             Int         @id @default(autoincrement())
+  booking_user_id        Int?
+  booking_hotel_id       Int?
+  booking_checkin_time   DateTime?   @db.DateTime(0)
+  booking_checkout_time  DateTime?   @db.DateTime(0)
+  booking_adult_count    Int?
+  booking_children_count Int?
+  tnp_user               tnp_user?   @relation(fields: [booking_user_id], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "tnp_hotel_bookings_ibfk_1")
+  tnp_hotels             tnp_hotels? @relation(fields: [booking_hotel_id], references: [hotel_id], onDelete: Restrict, onUpdate: Restrict, map: "tnp_hotel_bookings_ibfk_2")
+
+  @@index([booking_hotel_id], map: "booking_hotel_id")
+  @@index([booking_user_id], map: "booking_user_id")
+}
+
+model tnp_hotels {
+  hotel_id             Int                  @id @default(autoincrement())
+  hotel_name           String?              @db.VarChar(255)
+  hotel_destination_id Int
+  tnp_hotel_bookings   tnp_hotel_bookings[]
+  tnp_destinations     tnp_destinations     @relation(fields: [hotel_destination_id], references: [destination_id], onUpdate: Restrict, map: "tnp_hotels_ibfk_1")
+
+  @@index([hotel_destination_id], map: "hotel_destination_id")
+}

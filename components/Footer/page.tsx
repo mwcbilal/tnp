@@ -32,23 +32,27 @@ const Footer = () => {
       <div className=" w-[90%] mb-5 flex flex-col lg:flex-row lg:flex-wrap justify-between">
         {NavigationRows.map((item, i) => {
           if (item === "LogoDetails") {
-            return <LogoDetails key={"rendering-id-" + i} />
+            return <LogoDetails key={"rendering-id-" + i} />;
           } else if (item === "OurCompany") {
-            return <OurCompany key={"rendering-id-" + i} />
+            return <OurCompany key={"rendering-id-" + i} />;
           } else if (item === "QuickLinks") {
-            return <QuickLinks key={"rendering-id-" + i} />
+            return <QuickLinks key={"rendering-id-" + i} />;
           } else if (item === "NewsLetter") {
-            return <OurNewsLetter key={"rendering-id-" + i} />
+            return <OurNewsLetter key={"rendering-id-" + i} />;
           }
-          return <div key={"rendering-id-" + i} ></div>;
+          return <div key={"rendering-id-" + i}></div>;
         })}
       </div>
       <div className="w-[90%] border h-[1px] bg-gray-300"></div>
-      <div className="w-[90%] flex justify-between">
+      <div className="w-[90%] flex flex-col md:flex-row justify-between">
         <div>
-          <p className="font-medium"> © Copyright <span className="text-[#00ADEE]">©2023</span> . All Rights Reserved Copyright</p>
+          <p className="font-medium mb-4">
+            {" "}
+            © Copyright <span className="text-[#00ADEE]">©2023</span> . All
+            Rights Reserved Copyright
+          </p>
         </div>
-        <div className="flex gap-7">
+        <div className="flex gap-4 lg:gap-7">
           <p className="font-medium">Terms and conditions</p>
           <p className="font-medium">Privacy policy</p>
           <p className="font-medium">Login / Signup</p>

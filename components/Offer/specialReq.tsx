@@ -5,7 +5,7 @@ interface Props {}
 const SpecialRequirments: NextPage<Props> = ({}) => {
   return (
     <div className="w-11/12 md:w-[700px] px-12 py-14 mt-4 bg-white rounded-lg shadow-2xl">
-      <div className=" bg-[#00ADEE] text-white w-52 py-1 px-2 rounded-md -mt-8 absolute ml-0 md:-ml-[3rem] lg:-ml-36">
+      <div className=" bg-[#00ADEE] text-white w-52 py-1 px-2 rounded-md -mt-8 absolute -ml-12 md:-ml-[3rem] lg:-ml-36">
         Any special requirments
       </div>
       <label

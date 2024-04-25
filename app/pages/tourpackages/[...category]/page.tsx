@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 import FeaturedListings from '@/components/TourPackage/FeaturedListings'
 import TourPackHero from '@/components/TourPackage/TourPackHero'
 import { NextPage } from 'next'

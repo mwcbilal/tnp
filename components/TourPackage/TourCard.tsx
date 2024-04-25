@@ -3,16 +3,15 @@ import { MdLocationPin } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { IoMdTime } from "react-icons/io";
 import { IoPersonAddOutline } from "react-icons/io5";
-import image from "../../public/TourPackage/FeaturedListing/imageicon.png"; 
-import video from "../../public/TourPackage/FeaturedListing/videoicon.png";
+// import image from "../../public/TourPackage/FeaturedListing/imageicon.png"; 
+// import video from "../../public/TourPackage/FeaturedListing/videoicon.png";
 import { MdPhotoCamera } from "react-icons/md";
 import { BiSolidVideos } from "react-icons/bi";
 import Link from 'next/link';
 
 interface TourCardProps {
-  id: number,
   pid: number,
-  pic: StaticImageData;
+  pic?: StaticImageData[] | string[];
   loc: string;
   title: string;
   duration: string;
@@ -23,20 +22,19 @@ interface TourCardProps {
   imageCount: number;
   videoCount: number
 }
-const TourCard: React.FC<TourCardProps> = ({ id, pid, pic, loc, title, duration, people, price, dprice, review, imageCount , videoCount }) => {
-
+const TourCard: React.FC<TourCardProps> = ({ pid, pic, loc, title, duration, people, price, dprice, review, imageCount, videoCount }) => {
   return (
-    <Link href={`/pages/domestic/${id}/${pid}`} className="flex flex-col  md:h-[21rem] xl:h-auto h-auto items-center justify-center lg:w-[30%] xl:w-[300px] md:w-[45%] w-[100%] shadow-lg shadow-gray-400 rounded-lg">
+    <Link href={`/pages/packagedetails/${pid}`} className="flex flex-col  md:h-[21rem] xl:h-auto h-auto items-center justify-center lg:w-[30%] xl:w-[300px] md:w-[45%] w-[100%] shadow-lg shadow-gray-400 rounded-lg">
 
       <div className=" w-full relative bg-pink-400">
-      
-        <Image src={pic} alt="tour image " className="w-full absolute z-0" />
+
+        <Image src={pic?.length > 0 && pic[0]} alt="not_found" width={300} height={300} className="w-full h-52 absolute z-0" />
         <div className="absolute z-10 flex flex-row justify-between w-full">
-        <p className="bg-sky-500 text-white text-sm px-2 py-[2px] m-2 rounded-md w-[30%]">Featured</p>
-        <div className="flex flex-row gap-2  ">
-          <div className="flex flex-row bg-gray-400 blur-20  gap-[2px] m-2 px-2 py-[2px] rounded-md "><MdPhotoCamera size={14} className="text-white mt-[3px]"/><p className="text-white text-sm">{imageCount}</p></div>
-          <div className="flex flex-row gap-2 bg-sky-500 text-white gap-[2px] m-2 px-2 py-[2px] rounded-md"><BiSolidVideos size={14} className="text-white mt-[3px] " /><p className="text-sm ">{videoCount}</p></div>
-        </div>
+          <p className="bg-sky-500 text-white text-sm px-2 py-[2px] m-2 rounded-md">Featured</p>
+          <div className="flex flex-row gap-2">
+            <div className="flex flex-row bg-gray-400 blur-20  gap-[2px] m-2 px-2 py-[2px] rounded-md"><MdPhotoCamera size={14} className="text-white mt-[3px]" /><p className="text-white text-sm">{imageCount}</p></div>
+            <div className="flex flex-row gap-2 bg-sky-500 text-white m-2 px-2 py-[2px] rounded-md"><BiSolidVideos size={14} className="text-white mt-[3px]" /><p className="text-sm ">{videoCount}</p></div>
+          </div>
         </div>
       </div>
 
@@ -74,7 +72,7 @@ const TourCard: React.FC<TourCardProps> = ({ id, pid, pic, loc, title, duration,
         </div>
 
         <div className="h-[0.5px] w-full bg-gray-300 "></div>
-        
+
         <div className="flex flex-row gap-2">
           <p className="text-xs text-gray-500 ">From</p>
           <p className="text-xs text-blue-400 font-semibold ">Rs{dprice}</p>
@@ -83,7 +81,6 @@ const TourCard: React.FC<TourCardProps> = ({ id, pid, pic, loc, title, duration,
 
       </div>
     </Link>
-
   )
 }
 export default TourCard;

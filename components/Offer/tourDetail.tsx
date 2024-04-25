@@ -6,7 +6,7 @@ interface Props {}
 const TourDetails: NextPage<Props> = ({}) => {
   return (
     <div className="w-11/12 md:w-[700px] py-14 px-4 md:px-14 bg-white rounded-lg mt-4 shadow-2xl">
-      <div className=" bg-[#00ADEE] text-white w-28 py-1 px-2 rounded-md -mt-8 absolute md:-ml-[3rem] lg:-ml-28">
+      <div className=" bg-[#00ADEE] text-white w-28 py-1 px-2 rounded-md -mt-8 absolute -ml-4 md:-ml-[3rem] lg:-ml-28">
         Tour Details
       </div>
       <div className="flex flex-col gap-4 md:flex-row justify-between">

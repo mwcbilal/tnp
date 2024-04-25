@@ -171,25 +171,25 @@ const Page: NextPage<Props> = ({}) => {
                       onMouseOver={() => setCurrTour("International")}
                       className="hover:text-[#FBAD17] flex cursor-pointer items-center justify-between px-2 py-1 text-black rounded"
                     >
-                      <a href="#">Group</a>
+                      <Link href="/pages/tourpackages/group">Group</Link>
                     </li>
                     <li
                       onMouseOver={() => setCurrTour("Domestic")}
                       className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded"
                     >
-                      <a href="#">Honeymoon</a>
+                      <Link href="/pages/tourpackages/honeymoon">Honeymoon</Link>
                     </li>
                     <li
                       onMouseOver={() => setCurrTour("Domestic")}
                       className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded"
                     >
-                      <a href="#">Private Family</a>
+                      <Link href="/pages/tourpackages/private-family">Private Family</Link>
                     </li>
                     <li
                       onMouseOver={() => setCurrTour("Domestic")}
                       className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded"
                     >
-                      <a href="#">Corporate</a>
+                      <Link href="/pages/tourpackages/corporate">Corporate</Link>
                     </li>
                   </ul>
                 </div>

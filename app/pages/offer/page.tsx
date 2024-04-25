@@ -7,33 +7,51 @@ import { useEffect, useState } from "react";
 import Banner from "@/components/Offer/Banner";
 import PersonalDetails from "../../../components/Offer/PersonalDetails";
 
-import BannerImg from "../../../assets/offer/header.svg";
+import BannerImg from "../../../assets/offer/BG.svg";
 import TourDetails from "../../../components/Offer/tourDetail";
 import SpecialRequirments from "../../../components/Offer/specialReq";
 import Payment from "@/components/Offer/payment";
+import styled, { css } from "styled-components";
 
 interface Props {}
 
 const Page: NextPage<Props> = ({}) => {
   const [isMounted, setIsMounted] = useState(false);
   const [counter, setCounter] = useState(0);
-  const [move, setMove] = useState(5);
+  const [move, setMove] = useState(20);
 
   useEffect(() => {
-    setIsMounted(true); // Component has been mounted
+    setIsMounted(true);
   }, []);
+
+  useEffect(() => {
+    const screenWidth = window.innerWidth;
+    let moveValue = 10;
+    if (screenWidth <= 425) {
+      moveValue = 16.5;
+    }
+    if (screenWidth >= 768) {
+      moveValue = 16.5;
+    }
+    if (screenWidth >= 1024) {
+      moveValue = 15.5;
+    }
+    if (screenWidth >= 1440) {
+      moveValue = 16;
+    }
+    setMove(moveValue * counter);
+  }, [counter]);
 
   const ImageForwardHandler = () => {
     setCounter(counter + 1);
-    setMove(move + 20);
   };
-  const ImageBackwarddHandler = () => {
+
+  const ImageBackwardHandler = () => {
     setCounter(counter - 1);
-    setMove(move - 450);
   };
 
   if (!isMounted) {
-    return null; // Don't render anything until client-side hydration
+    return null;
   }
 
   return (
@@ -46,9 +64,6 @@ const Page: NextPage<Props> = ({}) => {
         setMove={setMove}
       />
       <div className="w-full mb-14 flex pb-10 flex-col items-center rounded-lg md:mt-16 mx-auto md:w-11/12">
-        {/* <h2 className="mt-10 uppercase text-2xl md:text-3xl font-bold text-[#FBAD17] py-5">
-          Make your own trip
-        </h2> */}
         {counter === 0 ? (
           <PersonalDetails />
         ) : counter === 1 ? (
@@ -64,7 +79,7 @@ const Page: NextPage<Props> = ({}) => {
           } mt-10`}>
           {counter >= 1 && (
             <button
-              onClick={ImageBackwarddHandler}
+              onClick={ImageBackwardHandler}
               className="py-2 px-12 bg-[#FBAD17] rounded-sm text-sm text-white">
               BACK
             </button>
@@ -78,7 +93,7 @@ const Page: NextPage<Props> = ({}) => {
           ) : (
             <button
               onClick={ImageForwardHandler}
-              className="py-2 px-12 bg-[#00ADEE] rounded-sm text-sm text-white">
+              className="py-2 px-6 bg-[#00ADEE] rounded-sm text-sm text-white">
               BOOK NOW
             </button>
           )}
@@ -87,5 +102,4 @@ const Page: NextPage<Props> = ({}) => {
     </div>
   );
 };
-
 export default Page;
