@@ -85,8 +85,8 @@ const user = useAppSelector((data) => data?.auth?.data)
                         >
                             <option value="">  Select Destination </option>
                             {
-                                destinations?.map((dest) => {
-                                    return (<option value={dest?.destination_id}> {dest?.destination_name} </option>)
+                                destinations?.map((dest, i) => {
+                                    return (<option value={dest?.destination_id} key={208 + i}> {dest?.destination_name} </option>)
                                 })
                             }
                         </select>
