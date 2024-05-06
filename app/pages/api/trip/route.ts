@@ -20,7 +20,7 @@ export async function POST(request: Request) {
             data: {
                 trip_package_id: body.trip_package_id,
                 trip_date: new Date(body.trip_date),
-                trip_total_members: body.trip_total_members,
+                trip_booked_count: body.trip_total_members,
             },
         });
         return new NextResponse(JSON.stringify(newTrip), { status: 201 });
@@ -38,7 +38,7 @@ export async function PUT(request: Request) {
             data: {
                 trip_package_id: body.trip_package_id,
                 trip_date: new Date(body.trip_date),
-                trip_total_members: body.trip_total_members,
+                trip_booked_count: body.trip_total_members,
             },
         });
         return new NextResponse(JSON.stringify(updatedTrip), { status: 200 });
