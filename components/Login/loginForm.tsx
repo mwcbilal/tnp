@@ -38,7 +38,6 @@ const LoginForm = () => {
 
     const [messageApi, contextHolder] = message.useMessage();
     const [formData, setFormData] = useState({
-
         email: "",
         password: "",
     });
@@ -58,7 +57,7 @@ const LoginForm = () => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 // The signed-in user info.
                 const user = result.user;
-                console.log("User",user)
+                console.log("User", user)
                 // IdP data available using getAdditionalUserInfo(result)
                 // ...
             }).catch((error) => {
@@ -72,13 +71,13 @@ const LoginForm = () => {
                 // ...
             });
     }
-    
 
-    const handleServerGoogleLogin= async () => {
+
+    const handleServerGoogleLogin = async () => {
 
         const res = await signInWithGoogle()
         console.log(res)
-        
+
     }
 
     const handleSubmit = async () => {
