@@ -8,7 +8,10 @@ export async function POST(request: Request) {
 
         const req = await request.json()
 
+        console.log("LOLLLLLLLLLLLLLL")
+
         const isAvailable = await getUser(req.email)
+
         console.log(req)
 
         if (isAvailable){
@@ -36,6 +39,8 @@ export async function POST(request: Request) {
             email:user?.email,
             id:user?.id
         }
+
+
 
         return NextResponse.json({ status: 200, message: "success", userData });
     } catch (error) {

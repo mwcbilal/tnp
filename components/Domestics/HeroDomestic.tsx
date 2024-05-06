@@ -14,7 +14,7 @@ const HeroDomestic: NextPage<Props> = ({ heading, paragraph, image }) => {
   return <div className="heroAboutUs relative w-full h-[50vh]">
 
     <div className="absolute inset-0">
-      <Image src={image || Bg} fill={true} alt='Background Image' />
+      <Image src={image || Bg} fill={true} objectFit='cover' alt='Background Image' />
     </div>
 
     <div className="absolute inset-0 bg-black opacity-50"></div>

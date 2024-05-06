@@ -16,7 +16,7 @@ const Affiliations: NextPage<Props> = ({}) => {
         </div>
         <div className="w-1/3 md:w-2/4 lg:w-3/4 xl:w-3/4 2xl:w-3/4 h-0.5 bg-gray-300"></div>
       </div>
-      <div className="w-[80%] flex flex-col md:flex-row justify-around items-center">
+      <div className="w-full flex flex-col md:flex-row justify-around items-center mb-12">
         {AffiliationsData.map((item, i) => (
           <Image className="m-4 h-20" alt="image_not_found" src={item.image} key={"affiliations-image-id-" + i} />
         ))}

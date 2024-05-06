@@ -1,0 +1,29 @@
+.button:hover {
+  background-color: #00ADEE !important;
+}
+
+.buttonred:hover {
+  background-color: #8b2424 !important;
+  color: white !important;
+}
+
+.buttonred {
+  border-color: #8b2424 !important;
+  border-width: 2px;
+}
+
+.textred:hover{
+  color: white !important;
+}
+
+.text:hover{
+  color: white !important;
+}
+
+.textred {
+  color: #8b2424;
+}
+
+.text {
+  color: #00ADEE;
+}

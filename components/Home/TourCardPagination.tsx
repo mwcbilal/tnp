@@ -4,20 +4,53 @@ import { GrFormNext } from "react-icons/gr";
 import { GrFormPrevious } from "react-icons/gr";
 import { NextPage } from "next";
 
+interface PackageStructure {
+  package_id: number;
+  package_name: string;
+  package_total_persons: number;
+  package_description: string;
+  package_rate_normal: number;
+  package_rate_deluxe: number;
+  package_details: string;
+  package_duration: number;
+  package_isfeatured: boolean;
+  package_bestseller: boolean;
+  tnp_destinations: {
+    destination_id: number;
+    destination_category_id: number;
+    destination_name: string;
+    destination_region_id: number;
+    tnp_package_categories: {
+      package_category_id: number;
+      package_category_name: string;
+    };
+    tnp_package_regions: {
+      region_id: number;
+      region_name: string;
+    };
+  };
+  tnp_package_types: {
+    package_type_id: number;
+    package_type_name: string;
+    package_type_value: string;
+  };
+}
+
 interface Props {
-  featuredata: any[];
+  featuredata: PackageStructure[];
   direction: string;
   cardsPerPage?: number;
 }
 
 const TourCardPagination: NextPage<Props> = ({
-  featuredata,
+  featuredata = [],
   direction,
   cardsPerPage = 3,
 }) => {
+  console.log("featuredata", featuredata);
   const [currentPage, setCurrentPage] = useState(0);
 
-  const totalPages = Math.ceil(featuredata.length / cardsPerPage);
+  const totalPages = Math.ceil(featuredata?.length / cardsPerPage);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1));
@@ -32,20 +65,29 @@ const TourCardPagination: NextPage<Props> = ({
     const endIndex = Math.min(startIndex + cardsPerPage, featuredata.length);
 
     return (
-      <div className="flex md:flex-row flex-col md:gap-4 gap-4 justify-center items-center lg:w-[85%] w-[100%]  ">
-        {featuredata.slice(startIndex, endIndex).map((item, index) => (
-          <HomeTourCard
-          key={index}
-            pic={item?.img}
-            loc={item?.location}
-            title={item?.title}
-            duration={item?.duration}
-            people={item?.people}
-            price={item?.price}
-            dprice={item?.discountedPrice}
-            review={item?.reviewCount}
-          />
-        ))}
+      <div className="flex md:flex-row flex-col md:gap-4 gap-4 justify-center items-center lg:w-[85%] w-[100%] lg:h-96">
+        {featuredata?.slice(startIndex, endIndex).map((item, index) => {
+          const packageDetails = JSON.parse(item.package_details || "{}");
+          console.log("packageDetails", packageDetails);
+          const imageUrls =
+            packageDetails?.TripDetailsAndCostSummary?.Images || [];
+          return (
+            <HomeTourCard
+              key={index}
+              id={item?.package_id}
+              pic={imageUrls[0]}
+              loc={item?.tnp_destinations.tnp_package_regions.region_name}
+              title={item?.package_name}
+              duration={item?.package_duration}
+              people={item?.package_total_persons}
+              price={item?.package_rate_deluxe}
+              dprice={item?.package_rate_normal}
+              review={1}
+              imageCount={imageUrls.length}
+              videoCount={imageUrls.length}
+            />
+          );
+        })}
       </div>
     );
   };

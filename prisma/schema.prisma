@@ -8,42 +8,43 @@ datasource db {
 }
 
 model tnp_package_categories {
-  package_category_id   Int            @id @default(autoincrement())
-  package_category_name String         @db.VarChar(255)
-  tnp_packages          tnp_packages[]
+  package_category_id   Int                @id @default(autoincrement())
+  package_category_name String             @db.VarChar(255)
+  tnp_destinations      tnp_destinations[]
 }
 
 model tnp_package_regions {
-  region_id    Int            @id @default(autoincrement())
-  region_name  String         @db.VarChar(255)
-  tnp_packages tnp_packages[]
+  region_id        Int                @id @default(autoincrement())
+  region_name      String             @db.VarChar(255)
+  tnp_destinations tnp_destinations[]
 }
 
 model tnp_package_types {
-  package_type_id   Int            @id @default(autoincrement())
-  package_type_name String         @db.VarChar(255)
-  tnp_packages      tnp_packages[]
+  package_type_id    Int            @id @default(autoincrement())
+  package_type_name  String         @db.VarChar(255)
+  package_type_value String?        @db.VarChar(255)
+  tnp_packages       tnp_packages[]
 }
 
 model tnp_packages {
-  package_id             Int                    @id @default(autoincrement())
-  package_name           String                 @db.VarChar(255)
+  package_id             Int               @id @default(autoincrement())
+  package_name           String            @db.VarChar(255)
   package_total_persons  Int
-  package_category_id    Int
   package_type_id        Int
-  package_region_id      Int
-  package_description    String                 @db.Text
+  package_description    String            @db.Text
+  package_destination_id Int?
   package_rate_normal    Int
   package_rate_deluxe    Int
-  package_details        String?                @db.LongText
+  package_details        String?           @db.LongText
   package_duration       Int?
-  tnp_package_categories tnp_package_categories @relation(fields: [package_category_id], references: [package_category_id], onUpdate: Restrict, map: "tnp_packages_ibfk_1")
-  tnp_package_regions    tnp_package_regions    @relation(fields: [package_region_id], references: [region_id], onUpdate: Restrict, map: "tnp_packages_ibfk_2")
-  tnp_package_types      tnp_package_types      @relation(fields: [package_type_id], references: [package_type_id], onUpdate: Restrict, map: "tnp_packages_ibfk_3")
+  package_isfeatured     Boolean?
+  package_bestseller     Boolean?
+  tnp_package_types      tnp_package_types @relation(fields: [package_type_id], references: [package_type_id], onUpdate: Restrict, map: "tnp_packages_ibfk_3")
+  tnp_destinations       tnp_destinations? @relation(fields: [package_destination_id], references: [destination_id], onDelete: Restrict, onUpdate: Restrict, map: "tnp_packages_ibfk_4")
+  tnp_trips              tnp_trips[]
 
-  @@index([package_category_id], map: "package_category_id")
-  @@index([package_region_id], map: "package_region_id")
   @@index([package_type_id], map: "package_type_id")
+  @@index([package_destination_id], map: "package_destination_id")
 }
 
 model tnp_user {
@@ -52,14 +53,24 @@ model tnp_user {
   name               String               @db.VarChar(255)
   lname              String               @db.VarChar(255)
   email              String               @unique
-  password           String
+  password           String?
+  login_count        Int?
+  tnp_car_booking    tnp_car_booking[]
   tnp_hotel_bookings tnp_hotel_bookings[]
 }
 
 model tnp_destinations {
-  destination_id   Int          @id @default(autoincrement())
-  destination_name String?      @db.VarChar(255)
-  tnp_hotels       tnp_hotels[]
+  destination_id          Int                    @id @default(autoincrement())
+  destination_category_id Int
+  destination_region_id   Int
+  destination_name        String?                @db.VarChar(255)
+  tnp_package_regions     tnp_package_regions    @relation(fields: [destination_region_id], references: [region_id], onUpdate: Restrict, map: "tnp_destinations_ibfk_1")
+  tnp_package_categories  tnp_package_categories @relation(fields: [destination_category_id], references: [package_category_id], onUpdate: Restrict, map: "tnp_destinations_ibfk_2")
+  tnp_hotels              tnp_hotels[]
+  tnp_packages            tnp_packages[]
+
+  @@index([destination_category_id], map: "destination_category_id")
+  @@index([destination_region_id], map: "destination_region_id")
 }
 
 model tnp_hotel_bookings {
@@ -85,4 +96,74 @@ model tnp_hotels {
   tnp_destinations     tnp_destinations     @relation(fields: [hotel_destination_id], references: [destination_id], onUpdate: Restrict, map: "tnp_hotels_ibfk_1")
 
   @@index([hotel_destination_id], map: "hotel_destination_id")
+}
+
+model tnp_agents {
+  agent_id    Int    @id @default(autoincrement())
+  agent_name  String @db.VarChar(255)
+  agent_email String @db.VarChar(255)
+}
+
+model tnp_tour_bookings {
+  tour_id             Int     @id @default(autoincrement())
+  tour_client_name    String? @db.VarChar(255)
+  tour_client_email   String? @db.VarChar(255)
+  tour_client_phone   String? @db.VarChar(15)
+  tour_trip_id        Int?
+  tour_persons_count  Int?
+  tour_children_count Int?
+  tour_description    String? @db.Text
+
+  @@index([tour_trip_id], map: "tour_trip_id")
+}
+
+model tnp_trips {
+  trip_id           Int          @id @default(autoincrement())
+  trip_package_id   Int
+  trip_date         DateTime     @db.Date
+  trip_booked_count Int
+  tnp_packages      tnp_packages @relation(fields: [trip_package_id], references: [package_id], onUpdate: Restrict, map: "tnp_trips_ibfk_1")
+
+  @@index([trip_package_id], map: "trip_package_id")
+}
+
+model tnp_car_booking {
+  car_booking_id   Int      @id @default(autoincrement())
+  user_id          Int
+  car_id           Int
+  pickup_date      DateTime @db.Date
+  dropoff_date     DateTime @db.Date
+  pickup_location  String   @db.VarChar(255)
+  dropoff_location String   @db.VarChar(255)
+  tnp_cars         tnp_cars @relation(fields: [car_id], references: [car_id], onUpdate: Restrict, map: "tnp_cars_ibfk_1")
+  tnp_user         tnp_user @relation(fields: [user_id], references: [id], onUpdate: Restrict, map: "tnp_users_ibfk_1")
+
+  @@index([car_id], map: "tnp_cars_ibfk_1")
+  @@index([user_id], map: "tnp_users_ibfk_1")
+}
+
+model tnp_car_class {
+  car_class_id Int        @id @default(autoincrement())
+  car_id       Int
+  class_name   String     @db.VarChar(50)
+  tnp_cars     tnp_cars[]
+}
+
+model tnp_cars {
+  car_id          Int               @id @default(autoincrement())
+  car_name        String            @db.VarChar(255)
+  class_id        Int
+  make            String?
+  model           String?
+  year            Int?
+  color           String?
+  engine          String?
+  transmission    String?
+  fuelType        String?
+  pricePerDay     Float?
+  mileage         Float?
+  tnp_car_booking tnp_car_booking[]
+  tnp_car_class   tnp_car_class     @relation(fields: [class_id], references: [car_class_id], onUpdate: Restrict, map: "tnp_cars_class_ibfk_1")
+
+  @@index([class_id], map: "tnp_cars_class_ibfk_1")
 }

@@ -209,7 +209,7 @@ const router = useRouter();
                     <div className="w-[50%] h-[1px] rounded-sm  bg-gray-200"> </div>
                 </div>
                 <div className="flex flex-col lg:flex-row my-3 gap-4">
-                    <button className="bg-white text-black py-2 px-5 rounded flex items-center border border-gray-400">
+                    <button  className="bg-white text-black py-2 px-5 rounded flex items-center border border-gray-400">
                         <Image src={googlepic} alt="Google icon" className="w-6 h-6 mr-2" />{" "}
                         Sign In with Google
                     </button>

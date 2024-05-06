@@ -1,0 +1,4 @@
+.hover_affect:hover {
+    border: 1px solid #00ADEE;
+    transition: ease-in-out;
+}

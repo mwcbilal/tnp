@@ -8,8 +8,17 @@ import QuickLinks from "./QuickLinks";
 import OurNewsLetter from "./OurNewsLetter";
 import Affiliations from "./Affiliations";
 import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
 const Footer = () => {
+  const params = useParams();
+
+  const { category, id } = useParams();
+  console.log("paramssss founddd", { category, id });
+  // console.log("footer", params);
+
+  // console.log("paramssss founddd at footer", params);
+
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -19,16 +28,25 @@ const Footer = () => {
   if (!isMounted) {
     return null; // Don't render anything until client-side hydration
   }
+  if (params?.category && params.category[0] === "honeymoon") {
+    return null;
+  }
+
+
+
+  const bgClass = (id && id[0] === 'honeymoon') || (category && category[0] === 'honeymoon') 
+  ? "bg-[#fff5fb]" : "bg-white";
+
   return (
-    <div className="text-black bg-white relative pb-4 pt-8 items-center flex flex-col">
+    <div className={`text-black ${bgClass} relative pb-4 pt-8 items-center ${id && id[0] === 'honeymoon'? "hidden" : "flex"} flex-col`}>
       <Affiliations />
-      <div className="flex items-center justify-center flex-col relative pt-20 pb-16">
+      {/* <div className="flex items-center justify-center flex-col relative pt-20 pb-16">
         <Image
           src={mobile_download}
           alt="not_found_image"
           className="w-[90%]"
         />
-      </div>
+      </div> */}
       <div className=" w-[90%] mb-5 flex flex-col lg:flex-row lg:flex-wrap justify-between">
         {NavigationRows.map((item, i) => {
           if (item === "LogoDetails") {

@@ -10,6 +10,8 @@ import LuxuryImage from "../../assets/carrent/Group (1).svg";
 import LuxuryImage_hover from "../../assets/carrent/download.svg";
 import SUVImage from "../../assets/carrent/Group (2).svg";
 import SUVImage_hover from "../../assets/carrent/download (1).svg";
+import HiaceImage from "../../assets/carrent/Car2.png";
+import HiaceImage_hover from "../../assets/carrent/Car5.png";
 import { Button, Form, Input, Radio, Select, TimePicker } from "antd";
 import { DatePicker, Space } from "antd";
 
@@ -37,6 +39,7 @@ const CarFilter: NextPage<Props> = ({}) => {
         />
         <SvgImage hoverImage={LuxuryImage_hover} normalImage={LuxuryImage} />
         <SvgImage hoverImage={SUVImage_hover} normalImage={SUVImage} />
+        <SvgImage hoverImage={HiaceImage_hover} normalImage={HiaceImage} />
       </div>
       <div className="flex lg:max-w-[70%] bg-lue-200 flex-wrap w-full items-center justify-evenly">
         <Form

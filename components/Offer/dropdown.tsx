@@ -1,41 +1,51 @@
 import React from "react";
-import { DownOutlined, SmileOutlined } from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Dropdown, Space } from "antd";
+import { Menu, Dropdown, Space } from "antd";
 import { IoMdArrowDropdownCircle } from "react-icons/io";
 
-const items: MenuProps["items"] = [
+const items = [
   {
-    key: "1",
-    label: "Option 1",
+    key: "turkey",
+    label: "Pamukkale",
   },
   {
-    key: "2",
-    label: "Option 2",
-    icon: <SmileOutlined />,
-    disabled: true,
+    key: "south",
+    label: "Hunza",
   },
   {
-    key: "3",
-    label: "Option 3",
-    disabled: true,
+    key: "north",
+    label: "Kashmir",
   },
   {
-    key: "4",
-    danger: true,
-    label: "Option 4",
+    key: "north",
+    label: "Balakot",
+  },
+  {
+    key: "baku",
+    label: "Bilgah Beach",
   },
 ];
 
-const MyDropdown: React.FC = () => (
-  <Dropdown menu={{ items }}>
-    <a onClick={(e) => e.preventDefault()}>
-      <Space className="py-2 px-4 flex justify-between border rounded-md w-11/12 md:w-[275px]">
-        Hunza
-        <IoMdArrowDropdownCircle style={{ color: "#FBAD17" }} />
-      </Space>
-    </a>
-  </Dropdown>
-);
+const MyDropdown = ({}) => {
+  const onclick = (e) => {
+    console.log("i m clicked", e);
+  };
+  return (
+    <Dropdown
+      overlay={
+        <Menu onClick={onclick}>
+          {items.map((item) => (
+            <Menu.Item key={item.key}>{item.label}</Menu.Item>
+          ))}
+        </Menu>
+      }>
+      <a onClick={(e) => e.preventDefault()}>
+        <Space className="py-2 px-4 flex justify-between border rounded-md w-11/12 md:w-[275px]">
+          {items[0].label}
+          <IoMdArrowDropdownCircle style={{ color: "#FBAD17" }} />
+        </Space>
+      </a>
+    </Dropdown>
+  );
+};
 
 export default MyDropdown;

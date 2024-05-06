@@ -25,7 +25,7 @@ import facebookpic from "../../assets/login/facebook.png";
 import { useAppDispatch } from '@/lib/store';
 import { useRouter } from 'next/navigation';
 import { setUserData } from '@/lib/feature/user/userSlice';
-import { signIn } from '@/apiFunctions/authentication';
+import { signIn, signInWithGoogle } from '@/apiFunctions/authentication';
 
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
@@ -71,6 +71,14 @@ const LoginForm = () => {
                 const credential = GoogleAuthProvider.credentialFromError(error);
                 // ...
             });
+    }
+    
+
+    const handleServerGoogleLogin= async () => {
+
+        const res = await signInWithGoogle()
+        console.log(res)
+        
     }
 
     const handleSubmit = async () => {
@@ -175,7 +183,7 @@ const LoginForm = () => {
                     <div className="w-[50%] h-[1px] rounded-sm  bg-gray-200"> </div>
                 </div>
                 <div className="flex flex-col lg:flex-row my-3 gap-4">
-                    <button onClick={handleGoogleLogin} className="bg-white text-black py-2 px-5 rounded flex items-center border border-gray-400">
+                    <button onClick={handleServerGoogleLogin} className="bg-white text-black py-2 px-5 rounded flex items-center border border-gray-400">
                         <Image src={googlepic} alt="Google icon" className="w-6 h-6 mr-2" />{" "}
                         Sign In with Google
                     </button>

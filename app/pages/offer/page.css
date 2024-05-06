@@ -1,0 +1,10 @@
+.bg-img {
+    background-image: url("../../../assets/offer/Rectangle\ 19592.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.hell{
+    background-color: red;
+}

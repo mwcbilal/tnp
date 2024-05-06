@@ -14,6 +14,7 @@ import PaginationInfo from "../PaginationInfo";
 import { getTourPackages } from "@/app/actions/tourpackages";
 import FilterAndSearchBar from "./FilterAndSearchBar";
 import RenderTourCards from "./RenderTourCards";
+import honeymoonbg from "../../assets/honeymoon/honeymoon-bg.png";
 
 interface PackageStructure {
   package_id: number;
@@ -272,17 +273,17 @@ const FeaturedListings = () => {
 
   }, []);
 
-  const startIndex = (currPage - 1) * itemsPerPage;
-  const endIndex = Math.min(startIndex + itemsPerPage, featuredData.length);
-  let currentItems = featuredData.slice(startIndex, endIndex);
+  // const startIndex = (currPage - 1) * itemsPerPage;
+  // const endIndex = Math.min(startIndex + itemsPerPage, featuredData.length);
+  // let currentItems = featuredData.slice(startIndex, endIndex);
 
   return (
     <div className="w-full h-full flex justify-center items-center mt-12">
-      <div className="w-[80%] flex flex-col gap-4  ">
+      <div className="w-[80%] flex flex-col gap-4">
         <PaginationInfo
           currentPage={1}
-          itemsPerPage={6}
-          totalItems={featuredData.length}
+          itemsPerPage={8}
+          totalItems={packages.length}
         />
         <FilterAndSearchBar />
         <RenderTourCards PackageItems={packages} />
@@ -291,7 +292,7 @@ const FeaturedListings = () => {
           <div className="flex w-full justify-center">
             <Pagination
               currentPage={currPage}
-              totalPages={Math.ceil(featuredData.length / itemsPerPage)}
+              totalPages={Math.ceil(packages.length / itemsPerPage)}
               setCurr={setCurrPage}
             />
           </div>

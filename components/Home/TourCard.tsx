@@ -1,10 +1,11 @@
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 import { MdLocationPin } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { IoMdTime } from "react-icons/io";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { MdPhotoCamera } from "react-icons/md";
 import { BiSolidVideos } from "react-icons/bi";
+import { Image } from "antd";
 interface TourCardProps {
   pic: StaticImageData;
   loc: string;

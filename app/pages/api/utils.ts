@@ -1,6 +1,7 @@
 import prisma from "./db";
 import * as nodemailer from "nodemailer";
 import { google } from "googleapis";
+
 const OAuth2 = google.auth.OAuth2;
 
 export const getUser = async (email: string) => {
@@ -49,7 +50,7 @@ async function createTransporter() {
   return transporter;
 }
 
-export const sendEmail = async () => {
+export const sendEmail = async (emailOptions : any) => {
   let _ = {
     subject: "New Tour Request For You",
     text: "New Request is received",
@@ -59,5 +60,5 @@ export const sendEmail = async () => {
 
   let emailTransporter = await createTransporter();
 
-  await emailTransporter.sendMail(_);
+  await emailTransporter.sendMail(emailOptions);
 };

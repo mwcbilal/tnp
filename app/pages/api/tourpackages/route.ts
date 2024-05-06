@@ -1,6 +1,7 @@
-import { PrismaClient } from '@prisma/client';
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { NextResponse } from 'next/server';
+import { PrismaClient } from "@prisma/client";
+import prisma from "../db";
+import { NextRequest, NextResponse } from "next/server";
+import multer from 'multer';
 
 interface InsertBodyRequest {
   package_id: number;
@@ -13,51 +14,74 @@ interface InsertBodyRequest {
   package_rate_normal: number;
   package_rate_deluxe: number;
   package_details: string | null;
+  package_destination_id: number;
+  package_duration: number;
 }
 
-export async function GET(request: Request) {
-  try {
-    // Your logic here
-    // ...
-    return new NextResponse('Success', { status: 200 });
-  } catch (error) {
-    console.error('Error in GET handler:', error);
-    return new NextResponse('Internal Server Error', { status: 500 });
-  }
+interface PackageStructure {
+  package_id: number;
+  package_name: string;
+  package_total_persons: number;
+  package_description: string;
+  package_rate_normal: number;
+  package_rate_deluxe: number;
+  package_details: string | null;
+  tnp_destinations: {
+    destination_id: number;
+    destination_category_id: number;
+    destination_region_id: number;
+    destination_name: string;
+  };
+  tnp_package_types: {
+    package_type_id: number;
+    package_type_name: string;
+    package_type_value: string;
+  };
 }
 
-export async function POST(request: Request) {
-  const prisma = new PrismaClient();
-  try {
-    // Insert logic here
-    const body: InsertBodyRequest = await request.json();
-    const insert = await prisma.tnp_packages.create({
-      data: {
-        package_name: body.package_name,
-        package_description: body.package_description,
-        package_rate_normal: body.package_rate_normal,
-        package_rate_deluxe: body.package_rate_deluxe,
-        package_total_persons: body.package_total_persons,
-        package_category_id: body.package_category_id,
-        package_details: body.package_details,
-        package_region_id: body.package_region_id,
-        package_type_id: body.package_type_id,
-      },
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl?.searchParams;
+  if (!searchParams?.get("id")) {
+    return new NextResponse("Bad Request: Missing or invalid id parameter", {
+      status: 400,
     });
-    console.log("Body", await body);
-    return NextResponse.json({ status: 200, message: "Success", data: [] });
-  } catch (error) {
-    console.error("Error in POST handler:", error);
-    return new NextResponse("Internal Server Error", { status: 500 });
   }
-}
 
-export async function PUT(request: Request) {
   try {
-    //update logic here
-    return new NextResponse("Success", { status: 200 });
+    let packages: PackageStructure[] = [];
+    const id = searchParams?.get("id");
+    switch (id) {
+      case "id":
+        packages = await prisma.tnp_packages.findMany({
+          where: {
+            package_id: parseInt(id),
+          },
+          include: {
+            tnp_package_types: true,
+            tnp_destinations: true,
+          },
+        });
+        break;
+      default:
+        return new NextResponse("Bad Request: Invalid fetch type", {
+          status: 400,
+        });
+    }
+
+    packages = packages.map((pkg) => ({
+      ...pkg,
+      package_type: pkg.tnp_package_types?.package_type_name || "",
+    }));
+
+    return NextResponse.json({
+      status: 200,
+      message: "Success",
+      data: packages,
+    });
   } catch (error) {
-    console.error("Error in POST handler:", error);
+    console.error("Error in GET handler:", error);
     return new NextResponse("Internal Server Error", { status: 500 });
+  } finally {
+    await prisma.$disconnect();
   }
 }
