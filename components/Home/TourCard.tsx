@@ -1,13 +1,12 @@
-import { StaticImageData } from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { MdLocationPin } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { IoMdTime } from "react-icons/io";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { MdPhotoCamera } from "react-icons/md";
 import { BiSolidVideos } from "react-icons/bi";
-import { Image } from "antd";
 interface TourCardProps {
-  pic: StaticImageData;
+  pic: StaticImageData | string;
   loc: string;
   title: string;
   duration: string;
@@ -32,17 +31,17 @@ const TourCard: React.FC<TourCardProps> = ({
 }) => {
   return (
     <div className="flex flex-col bg-white md:h-[20rem] xl:h-auto h-auto items-center justify-center lg:w-[400px] xl:w-[300px] md:w-[40%] w-[90%] shadow-lg shadow-gray-400 rounded-lg">
-     <div className=" w-full relative bg-pink-400">
-      
-      <Image src={pic} alt="tour image " className="w-full absolute z-0" />
-      <div className="absolute z-10 flex flex-row justify-between w-full">
-      <p className="bg-sky-500 text-white text-sm px-2 py-[2px] m-2 rounded-md w-[30%]">Featured</p>
-      <div className="flex flex-row gap-2  ">
-        <div className="flex flex-row bg-gray-400 blur-20  gap-[2px] m-2 px-2 py-[2px] rounded-md "><MdPhotoCamera size={14} className="text-white mt-[3px]"/><p className="text-white text-sm">{imageCount}</p></div>
-        <div className="flex flex-row gap-2 bg-sky-500 text-white gap-[2px] m-2 px-2 py-[2px] rounded-md"><BiSolidVideos size={14} className="text-white mt-[3px] " /><p className="text-sm ">{videoCount}</p></div>
+      <div className=" w-full relative bg-pink-400">
+
+        <Image src={pic} alt="tour image" fill={true} className="w-full absolute z-0" />
+        <div className="absolute z-10 flex flex-row justify-between w-full">
+          <p className="bg-sky-500 text-white text-sm px-2 py-[2px] m-2 rounded-md w-[30%]">Featured</p>
+          <div className="flex flex-row gap-2  ">
+            <div className="flex flex-row bg-gray-400 blur-20  gap-[2px] m-2 px-2 py-[2px] rounded-md "><MdPhotoCamera size={14} className="text-white mt-[3px]" /><p className="text-white text-sm">{imageCount}</p></div>
+            <div className="flex flex-row bg-sky-500 text-white gap-[2px] m-2 px-2 py-[2px] rounded-md"><BiSolidVideos size={14} className="text-white mt-[3px] " /><p className="text-sm ">{videoCount}</p></div>
+          </div>
+        </div>
       </div>
-      </div>
-    </div>
       <div className="flex flex-col gap-2 h-full w-full bg-white-300 px-2 rounded-lg py-2 mt-[11rem] ">
         <div className="flex flex-row gap-2">
           <MdLocationPin size={15} className="text-blue-500" />
