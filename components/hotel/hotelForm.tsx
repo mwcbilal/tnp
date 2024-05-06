@@ -8,7 +8,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { useAppSelector } from '@/lib/store';
 
 const Hotelform = () => {
-const user = useAppSelector((data) => data?.auth?.data)
+    const user = useAppSelector((data) => data?.auth?.data)
     const [destinations, setDestinations] = useState([])
     const [messageApi, contextHolder] = message.useMessage();
     const [formData, setFormData] = useState({
@@ -57,9 +57,9 @@ const user = useAppSelector((data) => data?.auth?.data)
         console.log(formData)
         const res = await postHotelBooking(formData, user)
         console.log(res)
-        if (res?.message === "success"){
+        if (res?.message === "success") {
             messageApi.success('Request Submitted Successfully!');
-        }else{
+        } else {
             messageApi.error('Ops Error, Somrthing wen wrong!');
         }
     }
@@ -67,7 +67,7 @@ const user = useAppSelector((data) => data?.auth?.data)
 
     return (
         <div className="bg-white mx-auto flex flex-col gap-4 lg:items-center justify-center my-16 w-[80%] max-w-screen-xl">
-          {contextHolder}
+            {contextHolder}
             <h1 className="lg:text-3xl text-1xl font-semibold my-2 text-center ">HOTEL BOOKING FORM</h1>
 
             <div className="w-full flex flex-col lg:flex-row gap-5 my-4 ">
@@ -113,18 +113,12 @@ const user = useAppSelector((data) => data?.auth?.data)
                             style={{ height: "45px" }}
                         >
                             <option value="">Select Your Hotel</option>
-
-
                             {
-
-                                filteredHotels?.map((hotel: any) => {
-                                    return (<option value={hotel?.hotel_id}>{hotel?.hotel_name}</option>
+                                filteredHotels?.map((hotel: any, i: number) => {
+                                    return (<option key={400 + i} value={hotel?.hotel_id}>{hotel?.hotel_name}</option>
                                     )
                                 })
-
                             }
-
-
                         </select>
                         <div className="absolute inset-y-0 right-0 flex items-center justify-center pointer-events-none">
                             <div className="w-5 h-5 bg-yellow-300 rounded-full flex items-center justify-center mr-3">
