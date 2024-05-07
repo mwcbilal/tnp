@@ -1,0 +1,78 @@
+.main-container {
+    border: 2px solid grey;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detail_hotel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container img {
+    height: 120px;
+    width: 200px;
+}
+
+.booking-continer {
+    background-color: rgb(17, 17, 131);
+    color: #ffff;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 25px;
+}
+
+.paragraph {
+    padding: 0px 25px;
+    width: 14%;
+}
+
+
+.check-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.check-card {
+    background-color: #f29900;
+    padding: 10px 80px;
+    margin: 5px;
+    color: #ffff;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.room-flex {
+    display: flex;
+    background-color: rgb(17, 17, 131);
+    color: #ffff;
+    padding: 0px 25px;
+    justify-content: space-between;
+}
+
+.flex-type {
+    display: flex;
+    gap: 20%;
+    padding: 0px 55px;
+    align-items: center;
+}
+
+.border-container {
+    border-top: 2px solid gray;
+    padding: 0px 25px;
+}

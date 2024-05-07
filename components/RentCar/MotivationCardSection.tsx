@@ -1,11 +1,9 @@
-import { NextPage } from 'next'
+import { NextPage } from "next";
 
 interface Props {}
 
 const MotivationCardSection: NextPage<Props> = ({}) => {
-  return <div>
-    
-  </div>
-}
+  return <div></div>;
+};
 
-export default MotivationCardSection
+export default MotivationCardSection;

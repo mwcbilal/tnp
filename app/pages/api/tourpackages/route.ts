@@ -85,3 +85,31 @@ export async function GET(request: NextRequest) {
     await prisma.$disconnect();
   }
 }
+
+export async function POST(request: Request) {
+  const prisma = new PrismaClient();
+  try {
+    const body = await request.formData();
+    console.log("Body", body);
+    const insert = await prisma.tnp_packages.create({
+      data: {
+        package_name: body.get("package_name").toString(),
+        package_description: body.get("package_description").toString(),
+        package_rate_normal: parseInt(body.get("package_rate_normal").toString()),
+        package_rate_deluxe: parseInt(body.get("package_rate_deluxe").toString()),
+        package_total_persons: parseInt(body.get("package_total_persons").toString()),
+        package_details: body.get("package_details").toString(),
+        package_type_id: parseInt(body.get("package_type_id").toString()),
+        package_isfeatured: Boolean(body.get("package_isfeatured")),
+        package_bestseller: Boolean(body.get("package_bestseller").toString()),
+        package_duration: parseInt(body.get("package_duration").toString()),
+        package_destination_id: parseInt(body.get("package_destination_id").toString()),
+      },
+    });
+    console.log("Insert", insert);
+    return NextResponse.json({ status: 200, message: "Success", data: [] });
+  } catch (error) {
+    console.error("Error in POST handler:", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
+}

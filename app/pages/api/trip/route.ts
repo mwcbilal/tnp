@@ -1,16 +1,16 @@
-import { PrismaClient } from '@prisma/client';
-import { NextResponse } from 'next/server';
+import { PrismaClient } from "@prisma/client";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
 export async function GET(request: Request) {
-    try {
-        const trips = await prisma.tnp_trips.findMany();
-        return new NextResponse(JSON.stringify(trips), { status: 200 });
-    } catch (error) {
-        console.error('Error in GET handler:', error);
-        return new NextResponse('Internal Server Error', { status: 500 });
-    }
+  try {
+    const trips = await prisma.tnp_trips.findMany();
+    return new NextResponse(JSON.stringify(trips), { status: 200 });
+  } catch (error) {
+    console.error("Error in GET handler:", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
 }
 
 export async function POST(request: Request) {
@@ -49,13 +49,13 @@ export async function PUT(request: Request) {
 }
 
 export async function DELETE(request: Request) {
-    try {
-        // const { id } = request.params;
-        const body = await request.json();
-        await prisma.tnp_trips.delete({ where: { trip_id: parseInt(body.id) } });
-        return new NextResponse('Trip deleted successfully', { status: 200 });
-    } catch (error) {
-        console.error('Error in DELETE handler:', error);
-        return new NextResponse('Internal Server Error', { status: 500 });
-    }
+  try {
+    // const { id } = request.params;
+    const body = await request.json();
+    await prisma.tnp_trips.delete({ where: { trip_id: parseInt(body.id) } });
+    return new NextResponse("Trip deleted successfully", { status: 200 });
+  } catch (error) {
+    console.error("Error in DELETE handler:", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
 }

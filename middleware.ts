@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
   }
   if (
     request.nextUrl.pathname.startsWith("/pages/api/admin") ||
-    request.nextUrl.pathname.startsWith("/pages/api/tourpackages/filter")
+    request.nextUrl.pathname.startsWith("/pages/api/tourpackages")
   ) {
     // Add CORS headers to allow requests from any origin
     return NextResponse.next({

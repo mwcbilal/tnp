@@ -14,7 +14,7 @@ function getItem(
   label: React.ReactNode,
   key?: React.Key | null,
   icon?: React.ReactNode,
-  children?: MenuItem[]
+  children?: MenuItem[],
 ): MenuItem {
   return {
     key,

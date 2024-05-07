@@ -80,7 +80,7 @@ const Honeymoon = () => {
   useEffect(() => {
     async function getItem() {
       const response = await getSinglePackage(
-        "/tourpackages/single/" + params?.id[1]
+        "/tourpackages/single/" + params?.id[1],
       );
       console.log("Response", response);
       setPackageDetails(response.data);
@@ -104,15 +104,16 @@ const Honeymoon = () => {
   const tripDetails: TripDetails = JSON.parse(packageDetails.package_details);
 
   return (
-    <div className="bg_color text-black" >
-      <div className="bg_img" >
-        <HeroDomestic heading={"Honeymoon"} paragraph={"Package"} image={bgImage} />
+    <div className="bg_color text-black">
+      <div className="bg_img">
+        <HeroDomestic
+          heading={"Honeymoon"}
+          paragraph={"Package"}
+          image={bgImage}
+        />
 
-        <div 
-        className="w-full lg:w-[80%] flex flex-col lg:flex-row gap-6 justify-center mx-auto my-10"
-        >
-          {/* Right Side*/}
-          <div className=" w-full lg:w-[60%]  ">
+        <div className="w-full lg:w-[80%] flex flex-col lg:flex-row gap-6 justify-center mx-auto my-10">
+          <div className=" w-full lg:w-[60%]">
             <div className="flex flex-col md:flex-row justify-between w-full items-center gap-2 my-5 md:p-3 lg:p-0">
               <h1 className="text-1xl text-black md:text-2xl font-bold">
                 {" "}
@@ -128,6 +129,7 @@ const Honeymoon = () => {
                 </div>
               </div>
             </div>
+            
             <CarouselSlider
               ImageList={tripDetails.TripDetailsAndCostSummary.Images}
             />
@@ -143,16 +145,15 @@ const Honeymoon = () => {
             <Overview text={renderedData?.overview} />
 
             <Highlights data={renderedData?.highlights} />
+
             <Itinerary data={renderedData?.itineraryData} />
+
             <Cost
               includeCost={renderedData.includeCost}
               costExclude={renderedData.costExclude}
             />
           </div>
 
-          {/* aqsa add your compoennts here */}
-
-          {/* left side */}
           <div className=" w-full lg:w-[40%]  flex ">
             <DomesticForm showAvailabilityButton={undefined} />
           </div>

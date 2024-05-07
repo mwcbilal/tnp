@@ -1,7 +1,7 @@
 import { Rate } from "antd";
 
 interface RatingProps {
-  fontSize?: number; 
+  fontSize?: number;
 }
 
 const Rating: React.FC<RatingProps> = ({ fontSize }) => (

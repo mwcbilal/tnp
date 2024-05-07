@@ -1,5 +1,6 @@
 "use server";
 
+import { message } from "antd";
 import axios from "axios";
 
 const HOST_URL = process.env.BASE_URL;
@@ -16,6 +17,47 @@ interface PackageDetails {
     Highlights: string[];
     Images: string[];
   };
+}
+
+export async function getTourPackagesTypes(
+  extededRoute = "/packagetypes"
+): Promise<any> {
+  try {
+    // console.log("API Url", LOCALHOST_URL + extededRoute);
+    const response = await axios.get(HOST_URL + extededRoute);
+    return {
+      data: response.data,
+      status: 200,
+      message: "Success",
+    };
+  } catch (error) {
+    console.log("err==>", error);
+    return {
+      data: [],
+      status: 400,
+      message: "failed",
+    };
+  }
+}
+export async function getDesiredAreas(
+  extededRoute = "/destinations"
+): Promise<any> {
+  try {
+    // console.log("API Url", LOCALHOST_URL + extededRoute);
+    const response = await axios.get(HOST_URL + extededRoute);
+    return {
+      data: response.data,
+      status: 200,
+      message: "Success",
+    };
+  } catch (error) {
+    console.log("err==>", error);
+    return {
+      data: [],
+      status: 400,
+      message: "failed",
+    };
+  }
 }
 
 interface PackageStructure {
@@ -51,11 +93,23 @@ interface PackageStructure {
 }
 
 export async function getTourPackages(
-  extededRoute = "/tourpackages/filter?limit=8&offset=0"
+  limit: number,
+  offset: number,
+  filters: any
 ): Promise<any> {
   try {
-    // console.log("API url", HOST_URL);
-    const response = await axios.get(HOST_URL + extededRoute);
+    console.log("ARHAAAAAA");
+    const response = await axios.get(HOST_URL + `/tourpackages/filter`,
+      {
+        params: {
+          offset,
+          limit,
+          ...filters
+        }
+      }
+
+    );
+
     return response.data;
   } catch (error) {
     return {
@@ -67,7 +121,7 @@ export async function getTourPackages(
 }
 
 export async function getSinglePackage(
-  extededRoute = "/tourpackages/single"
+  extededRoute = "/tourpackages/single",
 ): Promise<{
   data: PackageStructure;
   status: number;
@@ -79,7 +133,7 @@ export async function getSinglePackage(
     return {
       data: response.data?.data[0],
       message: "success",
-      status: 200
+      status: 200,
     };
   } catch (error) {
     return {
@@ -91,18 +145,17 @@ export async function getSinglePackage(
 }
 
 export async function getTourPackagesByCategory(
-  extededRoute = "/tourpackages/filter?limit=8&offset=0"
+  extededRoute = "/tourpackages/filter?limit=8&offset=0",
 ): Promise<{
   data: PackageStructure[];
   status: number;
   message: string;
 }> {
   try {
-    // console.log("API url", HOST_URL);
     const response = await axios.get(HOST_URL + extededRoute);
     // console.log("API Response", response.data?.data);
     return {
-      data: response.data.data,
+      data: response.data?.data,
       message: "success",
       status: 200,
     };

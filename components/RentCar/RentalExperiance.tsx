@@ -11,7 +11,11 @@ const RentalExperiance: NextPage<Props> = ({}) => {
   return (
     <div className="bg-white flex justify-center items-center  lg:py-28">
       <div className="flex justify-center flex-col lg:flex-row items-center">
-        <Image className="relative w-screen lg:w-2/4 xl:w-auto py-4 lg:py-0" alt="image_not_found" src={OrangeCar} />
+        <Image
+          className="relative w-screen lg:w-2/4 xl:w-auto py-4 lg:py-0"
+          alt="image_not_found"
+          src={OrangeCar}
+        />
         <div className="md:w-[470px] w-auto px-8 flex flex-col items-start justify-center">
           <div className="">
             <p className="text-3xl py-4">

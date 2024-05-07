@@ -49,10 +49,11 @@ const Ticket_Dropdown: React.FC<{ selectedNum: number }> = ({
   <Space wrap>
     <Dropdown menu={menuProps}>
       <Button
-        style={{ width: 90, display: "flex", justifyContent: "space-between" }}>
+        style={{ width: 90, display: "flex", justifyContent: "space-between" }}
+      >
         <Space>
           {selectedNum}
-          <DownOutlined style={{marginLeft:30}} />
+          <DownOutlined style={{ marginLeft: 30 }} />
         </Space>
       </Button>
     </Dropdown>

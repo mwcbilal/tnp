@@ -27,7 +27,7 @@ const TourCard: React.FC<TourCardProps> = ({
   dprice,
   review,
   imageCount,
-  videoCount
+  videoCount,
 }) => {
   return (
     <div className="flex flex-col bg-white md:h-[20rem] xl:h-auto h-auto items-center justify-center lg:w-[400px] xl:w-[300px] md:w-[40%] w-[90%] shadow-lg shadow-gray-400 rounded-lg">

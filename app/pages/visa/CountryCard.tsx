@@ -38,7 +38,7 @@ export default function CountryCard() {
                   alt="whatsapp"
                   onClick={() =>
                     window.open(
-                      "//api.whatsapp.com/send?phone=+9290078601&text=Hey can I get information on this package??"
+                      "//api.whatsapp.com/send?phone=+9290078601&text=Hey can I get information on this package??",
                     )
                   }
                 />

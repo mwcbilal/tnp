@@ -28,11 +28,11 @@ interface PackagesRequestParams {
 
 export async function GET(
   request: NextRequest,
-  context: { params: PackagesRequestParams }
+  context: { params: PackagesRequestParams },
 ) {
   const prisma = new PrismaClient();
   const { params } = await context.params;
-  // console.log("Requested body", request.nextUrl);
+  // console.log("Requested body", params);
 
   if (!params || params.length < 1) {
     return new NextResponse("Bad Request: Missing or invalid parameters", {

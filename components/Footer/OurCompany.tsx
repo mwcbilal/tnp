@@ -13,7 +13,7 @@ const OurCompany: NextPage<Props> = ({}) => {
           <a href={item.link}>{item.name}</a>
         </p>
       ))}
-      
+
       <div className="lg:hidden mt-16 mb-16 bg-gray-300 h-[2px] w-[300px]"></div>
     </div>
   );

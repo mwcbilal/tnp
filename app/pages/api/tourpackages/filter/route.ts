@@ -108,6 +108,7 @@ export async function GET(request: NextRequest) {
     const package_isfeatured = searchParams.get("featured");
     const package_bestseller = searchParams.get("bestseller");
     const sort = searchParams.get("sort");
+    console.log(sort,"SORTTTTTTTT")
 
     if (category) filterParams.category = category;
     if (region) filterParams.region = region;

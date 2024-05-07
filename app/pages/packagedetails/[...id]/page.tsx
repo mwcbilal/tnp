@@ -86,11 +86,11 @@ const Page: NextPage<Props> = ({}) => {
       let response;
       if (id[0] === "honeymoon") {
         response = await getSinglePackage(
-          "/tourpackages/single/" + params?.id[1]
+          "/tourpackages/single/" + params?.id[1],
         );
       } else {
         response = await getSinglePackage(
-          "/tourpackages/single/" + params?.id[0]
+          "/tourpackages/single/" + params?.id[0],
         );
       }
       console.log("Response for single item", response);
@@ -126,7 +126,7 @@ const Page: NextPage<Props> = ({}) => {
     <div>
       <HeroDomestic
         heading={capitalizeFirstLetter(
-          packageDetails.tnp_package_types.package_type_name
+          packageDetails.tnp_package_types.package_type_name,
         )}
         paragraph={capitalizeFirstLetter(
           packageDetails.tnp_destinations?.tnp_package_regions.region_name

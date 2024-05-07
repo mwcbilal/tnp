@@ -3,7 +3,6 @@ import govt_pk from "../../assets/common/govt_pk-logo.svg";
 import secp_logo from "../../assets/common/secp-logo.svg";
 import taap_logo from "../../assets/common/taap-logo.svg";
 
-
 export const NavigationRows = [
   "LogoDetails",
   "OurCompany",

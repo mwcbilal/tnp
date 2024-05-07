@@ -18,7 +18,12 @@ const Affiliations: NextPage<Props> = ({}) => {
       </div>
       <div className="w-full flex flex-col md:flex-row justify-around items-center mb-12">
         {AffiliationsData.map((item, i) => (
-          <Image className="m-4 h-20" alt="image_not_found" src={item.image} key={"affiliations-image-id-" + i} />
+          <Image
+            className="m-4 h-20"
+            alt="image_not_found"
+            src={item.image}
+            key={"affiliations-image-id-" + i}
+          />
         ))}
       </div>
     </div>

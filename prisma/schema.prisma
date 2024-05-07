@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -166,4 +167,11 @@ model tnp_cars {
   tnp_car_class   tnp_car_class     @relation(fields: [class_id], references: [car_class_id], onUpdate: Restrict, map: "tnp_cars_class_ibfk_1")
 
   @@index([class_id], map: "tnp_cars_class_ibfk_1")
+}
+
+model tnp_banner {
+  tnp_banner_id   Int    @id @unique(map: "tnp_banner_id") @default(autoincrement()) @db.UnsignedInt
+  tnp_banner_name String @db.Text
+  tnp_banner_page String @db.Text
+  tnp_banner_url  String @db.Text
 }

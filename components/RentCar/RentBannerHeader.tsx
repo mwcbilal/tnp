@@ -6,7 +6,7 @@ interface Props {
   Description: string;
 }
 
-const RentBannerHeader: NextPage<Props> = ({Description,Title}) => {
+const RentBannerHeader: NextPage<Props> = ({ Description, Title }) => {
   return (
     <div className="flex justify-center py-4 flex-col items-center w-72 md:w-auto">
       <p className="text-[#23262D] font-semibold text-3xl py-2">{Title}</p>

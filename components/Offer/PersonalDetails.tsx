@@ -54,7 +54,6 @@ const PersonalDetails: NextPage<Props> = ({}) => {
           </div>
         </div>
       </div>
-      
     </div>
   );
 };

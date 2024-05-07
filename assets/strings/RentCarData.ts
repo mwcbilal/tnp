@@ -19,62 +19,62 @@ export const carTypes = [
 ];
 
 export const getCarMotivationData = [
-    {
-        Title: "Choose Your Car",
-        Description: "Select a car using search or catalog",
-        Image: listIcon
-    },
-    {
-        Title: "Left",
-        Description: "This helps to draw a line",
-        Image: lineLeft
-    },
-    {
-        Title: "Contact Your Dealer",
-        Description: "After you’ve selected a car a dealer will contact you.",
-        Image: calendarIcon
-    },
-    {
-        Title: "Right",
-        Description: "This helps to draw a line",
-        Image: lineRight
-    },
-    {
-        Title: "Get Your Car",
-        Description: "Here you are! Your car is book and waiting for you.",
-        Image: completeIcon
-    }
+  {
+    Title: "Choose Your Car",
+    Description: "Select a car using search or catalog",
+    Image: listIcon,
+  },
+  {
+    Title: "Left",
+    Description: "This helps to draw a line",
+    Image: lineLeft,
+  },
+  {
+    Title: "Contact Your Dealer",
+    Description: "After you’ve selected a car a dealer will contact you.",
+    Image: calendarIcon,
+  },
+  {
+    Title: "Right",
+    Description: "This helps to draw a line",
+    Image: lineRight,
+  },
+  {
+    Title: "Get Your Car",
+    Description: "Here you are! Your car is book and waiting for you.",
+    Image: completeIcon,
+  },
 ];
 
 export const availableCars = [
-    {
-        CarTitle: "Toyota Corolla",
-        RentPrice: 10000,
-        ModelYear: 2020,
-        KilometersRan: 20,
-        DriveType: "Auto",
-        ConsumptionType: "Diesel",
-        CarImage: corolla,
-        CarType: "Sedan"
-    },
-    {
-        CarTitle: "Toyota Yaris",
-        RentPrice: 10000,
-        ModelYear: 2021,
-        KilometersRan: 15,
-        DriveType: "Auto",
-        ConsumptionType: "Petrol",
-        CarImage: yaris,
-        CarType: "Sedan"
-    },
-    {
-        CarTitle: "Honda Civic",
-        RentPrice: 10000,
-        ModelYear: 2019,
-        KilometersRan: 45,
-        DriveType: "Manual",
-        ConsumptionType: "Petrol",
-        CarImage: civic,
-        CarType: "Sedan"
-    }
-]
+  {
+    CarTitle: "Toyota Corolla",
+    RentPrice: 10000,
+    ModelYear: 2020,
+    KilometersRan: 20,
+    DriveType: "Auto",
+    ConsumptionType: "Diesel",
+    CarImage: corolla,
+    CarType: "Sedan",
+  },
+  {
+    CarTitle: "Toyota Yaris",
+    RentPrice: 10000,
+    ModelYear: 2021,
+    KilometersRan: 15,
+    DriveType: "Auto",
+    ConsumptionType: "Petrol",
+    CarImage: yaris,
+    CarType: "Sedan",
+  },
+  {
+    CarTitle: "Honda Civic",
+    RentPrice: 10000,
+    ModelYear: 2019,
+    KilometersRan: 45,
+    DriveType: "Manual",
+    ConsumptionType: "Petrol",
+    CarImage: civic,
+    CarType: "Sedan",
+  },
+];

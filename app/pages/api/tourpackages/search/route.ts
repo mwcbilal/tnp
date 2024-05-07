@@ -2,6 +2,7 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../db";
 
+
 interface InsertBodyRequest {
   package_id: number;
   package_name: string;
@@ -122,6 +123,7 @@ export async function GET(request: NextRequest) {
 
     whereClause = {
       AND: [
+        
         { tnp_destinations: { destination_name: filterParams.destination } },
         {
           tnp_package_types: { package_type_name: filterParams.package_type },
@@ -138,7 +140,8 @@ export async function GET(request: NextRequest) {
           contains: filterParams.text,
         },
       };
-    }
+    } 
+
 
     if (filterParams.category) {
       whereClause = {
@@ -167,6 +170,7 @@ export async function GET(request: NextRequest) {
     }
 
     let packages: PackageStructure[] = [];
+    let relatedpackages: PackageStructure[] = [];
 
     // console.log("whereClause", whereClause);
 
@@ -186,12 +190,44 @@ export async function GET(request: NextRequest) {
       take: filterParams.limit,
     });
 
-    return NextResponse.json({
-      status: 200,
-      message: "Success",
-      data: packages,
-    });
-  } catch (error) {
+    if (packages.length > 0 ){
+      return NextResponse.json({
+        status: 200,
+        message: "Success",
+        data: packages,
+        relatedData: relatedpackages,
+      });
+    } else {
+      relatedpackages = await prisma.tnp_packages.findMany({
+        where: {
+          tnp_destinations: {
+            destination_name: { startsWith : filterParams.text },
+          },  
+        },
+        include: {
+          tnp_package_types: true,
+          tnp_destinations: {
+            include: {
+              tnp_package_categories: true,
+              tnp_package_regions: true,
+            },
+          },
+        },
+        orderBy: orderByClause,
+        skip: filterParams.offset,
+        take: filterParams.limit,
+      });
+
+      return NextResponse.json({
+        status: 200,
+        message: "Success",
+        data: packages,
+        relatedData: relatedpackages,
+
+      });  
+    }
+    
+} catch (error) {
     console.error("Error in GET handler:", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   } finally {

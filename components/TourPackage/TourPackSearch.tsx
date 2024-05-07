@@ -5,105 +5,107 @@ import { IoMdTimer, IoIosArrowDown } from "react-icons/io";
 import { RxAvatar } from "react-icons/rx";
 import { RiEqualizerLine } from "react-icons/ri";
 import { CiSearch } from "react-icons/ci";
-import { Dropdown, Menu, Space, type MenuProps } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { Dropdown, Menu, Space, type MenuProps } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { useParams } from "next/navigation";
 
-const items: MenuProps['items'] = [
+const items: MenuProps["items"] = [
   {
-    key: '1',
+    key: "1",
     label: "1st menu item",
   },
   {
-    key: '2',
+    key: "2",
     label: "2nd menu item",
   },
   {
-    key: '3',
+    key: "3",
     label: "3rd menu item",
   },
   {
-    key: '4',
+    key: "4",
     label: "4rth menu item",
   },
 ];
 
-const locationItems: MenuProps['items'] = [
+const locationItems: MenuProps["items"] = [
   {
-    key: '0',
+    key: "0",
     label: "Select Location",
   },
   {
-    key: 'karachi',
+    key: "karachi",
     label: "Karachi, Pakistan",
   },
   {
-    key: 'lahor',
+    key: "lahor",
     label: "Lahore, Pakistan",
   },
   {
-    key: 'islamabad',
+    key: "islamabad",
     label: "Islamabad, Pakistan",
   },
   {
-    key: 'balakot',
+    key: "balakot",
     label: "Balakot, Pakistan",
   },
   {
-    key: 'kairan',
+    key: "kairan",
     label: "Kairan, Pakistan",
   },
 ];
 
-const personItems: MenuProps['items'] = [
+const personItems: MenuProps["items"] = [
   {
-    key: '3',
+    key: "3",
     label: "1 to 3",
   },
   {
-    key: '6',
+    key: "6",
     label: "4 to 6",
   },
   {
-    key: '9',
+    key: "9",
     label: "7 to 9",
   },
   {
-    key: '12',
+    key: "12",
     label: "10 to 12",
   },
 ];
 
-const typesItems: MenuProps['items'] = [
+const typesItems: MenuProps["items"] = [
   {
     key: "0",
-    label: "Booking type"
+    label: "Booking type",
   },
   {
-    key: 'group',
+    key: "group",
     label: "Group",
   },
   {
-    key: 'honeymoon',
+    key: "honeymoon",
     label: "Honeymoon",
   },
   {
-    key: 'private',
+    key: "private",
     label: "Private",
   },
   {
-    key: 'corporate',
+    key: "corporate",
     label: "Corporate",
   },
 ];
 
-const TourpackSearch = ({color="#00ADEE", color2="#00ADEE"}) => {
+const TourpackSearch = ({ color = "#00ADEE", color2 = "#00ADEE" }) => {
   const [selectedPerson, setSelectedPerson] = useState(personItems[0]["label"]);
-  const [selectedLocation, setSelectLocation] = useState(locationItems[0]["label"]);
+  const [selectedLocation, setSelectLocation] = useState(
+    locationItems[0]["label"],
+  );
   const [selectedType, setSelectedType] = useState(typesItems[0]["label"]);
 
-  const onClick: MenuProps['onClick'] = ({ key }) => {
+  const onClick: MenuProps["onClick"] = ({ key }) => {
     console.log("Item clicked", key);
   };
 
@@ -122,36 +124,41 @@ const TourpackSearch = ({color="#00ADEE", color2="#00ADEE"}) => {
   
   const onClickLocationDropdown: MenuProps['onClick'] = ({ key }) => {
     // console.log("Item clicked", key);
-    setSelectLocation(locationItems.filter(e => e.key === key)[0]["label"]);
+    setSelectLocation(locationItems.filter((e) => e.key === key)[0]["label"]);
   };
 
-  const onClickTypeDropdown: MenuProps['onClick'] = ({ key }) => {
+  const onClickTypeDropdown: MenuProps["onClick"] = ({ key }) => {
     console.log("Item clicked", key);
-    setSelectedType(typesItems.filter(e => e.key === key)[0]["label"])
+    setSelectedType(typesItems.filter((e) => e.key === key)[0]["label"]);
   };
 
-  const onClickPersonDropdown: MenuProps['onClick'] = ({ key }) => {
+  const onClickPersonDropdown: MenuProps["onClick"] = ({ key }) => {
     console.log("Item clicked", key);
-    setSelectedPerson(personItems.filter(e => e.key === key)[0]["label"])
+    setSelectedPerson(personItems.filter((e) => e.key === key)[0]["label"]);
   };
 
   return (
-    <div className="flex my-3 flex-col md:flex-row md:mx-5 bg-white text-black flex-wrap rounded px-4 py-4" style={{ boxShadow: "-1px -1px 20px -6px #ccc" }}>
+    <div
+      className="flex my-3 flex-col md:flex-row md:mx-5 bg-white text-black flex-wrap rounded px-4 py-4"
+      style={{ boxShadow: "-1px -1px 20px -6px #ccc" }}
+    >
       <div className="flex mx-2 w-[15rem] md:w-auto md:justify-start justify-between  items-center">
         <div className="flex items-center">
           <div className="me-2">
             <FaMapPin className={`${textColor} text-xl`}/>
           </div>
           <Dropdown
-            menu={{ items: locationItems, onClick: onClickLocationDropdown, defaultValue: selectedLocation }}         
+            menu={{
+              items: locationItems,
+              onClick: onClickLocationDropdown,
+              defaultValue: selectedLocation,
+            }}
           >
             <a onClick={(e) => e.preventDefault()}>
               <Space>
                 <div>
                   <p>Destination</p>
-                  <p className="text-xs text-gray-500">
-                    {selectedLocation}
-                  </p>
+                  <p className="text-xs text-gray-500">{selectedLocation}</p>
                 </div>
                 <DownOutlined className={`${textColor} text-xl`} />
               </Space>
@@ -208,7 +215,9 @@ const TourpackSearch = ({color="#00ADEE", color2="#00ADEE"}) => {
           <div className="me-2">
             <RxAvatar className={`${textColor}  text-xl`} />
           </div>
-          <Dropdown menu={{ items: personItems, onClick: onClickPersonDropdown }}>
+          <Dropdown
+            menu={{ items: personItems, onClick: onClickPersonDropdown }}
+          >
             <a onClick={(e) => e.preventDefault()}>
               <Space>
                 <div>

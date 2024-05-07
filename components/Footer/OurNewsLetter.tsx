@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import { useState } from "react";
-import messageBtn from "../../assets/common/messageBtn.svg"
+import messageBtn from "../../assets/common/messageBtn.svg";
 
 interface Props {}
 

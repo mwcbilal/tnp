@@ -1,34 +1,34 @@
-import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
-import { NextRequest } from 'next/server'
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import { NextRequest } from "next/server";
 
 export const comparePasswords = (password: string, hash: string) => {
   return bcrypt.compare(password, hash);
-}
+};
 
 export const hashPassword = (password: string) => {
   return bcrypt.hash(password, 5);
-}
+};
 
 export const createJWT = (user: any) => {
-  const token = jwt.sign({
-    id: user.id,
-    email: user.email
-  },
-    process.env.JWT_SECRET
+  const token = jwt.sign(
+    {
+      id: user.id,
+      email: user.email,
+    },
+    process.env.JWT_SECRET,
   );
   return token;
-}
+};
 
 export const protect = (req: NextRequest) => {
-
   const bearer = req.headers.get("authorization");
 
   if (!bearer) {
     return false;
   }
 
-  const [_, token] = bearer.split(' ');
+  const [_, token] = bearer.split(" ");
 
   if (!token) {
     return false;
@@ -42,4 +42,4 @@ export const protect = (req: NextRequest) => {
     console.error(e);
     return false;
   }
-}
+};

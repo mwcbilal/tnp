@@ -18,7 +18,7 @@ async function createTransporter() {
   const oauth2Client = new OAuth2(
     process.env.CLIENT_ID,
     process.env.CLIENT_SECRET,
-    "https://developers.google.com/oauthplayground"
+    "https://developers.google.com/oauthplayground",
   );
 
   oauth2Client.setCredentials({
@@ -50,7 +50,7 @@ async function createTransporter() {
   return transporter;
 }
 
-export const sendEmail = async (emailOptions : any) => {
+export const sendEmail = async (emailOptions: any) => {
   let _ = {
     subject: "New Tour Request For You",
     text: "New Request is received",

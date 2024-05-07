@@ -65,7 +65,9 @@ const TourCard: React.FC<TourCardProps> = ({
       <div className="w-full h-[51%] relative z-0">
         <div className="flex flex-col absolute top-[-9px] bg-white  left-0  justify-between gap-2 h-full w-full px-2 rounded-lg py-2 ">
           <div className="my-2 mx-2">
-            <h5 className="text-lg font-bold truncate" title={title}>{title}</h5>
+            <h5 className="text-lg font-bold truncate" title={title}>
+              {title}
+            </h5>
           </div>
           <div className="flex my-2 mx-2 flex-row gap-2 pb-[2px]">
             <div className="flex flex-row">

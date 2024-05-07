@@ -75,6 +75,7 @@ import { useSearchParams } from "next/navigation";
 import { useAppDispatch } from "@/lib/store";
 import { setUserData } from "@/lib/feature/user/userSlice";
 import { getTourPackagesByCategory } from "./actions/tourpackages";
+import axios from "axios";
 
 // const settings = {
 //   dots: true,
@@ -244,6 +245,7 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
   const [bestSellerData, setBestSellerData] = useState([]);
+  const [bannerImage, setBannerImage] = useState("");
   console.log("Best Seller Data", bestSellerData);
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -255,12 +257,21 @@ export default function Home() {
     console.log(user);
     dispatch(setUserData(user?.data?.userData));
   }
-
+  const fetchBannerImage = async () => {
+    // setLoading(true);
+    let res = await axios.get(
+      `pages/api/admin/getBanners/single?pagename=home`
+    );
+    console.log(res.data.data[0].tnp_banner_url);
+    setBannerImage(res.data.data[0].tnp_banner_url);
+    // setLoading(false);
+  };
   useEffect(() => {
+    fetchBannerImage();
     const getPackages = async () => {
       try {
         const response = await getTourPackagesByCategory(
-          "/tourpackages/filter?limit=8&offset=0&bestseller=true&featured=true"
+          "/tourpackages/filter?limit=8&offset=0&bestseller=true&featured=true",
         );
         console.log("Home API Response:", response);
         if (response) {
@@ -300,7 +311,7 @@ export default function Home() {
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      Math.min(prevIndex + cardsPerPage, featuredata.length - 1)
+      Math.min(prevIndex + cardsPerPage, featuredata.length - 1),
     );
   };
 
@@ -326,7 +337,7 @@ export default function Home() {
           </video>
         </div>
       </Modal>
-      <div className="lg:h-[43rem] md:h-[30rem]   bg-gradient-to-r from-[rgba(0,0,0,1)] hero-bg to-[rgba(0,0,0,0.3)] w-full z-2 h-96">
+      <div className="lg:h-[43rem] md:h-[30rem] bg-gradient-to-r from-[rgba(0,0,0,1)] hero-bg to-[rgba(0,0,0,0.3)] w-full z-2 h-96">
         <div className="w-full h-full md:py-0 py-10 flex items-center justify-center relative  bg-gradient-to-r from-[rgba(0,0,0,0.8)] to-[rgba(0,0,0,0.3)]">
           <Image
             src={BannerDesign}

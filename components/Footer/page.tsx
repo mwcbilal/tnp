@@ -32,13 +32,15 @@ const Footer = () => {
     return null;
   }
 
-
-
-  const bgClass = (id && id[0] === 'honeymoon') || (category && category[0] === 'honeymoon') 
-  ? "bg-[#fff5fb]" : "bg-white";
+  const bgClass =
+    (id && id[0] === "honeymoon") || (category && category[0] === "honeymoon")
+      ? "bg-[#fff5fb]"
+      : "bg-white";
 
   return (
-    <div className={`text-black ${bgClass} relative pb-4 pt-8 items-center ${id && id[0] === 'honeymoon'? "hidden" : "flex"} flex-col`}>
+    <div
+      className={`text-black ${bgClass} relative pb-4 pt-8 items-center ${id && id[0] === "honeymoon" ? "hidden" : "flex"} flex-col`}
+    >
       <Affiliations />
       {/* <div className="flex items-center justify-center flex-col relative pt-20 pb-16">
         <Image

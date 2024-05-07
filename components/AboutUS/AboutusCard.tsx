@@ -1,8 +1,8 @@
-"use client"
-import React, { useState } from 'react';
-import defaultIcon from '../../public/aboutus/Clip path group.png';
-import hoverIcon from '../../public/aboutus/whiteicon.png';
-import Image from 'next/image';
+"use client";
+import React, { useState } from "react";
+import defaultIcon from "../../public/aboutus/Clip path group.png";
+import hoverIcon from "../../public/aboutus/whiteicon.png";
+import Image from "next/image";
 
 const AboutUsCard = ({ heading, text }: any) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -25,7 +25,7 @@ const AboutUsCard = ({ heading, text }: any) => {
         <p className="text-base">{text}</p>
         <button
           className={`${
-            isHovered ? 'hover:bg-primary hover:text-white' : 'text-primary'
+            isHovered ? "hover:bg-primary hover:text-white" : "text-primary"
           } font-bold py-5 rounded`}
         >
           Book Now <span className="ml-2">&#8594;</span>

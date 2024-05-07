@@ -1,10 +1,13 @@
+"use client";
+const Pagination = ({ currentPage, totalPages, setCurr }) => {
 
-'use client'
-const Pagination = ({ currentPage, totalPages , setCurr }) => {
-  const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
+  const pageNumbers = Array.from(
+    { length: totalPages },
+    (_, index) => index + 1,
+  );
 
   const handlePageChange = (page) => {
-   setCurr(page)
+    setCurr(page);
   };
 
   return (
@@ -20,7 +23,7 @@ const Pagination = ({ currentPage, totalPages , setCurr }) => {
         <button
           key={page}
           onClick={() => handlePageChange(page)}
-          className={` ${currentPage === page ? 'text-white' : ''} ${currentPage === page ? 'bg-[#00ADEE]' : ''} py-2 px-4 border-[1px] rounded-md border-gray-400 `}
+          className={` ${currentPage === page ? "text-white" : ""} ${currentPage === page ? "bg-[#00ADEE]" : ""} py-2 px-4 border-[1px] rounded-md border-gray-400 `}
         >
           {page}
         </button>

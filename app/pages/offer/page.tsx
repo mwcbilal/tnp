@@ -73,24 +73,28 @@ const Page: NextPage<Props> = ({}) => {
         <div
           className={`w-11/12 md:w-[700px] px-2 md:px-0 flex ${
             counter === 0 ? "justify-end" : "justify-between"
-          } mt-10`}>
+          } mt-10`}
+        >
           {counter >= 1 && (
             <button
               onClick={ImageBackwardHandler}
-              className="py-2 px-12 bg-[#FBAD17] rounded-sm text-sm text-white">
+              className="py-2 px-12 bg-[#FBAD17] rounded-sm text-sm text-white"
+            >
               BACK
             </button>
           )}
           {counter < 3 ? (
             <button
               onClick={ImageForwardHandler}
-              className="py-2 px-12 bg-[#00ADEE] rounded-sm text-sm text-white">
+              className="py-2 px-12 bg-[#00ADEE] rounded-sm text-sm text-white"
+            >
               NEXT
             </button>
           ) : (
             <button
               onClick={ImageForwardHandler}
-              className="py-2 px-6 bg-[#00ADEE] rounded-sm text-sm text-white">
+              className="py-2 px-6 bg-[#00ADEE] rounded-sm text-sm text-white"
+            >
               BOOK NOW
             </button>
           )}
