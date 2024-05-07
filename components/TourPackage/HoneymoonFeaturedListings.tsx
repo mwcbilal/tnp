@@ -20,6 +20,7 @@ interface PackageStructure {
     package_rate_deluxe: number;
     package_details: string | null;
     package_duration: string | null;
+    package_isfeatured: boolean;
 }
 
 const filterKeys = {
