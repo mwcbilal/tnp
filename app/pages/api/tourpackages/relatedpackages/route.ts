@@ -1,22 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import prisma from "../../db";
 import { NextRequest, NextResponse } from "next/server";
-import multer from 'multer';
-
-interface InsertBodyRequest {
-  package_id: number;
-  package_name: string;
-  package_total_persons: number;
-  package_category_id: number;
-  package_type_id: number;
-  package_region_id: number;
-  package_description: string;
-  package_rate_normal: number;
-  package_rate_deluxe: number;
-  package_details: string | null;
-  package_destination_id: number;
-  package_duration: number;
-}
 
 interface PackageStructure {
   package_id: number;

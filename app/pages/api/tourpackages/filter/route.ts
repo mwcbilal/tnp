@@ -61,7 +61,7 @@ interface FilterStructure {
 }
 
 const sortFields: {
-  [key: string]: Prisma.tnp_packagesOrderByWithRelationInput;
+  [key: string]: Prisma.tnp_packagesOrderByWithRelationAndSearchRelevanceInput;
 } = {
   price_low_to_high: { package_rate_normal: "asc" },
   price_high_to_low: { package_rate_normal: "desc" },
@@ -82,7 +82,7 @@ export async function GET(request: NextRequest) {
 
   try {
     let whereClause: Prisma.tnp_packagesWhereInput = {};
-    let orderByClause: Prisma.tnp_packagesOrderByWithRelationInput[] = [];
+    let orderByClause: Prisma.tnp_packagesOrderByWithRelationAndSearchRelevanceInput[] = [];
     let skip = 0;
     let take = 8;
 
