@@ -13,6 +13,7 @@ interface PackageStructure {
   package_rate_deluxe: number;
   package_details: string | null;
   package_duration: string | null;
+  package_isfeatured: boolean;
 }
 
 interface Props {
@@ -52,6 +53,7 @@ const RenderTourCards: NextPage<Props> = ({ PackageItems }) => {
             review={0}
             imageCount={3}
             videoCount={0}
+            isFeatured={item.package_isfeatured}
           />
         );
       })}
