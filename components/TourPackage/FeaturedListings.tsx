@@ -7,7 +7,7 @@ import FilterAndSearchBar from "./FilterAndSearchBar";
 import RenderTourCards from "./RenderTourCards";
 import { Spin } from "antd";
 import axios from "axios";
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 interface PackageStructure {
   package_id: number;

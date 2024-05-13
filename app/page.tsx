@@ -30,48 +30,26 @@ import VideoImage from "../public/home/image.png";
 import { Yesteryear } from "next/font/google";
 import {
   FaArrowCircleRight,
-  FaArrowRight,
   FaMapPin,
   FaRegComments,
 } from "react-icons/fa";
 import { GiMountainClimbing } from "react-icons/gi";
-import {
-  IoIosArrowDown,
-  IoMdSearch,
-  IoMdTime,
-  IoMdTimer,
-} from "react-icons/io";
+import { IoMdSearch, IoMdTimer } from "react-icons/io";
 import { RxAvatar } from "react-icons/rx";
 import { IoFilterCircleOutline, IoLocation } from "react-icons/io5";
 import { FaCircleCheck } from "react-icons/fa6";
-import { CiCalendar, CiSearch } from "react-icons/ci";
+import { CiCalendar } from "react-icons/ci";
 import BlueBanner from "../public/home/banner.png";
 import SydneyImage from "../public/home/sydney.png";
 import GaunImage from "../public/home/gaun.png";
 import JungleImage from "../public/home/jungle.png";
-
-import NaltarImage from "../public/home/naltar.png";
-import SkarduImage from "../public/home/skardu.png";
-import BashaImage from "../public/home/basha.png";
-import GalsImage from "../public/home/gals.png";
-
-// import img1 from "../public/TourPackage/FeaturedListing/6dayshunzaandnaltar.png";
-// import img2 from "../public/TourPackage/FeaturedListing/6dayshunzaandskardu.png";
-// import img3 from "../public/TourPackage/FeaturedListing/6dayssakrduandbasho.png";
-// import img4 from "../public/TourPackage/FeaturedListing/allgirlstriptokashmir.png";
-import img5 from "../public/TourPackage/FeaturedListing/Rectangle 19370 (1).png";
-import img6 from "../public/TourPackage/FeaturedListing/Rectangle 19370 (2).png";
-import img7 from "../public/TourPackage/FeaturedListing/Rectangle 19370 (3).png";
-import img8 from "../public/TourPackage/FeaturedListing/Rectangle 19370.png";
 
 import packbg from "../public/home/package bg.png";
 import TourCardPagination from "@/components/Home/TourCardPagination";
 import TestimonialCarousel from "@/components/Home/TestimonialCarousel";
 import NewCustomerOfferModel from "@/components/Home/NewCustomerOfferModel";
 import Timer from "@/components/Home/Timer";
-// import { useRouter } from "next/router";
 import { fetchUserById } from "@/apiFunctions/authentication";
-// import { getUser } from "./pages/api/utils";
 import { useSearchParams } from "next/navigation";
 import { useAppDispatch } from "@/lib/store";
 import { setUserData } from "@/lib/feature/user/userSlice";
@@ -91,39 +69,6 @@ const inter = Yesteryear({
   style: ["normal"],
 });
 
-const featuredata2 = [
-  {
-    img: SydneyImage,
-    location: "Sydney",
-    title: "Modern Sydney",
-    duration: "5days",
-    people: 12,
-    price: 16900,
-    discountedPrice: 19900,
-    reviewCount: 1,
-  },
-  {
-    img: GaunImage,
-    location: "Pakistan-North",
-    title: "Country Name",
-    duration: "5days",
-    people: 12,
-    price: 16900,
-    discountedPrice: 19900,
-    reviewCount: 1,
-  },
-  {
-    img: JungleImage,
-    location: "Country Name",
-    title: "Country Name",
-    duration: "7days",
-    people: 12,
-    price: 32000,
-    discountedPrice: 20987,
-    reviewCount: 1,
-  },
-];
-
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
@@ -134,7 +79,6 @@ export default function Home() {
 
   const [selectedType, setSelectedType] = useState("Group");
   const [selectedDuration, setSelectedDuration] = useState("2-4 days");
-  const [selectedValue, setSelectedValue] = useState(null);
   const [selectedGuest, setSelectedGuest]= useState("5");
 
   const handleTypeChange = (selectedType) => {
@@ -152,8 +96,8 @@ export default function Home() {
   const handleDestinationChange = (selectedValue) => {
     console.log("destination change to", selectedValue);
   };
-
   const [currentIndex, setCurrentIndex] = useState(0);
+
   const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
 
@@ -164,9 +108,7 @@ export default function Home() {
   }
   const fetchBannerImage = async () => {
     // setLoading(true);
-    let res = await axios.get(
-      `pages/api/admin/getBanners/single?pagename=home`
-    );
+    let res = await axios.get(`pages/api/admin/getBanners/single?pagename=home`);
     // console.log(res.data.data[0].tnp_banner_url);
     setBannerImage(res.data.data[0].tnp_banner_url);
     // setLoading(false);
