@@ -22,16 +22,13 @@ interface Props {}
 const Page: NextPage<Props> = ({}) => {
   const userData = useAppSelector((data) => data?.auth?.data);
   const dispatch = useAppDispatch();
-  console.log(userData);
+  // console.log(userData);
   const [showTourDropdown, setShowTourDropdown] = useState<boolean>(false);
   const [currTour, setCurrTour] = useState<any>("");
   const [showPackageDropdown, setShowPackageDropdown] =
     useState<boolean>(false);
-  const params = useParams();
+  // const params = useParams();
   const router = useRouter();
-  // const {category} = useParams();
-  // console.log("paramssss founddd", params);
-  // const {id} = useParams();
 
   const { category, id } = useParams();
 
