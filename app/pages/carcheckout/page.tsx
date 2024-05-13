@@ -9,8 +9,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { message } from "antd";
 import { useAppSelector } from "@/lib/store";
+import { NextPage } from "next";
 
-const page = () => {
+interface Props {}
+
+const Page: NextPage<Props> = ({}) => {
   const searchParams = useSearchParams();
   const user = useAppSelector((data) => data?.auth?.data);
   const [selectedCar, setSelectedCar]: any[] = useState({});
@@ -90,6 +93,7 @@ const page = () => {
           Back
         </h1>
       </div>
+      
       {/* -----MAIN CONTENT FROM HERE------------- */}
       <div className="w-full lg:w-[80%] flex flex-col lg:flex-row gap-6 justify-center mx-auto my-10">
         {/* ----RIGHT SIDE----- */}
@@ -440,4 +444,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
