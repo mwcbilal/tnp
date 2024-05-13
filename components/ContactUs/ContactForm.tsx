@@ -22,7 +22,7 @@ const ContactForm = () => {
           />
           <input
             type="text"
-            className=" border-0 decoration-none bg-transparent placeholder:text-sm placeholder:text-black "
+            className="w-full border-0 decoration-none bg-transparent placeholder:text-sm placeholder:text-black "
             required
             placeholder="Your Name*"
           />
@@ -35,7 +35,7 @@ const ContactForm = () => {
           />
           <input
             type="email"
-            className="border-0 bg-transparent placeholder:text-sm placeholder:text-black"
+            className="w-full outline-none border-none bg-transparent placeholder:text-sm placeholder:text-black"
             required
             placeholder="Email Address*"
           />
@@ -49,17 +49,17 @@ const ContactForm = () => {
           <textarea
             rows={4}
             cols={50}
-            className=" border-0 decoration-none bg-transparent placeholder:text-sm placeholder:text-black"
+            className="w-full border-0 decoration-none bg-transparent placeholder:text-sm placeholder:text-black"
             required
             placeholder="Enter Your Messege Here*"
           />
         </div>
       </div>
-      <button className="flex flex-row gap-2 bg-[#00ADEE] text-white justify-center  py-2 px-2 w-[87%]  md:w-[70%] lg:w-[45%] xl:w-[40%]">
+      <button className="flex flex-row items-center gap-2 bg-[#00ADEE] text-white justify-center  py-2 px-2 w-[87%]  md:w-[70%] lg:w-[45%] xl:w-[40%]">
         <Image
           src={send}
           alt="icon.."
-          className="text-blue-900 sm:w-[15%]   xl:mt-0 lg:mt-[4px] md:mt-[4px] mt-[3px]"
+          className="text-blue-900 sm:w-[15%]  xl:mt-0 lg:mt-[4px] md:mt-[4px] mt-[3px]"
         />
         Get In Touch
       </button>

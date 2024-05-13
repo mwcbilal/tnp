@@ -6,7 +6,7 @@ const tourpackages = () => {
   return (
     <div className="w-screen">
       <TourPackHero />
-      <FeaturedListings />
+      <FeaturedListings category={null} package_type={null} region={null} />
     </div>
   );
 };

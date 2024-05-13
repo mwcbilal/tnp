@@ -2,11 +2,13 @@ import { NextPage } from "next";
 import Dropdown from "../Dropdown";
 import { BiSortAlt2 } from "react-icons/bi";
 import { MenuProps } from "antd";
+import Link from "next/link";
+import { CiSearch } from "react-icons/ci";
 
 interface Props {
   filters: any;
   handleFilterChange: any;
-  filterKeys: any
+  filterKeys: any;
 }
 
 // const itemsPerPage = 8;
@@ -54,7 +56,11 @@ const sortOptions: MenuProps["items"] = [
   //    { label: "Days", key: "package_duration_low_to_high" },
 ];
 
-const FilterAndSearchBar: NextPage<Props> = ({ filters, handleFilterChange, filterKeys }) => {
+const FilterAndSearchBar: NextPage<Props> = ({
+  filters,
+  handleFilterChange,
+  filterKeys,
+}) => {
   //    const [currPage, setCurrPage] = useState(1);
   //    const [selectedFilter, setSelectedFilter] = useState(
   //        filterOptions[0]["label"],
@@ -112,7 +118,7 @@ const FilterAndSearchBar: NextPage<Props> = ({ filters, handleFilterChange, filt
       <div className="flex flex-col md:flex-row justify-start xl:items-center gap-1">
         <div className="flex p-2">
           <p className="text-sm">Sort By</p>
-          <button className="max-h-[20px]" onClick={() => { }}>
+          <button className="max-h-[20px]" onClick={() => {}}>
             <BiSortAlt2 size={20} />
           </button>
         </div>
@@ -122,6 +128,13 @@ const FilterAndSearchBar: NextPage<Props> = ({ filters, handleFilterChange, filt
           onSelect={handleFilterChange}
           name={filterKeys.sort}
         />
+        <Link href="?modal=true">
+          <div
+            className={`btn-normal shadow-2xl !flex items-center md:w-auto text-center cursor-pointer text-white rounded-md px-5 py-3 ml-4`}>
+            <CiSearch className="mr-2" size={20}/>
+            search
+          </div>
+        </Link>
       </div>
     </div>
   );

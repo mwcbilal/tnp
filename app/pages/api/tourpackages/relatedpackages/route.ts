@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import prisma from "../../db";
 import { NextRequest, NextResponse } from "next/server";
 
 interface PackageStructure {
@@ -24,49 +23,55 @@ interface PackageStructure {
 }
 
 export async function GET(request: NextRequest) {
-    const searchParams = request.nextUrl?.searchParams;
-    if (!searchParams?.get("id")) {
-      return new NextResponse("Bad Request: Missing or invalid id parameter", {
-        status: 400,
-      });
-    }
+  const prisma = new PrismaClient();
+  const searchParams = request.nextUrl?.searchParams;
   
-    try {
-      let packages: PackageStructure[] = [];
-      let relatedPackages: PackageStructure[] = [];
-      const id = searchParams?.get("id");
-      switch (id) {
-        case "id":
-          packages = await prisma.tnp_packages.findMany({
-            where: {
-              package_id: parseInt(id),
-            },
-            include: {
-              tnp_package_types: true,
-              tnp_destinations: true,
-            },
-          });
-          break;
-        default:
-          return new NextResponse("Bad Request: Invalid fetch type", {
-            status: 400,
-          });
-      }
-  
-      packages = packages.map((pkg) => ({
-        ...pkg,
-        package_type: pkg.tnp_package_types?.package_type_name || "",
-      }));
-  
-      return NextResponse.json({
-        status: 200,
-        message: "Success",
-        data: packages,
-      });
-    } catch (error) {
-      console.error("Error in GET handler:", error);
-      return new NextResponse("Internal Server Error", { status: 500 });
-    } finally {
-      await prisma.$disconnect();
-    }
+  if (!searchParams) {
+    return new NextResponse("Bad Request: Missing or invalid parameters", {
+      status: 400,
+    });
+  } 
+
+  try {
+    const packageType = searchParams.get("package_type_id");
+    const packageId = searchParams.get("package_id");
+
+    let packages: PackageStructure[] = [];
+
+    packages = await prisma.tnp_packages.findMany({
+      where: {
+        package_type_id: parseInt(packageType || "0"),
+        NOT: {
+          package_id: parseInt(packageId || "0"),
+        },
+      },
+      include: {
+        tnp_package_types: true,
+        tnp_destinations: {
+          include: {
+            tnp_package_categories: true,
+            tnp_package_regions: true,
+          },
+        },
+      },
+      take: 2,
+    });
+
+    // Modify the package structure to include category, type, and region names
+    packages = packages.map((pkg) => ({
+      ...pkg,
+      package_type: pkg.tnp_package_types?.package_type_name || "",
+    }));
+
+    return NextResponse.json({
+      status: 200,
+      message: "Success",
+      data: packages,
+    });
+  } catch (error) {
+    console.error("Error in GET handler:", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  } finally {
+    await prisma.$disconnect();
   }
+}

@@ -5,6 +5,7 @@ import Footer from "@/components/Footer/page";
 import Navbar from "@/components/Navbar/page";
 import MobileNavbar from "@/components/Navbar/MobileNavbar";
 import dynamic from "next/dynamic";
+import Modal from "@/components/Modal/modal";
 
 const StoreProvider = dynamic(() => import("./StoreProvider"), {
   ssr: false,
@@ -30,6 +31,7 @@ export default function RootLayout({
           <Navbar />
 
           {children}
+          <Modal />
 
           <Footer />
         </StoreProvider>

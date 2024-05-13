@@ -25,11 +25,11 @@ export default function CountryCard() {
                 </p>
               </div>
               <div className="flex items-center gap-2 justify-center">
-                <button className="bg-primary border-[1px] hover:bg-white hover_affect hover:text-black text-white py-1 px-5 rounded-md transition duration-300 ease-in-out">
+                <button className="bg-primary border-[1px] hover:border-[1px] hover:bg-white hover_affect hover:text-black text-white py-1 px-5 rounded-md transition duration-300 ease-in-out">
                   Download
                 </button>
 
-                <button className="bg-primary hover:text-black hover:bg-white hover_affect text-white py-1 px-5 rounded-md">
+                <button className="bg-primary hover:text-black hover:bg-white hover_affect text-white py-1 hover:py-1 px-5 rounded-md">
                   Share
                 </button>
                 <Image

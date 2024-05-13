@@ -13,7 +13,7 @@ const Timer = () => {
 
   // Function to calculate the remaining time
   function calculateTimeLeft() {
-    const deadline = new Date("2024-05-03").getTime(); // Set the deadline date here
+    const deadline = new Date('2024-06-03').getTime(); // Set the deadline date here
     const now = new Date().getTime();
     const difference = deadline - now;
 

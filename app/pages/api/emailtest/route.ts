@@ -11,7 +11,7 @@ export async function GET(request: Request) {
       from: process.env.USER_EMAIL,
     };
     sendEmail(_);
-    console.log("SENTTTTT")
+    console.log("SENTTTTT");
     return NextResponse.json({ status: 200, message: "Success" });
   } catch (error) {
     console.error("Error in GET handler:", error);

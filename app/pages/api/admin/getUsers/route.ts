@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    const token = createJWT(user);
+    // const token = createJWT(user);
 
     // let userData = {
     //   token,

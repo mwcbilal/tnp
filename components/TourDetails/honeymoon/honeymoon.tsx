@@ -16,6 +16,10 @@ import { getSinglePackage } from "@/app/actions/tourpackages";
 import { Spin } from "antd";
 import bgImage from "../../../assets/honeymoon/rosesbg2.jpg";
 import bg from "../../../assets/honeymoon/honeymoon-bg2.png";
+import RenderTourCardsRelated from "@/components/TourPackage/RenderTourCardsRelated";
+import { LoadingOutlined } from "@ant-design/icons";
+import { getRelatedPackage } from "@/app/actions/tourpackages";
+import HoneymoonForm from "./honeymoonForm";
 
 interface PackageStructure {
   package_id: number;
@@ -60,43 +64,84 @@ interface TripDetails {
     }[];
     Highlights: string[];
     Images: string[];
+    PDFUrl: string;
   };
 }
 
-const Honeymoon = () => {
-  const params = useParams();
-  console.log(params, "<===param");
+interface RelatedPackageStructure {
+  package_id: number;
+  package_name: string;
+  package_total_persons: number;
+  package_category_id: number;
+  package_type_id: number;
+  package_region_id: number;
+  package_description: string;
+  package_rate_normal: number;
+  package_rate_deluxe: number;
+  package_details: string | null;
+  package_duration: string | null;
+}
+
+const Honeymoon = ({ packageDetails }) => {
+  const [relatedPackageDetails, setRelatedPackageDetails] = useState<RelatedPackageStructure[]>([]);
+  const [showAfterNormal, setShowAfterNormal] = useState(false);
+  const [showAfterDeluxe, setShowAfterDeluxe] = useState(false);
+  const [packageId, setPackageId] = useState(null);
+  const [packageTypeId, setPackageTypeId] = useState(null);
+
+  
+  useEffect(() => {
+    if (packageDetails) {
+      setPackageId(packageDetails.package_id);
+      setPackageTypeId(packageDetails.tnp_package_types?.package_type_id);
+    }
+  }, [packageDetails]);
+
+ 
+ 
+  const handleNormalClick = () => {
+    setShowAfterNormal(true);
+    setShowAfterDeluxe(false);
+  };
+
+  const handleDeluxeClick = () => {
+    setShowAfterDeluxe(true);
+    setShowAfterNormal(false);
+  };
+
+  // const [packageDetails, setPackageDetails] = useState<PackageStructure>();
   const bannerData = data.filter((item) => {
     return item.id.toString() === "0";
   })[0];
   const renderedData = bannerData?.packages?.filter((item) => {
     return item.pid.toString() === "1";
   })[0];
-  // console.log(renderedData, "rrrr");
-  // console.log(data);
 
-  const [packageDetails, setPackageDetails] = useState<PackageStructure>();
-  console.log(params, "param at honeymoon");
   useEffect(() => {
-    async function getItem() {
-      const response = await getSinglePackage(
-        "/tourpackages/single/" + params?.id[1],
-      );
-      console.log("Response", response);
-      setPackageDetails(response.data);
+    async function getRelatedPackages() {
+      // Check if both packageId and packageTypeId are not null
+      if (packageId !== null && packageTypeId !== null) {
+        const apiurl = `/tourpackages/relatedpackages?package_type_id=${packageTypeId}&package_id=${packageId}`;
+        console.log("apiurl", apiurl);
+        try {
+          let relatedresponse;
+          relatedresponse = await getRelatedPackage(apiurl);
+          setRelatedPackageDetails(relatedresponse?.data);
+        } catch (error) {
+          console.error("Error fetching related packages:", error);
+          // Handle error
+        }
+      }
     }
+    getRelatedPackages();
+  }, [packageId, packageTypeId]);
 
-    getItem();
-  }, []);
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  // console.log("related pacakges here", relatedPackageDetails);
 
   if (!packageDetails || !packageDetails.package_details) {
     return (
       <div className="w-full flex justify-center mt-4 h-12 pt-2">
-        <Spin size="large" />
+        <Spin size="large"/>
       </div>
     );
   }
@@ -117,45 +162,102 @@ const Honeymoon = () => {
             <div className="flex flex-col md:flex-row justify-between w-full items-center gap-2 my-5 md:p-3 lg:p-0">
               <h1 className="text-1xl text-black md:text-2xl font-bold">
                 {" "}
-                6 Days Skardu & Bashu Valley{" "}
+                {packageDetails.package_name}{" "}
               </h1>
 
               <div className="flex flex-col justify-center items-center border border-gray-300 shadow-sm">
                 <div className="w-[6rem] h-[5rem] bg-yellow-300 text-black text-3xl flex justify-center items-center">
-                  6
+                  {packageDetails.package_duration}
                 </div>
                 <div className="w-[6rem] h-[2rem] text-1xl text-black flex justify-center items-center bg-white">
                   Days
                 </div>
               </div>
             </div>
-            
+
             <CarouselSlider
               ImageList={tripDetails.TripDetailsAndCostSummary.Images}
             />
 
             <div className="flex justify-end  gap-6 items-center p-2">
-              <button className="bg-[#760F22] text-white px-4 py-2 rounded hover:bg-secon w-[12rem] lg:w-[10rem]">
+              <>
+                {!showAfterNormal && (
+                  <button onClick={handleNormalClick} className="btn-normal">
+                    Standard - {packageDetails?.package_rate_normal}
+                  </button>
+                )}
+                {showAfterNormal && (
+                  <button className="btn-after">
+                    Standard - {packageDetails?.package_rate_normal}
+                  </button>
+                )}
+
+                {!showAfterDeluxe && (
+                  <button onClick={handleDeluxeClick} className="btn-deluxe">
+                    Deluxe - {packageDetails?.package_rate_deluxe}
+                  </button>
+                )}
+                {showAfterDeluxe && (
+                  <button className="btn-after">
+                    Deluxe - {packageDetails?.package_rate_deluxe}
+                  </button>
+                )}
+              </>
+              {/* <button onClick={() => setSelectedRate(2)} className="btn-deluxe">
+                Deluxe - {packageDetails?.package_rate_deluxe}
+              </button> */}
+              <button className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600 w-[12rem] lg:w-[10rem]">
                 Share
               </button>
-              <button className="bg-[#760F22] text-white px-4 py-2 rounded hover:bg-secon w-[13rem] lg:w-[11rem]">
+              <button className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600 w-[13rem] lg:w-[11rem]">
                 Download Pdf
               </button>
             </div>
-            <Overview text={renderedData?.overview} />
+            <Overview text={packageDetails.package_description} />
 
-            <Highlights data={renderedData?.highlights} />
+            <Highlights
+              data={tripDetails.TripDetailsAndCostSummary.Highlights}
+            />
 
-            <Itinerary data={renderedData?.itineraryData} />
+            <Itinerary
+              data={tripDetails.TripDetailsAndCostSummary?.Itinerary}
+            />
 
             <Cost
-              includeCost={renderedData.includeCost}
-              costExclude={renderedData.costExclude}
+              includeCost={tripDetails.TripDetailsAndCostSummary.CostIncludes}
+              costExclude={tripDetails.TripDetailsAndCostSummary.CostExcludes}
             />
           </div>
 
-          <div className=" w-full lg:w-[40%]  flex ">
-            <DomesticForm showAvailabilityButton={undefined} />
+          {/* aqsa add your compoennts here */}
+
+          {/* left side */}
+          <div className="w-full lg:w-[40%]">
+            <HoneymoonForm
+               showAvailabilityButton={
+                packageDetails.tnp_package_types.package_type_name.toLocaleLowerCase() ==
+                "group"
+                  ? true
+                  : false
+              } packageId={packageId}
+              packageTypeId={packageTypeId}
+              packageTotalPersons = {packageDetails.package_total_persons}
+            />
+            <div className="flex flex-col mt-10">
+              <div className="w-full max-w-md h-max bg-transparent rounded-md flex flex-col mx-auto p-4 md:p-0">
+                {" "}
+                <h1 className="uppercase text-black p-5 text-2xl font-bold">
+                  RELATED PACKAGES
+                </h1>
+              </div>
+              {relatedPackageDetails.length > 0 ? (
+                <RenderTourCardsRelated PackageItems={relatedPackageDetails} />
+              ) : (
+                <div className="w-full flex justify-center mt-4 h-12 pt-2">
+                  <Spin size="large"/>  
+                </div>
+              )}
+            </div>
           </div>
         </div>
 

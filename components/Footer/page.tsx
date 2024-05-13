@@ -14,10 +14,7 @@ const Footer = () => {
   const params = useParams();
 
   const { category, id } = useParams();
-  console.log("paramssss founddd", { category, id });
   // console.log("footer", params);
-
-  // console.log("paramssss founddd at footer", params);
 
   const [isMounted, setIsMounted] = useState(false);
 

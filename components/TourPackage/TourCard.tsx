@@ -3,8 +3,6 @@ import { MdLocationPin } from "react-icons/md";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { IoMdTime } from "react-icons/io";
 import { IoPersonAddOutline } from "react-icons/io5";
-// import image from "../../public/TourPackage/FeaturedListing/imageicon.png";
-// import video from "../../public/TourPackage/FeaturedListing/videoicon.png";
 import { MdPhotoCamera } from "react-icons/md";
 import { BiSolidVideos } from "react-icons/bi";
 import Link from "next/link";
@@ -41,7 +39,6 @@ const TourCard: React.FC<TourCardProps> = ({
   color = "sky",
 }) => {
   const { category, id } = useParams();
-  console.log("paramssss founddd", { category, id });
 
   const bgClass =
     (id && id[0] === "honeymoon") || (category && category[0] === "honeymoon")
@@ -70,7 +67,8 @@ const TourCard: React.FC<TourCardProps> = ({
         <div className="absolute z-10 flex flex-row justify-between w-full">
           {isFeatured && (
             <p
-              className={`${bgClass} text-white text-sm px-2 py-[2px] m-2 rounded-md`}>
+              className={`${bgClass} text-white text-sm px-2 py-[2px] m-2 rounded-md`}
+            >
               Featured
             </p>
           )}
@@ -80,7 +78,8 @@ const TourCard: React.FC<TourCardProps> = ({
               <p className="text-white text-sm">{imageCount}</p>
             </div>
             <div
-              className={`flex flex-row gap-2 ${bgClass} text-white m-2 px-2 py-[2px] rounded-md`}>
+              className={`flex flex-row gap-2 ${bgClass} text-white m-2 px-2 py-[2px] rounded-md`}
+            >
               <BiSolidVideos size={14} className="text-white mt-[3px]" />
               <p className="text-sm ">{videoCount}</p>
             </div>
@@ -129,7 +128,11 @@ const TourCard: React.FC<TourCardProps> = ({
           <p className="text-xs text-gray-500 line-through">Rs{price}</p>
         </div>
       </div>
+     
     </Link>
   );
 };
 export default TourCard;
+
+
+

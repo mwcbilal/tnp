@@ -1,6 +1,5 @@
 "use client";
 const Pagination = ({ currentPage, totalPages, setCurr }) => {
-
   const pageNumbers = Array.from(
     { length: totalPages },
     (_, index) => index + 1,

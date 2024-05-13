@@ -9,6 +9,7 @@ import { Dropdown, Menu, Space, type MenuProps } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { useParams } from "next/navigation";
+import Link from "next/link";
 
 const items: MenuProps["items"] = [
   {
@@ -98,7 +99,7 @@ const typesItems: MenuProps["items"] = [
   },
 ];
 
-const TourpackSearch = ({ color = "#00ADEE", color2 = "#00ADEE" }) => {
+const TourpackSearch = ({ color = "#00ADEE", color2 = "#00ADEE", open }) => {
   const [selectedPerson, setSelectedPerson] = useState(personItems[0]["label"]);
   const [selectedLocation, setSelectLocation] = useState(
     locationItems[0]["label"],
@@ -110,19 +111,19 @@ const TourpackSearch = ({ color = "#00ADEE", color2 = "#00ADEE" }) => {
   };
 
   const { category, id } = useParams();
-  console.log("paramssss founddd", { category, id });
+  // console.log("paramssss founddd", { category, id });
 
+  const bgClass =
+    (id && id[0] === "honeymoon") || (category && category[0] === "honeymoon")
+      ? "bg-[#8b2424]"
+      : "bg-[#00ADEE]";
 
-  const bgClass = (id && id[0] === 'honeymoon') || (category && category[0] === 'honeymoon') 
-  ? "bg-[#8b2424]" 
-  : "bg-[#00ADEE]";
+  const textColor =
+    (id && id[0] === "honeymoon") || (category && category[0] === "honeymoon")
+      ? "text-[#8b2424]"
+      : "text-[#00ADEE]";
 
-
-  const textColor = (id && id[0] === 'honeymoon') || (category && category[0] === 'honeymoon') 
-  ? "text-[#8b2424]" 
-  : "text-[#00ADEE]";
-  
-  const onClickLocationDropdown: MenuProps['onClick'] = ({ key }) => {
+  const onClickLocationDropdown: MenuProps["onClick"] = ({ key }) => {
     // console.log("Item clicked", key);
     setSelectLocation(locationItems.filter((e) => e.key === key)[0]["label"]);
   };
@@ -139,13 +140,13 @@ const TourpackSearch = ({ color = "#00ADEE", color2 = "#00ADEE" }) => {
 
   return (
     <div
-      className="flex my-3 flex-col md:flex-row md:mx-5 bg-white text-black flex-wrap rounded px-4 py-4"
+      className="flex z-0 my-3 relative flex-col md:flex-row md:mx-5 bg-white text-black flex-wrap rounded px-4 py-4"
       style={{ boxShadow: "-1px -1px 20px -6px #ccc" }}
     >
       <div className="flex mx-2 w-[15rem] md:w-auto md:justify-start justify-between  items-center">
         <div className="flex items-center">
           <div className="me-2">
-            <FaMapPin className={`${textColor} text-xl`}/>
+            <FaMapPin className={`${textColor} text-xl`} />
           </div>
           <Dropdown
             menu={{
@@ -180,7 +181,7 @@ const TourpackSearch = ({ color = "#00ADEE", color2 = "#00ADEE" }) => {
                   <p>Type</p>
                   <p className="text-xs text-gray-500">{selectedType}</p>
                 </div>
-                <DownOutlined className={`${textColor} text-xl`}/>
+                <DownOutlined className={`${textColor} text-xl`} />
               </Space>
             </a>
           </Dropdown>
@@ -224,7 +225,7 @@ const TourpackSearch = ({ color = "#00ADEE", color2 = "#00ADEE" }) => {
                   <p>Persons</p>
                   <p className="text-xs text-gray-500">{selectedPerson}</p>
                 </div>
-                <DownOutlined className={`${textColor} text-xl`}/>
+                <DownOutlined className={`${textColor} text-xl`} />
               </Space>
             </a>
           </Dropdown>
@@ -236,10 +237,14 @@ const TourpackSearch = ({ color = "#00ADEE", color2 = "#00ADEE" }) => {
         <div className="me-2">
           <RiEqualizerLine className={`text-[${color} text-xl`} />
         </div>
-        <div className={` ${bgClass} flex items-center md:w-auto -full text-center cursor-pointer text-white rounded-md px-5 py-3 ml-4`}>
-          <CiSearch className="mr-2" size={20} />
-          Search
-        </div>
+        <Link href="?modal=true">
+          <div
+            className={` ${bgClass} flex items-center md:w-auto -full text-center cursor-pointer text-white rounded-md px-5 py-3 ml-4`}
+          >
+            <CiSearch className="mr-2" size={20} />
+            Searchhhhhh
+          </div>
+        </Link>
       </div>
     </div>
   );

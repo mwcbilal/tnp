@@ -14,38 +14,58 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-    try {
-        const body = await request.json();
-        const newTrip = await prisma.tnp_trips.create({
-            data: {
-                trip_package_id: body.trip_package_id,
-                trip_date: new Date(body.trip_date),
-                trip_booked_count: body.trip_total_members,
-            },
-        });
-        return new NextResponse(JSON.stringify(newTrip), { status: 201 });
-    } catch (error) {
-        console.error('Error in POST handler:', error);
-        return new NextResponse('Internal Server Error', { status: 500 });
+  try {
+    const body = await request.json();
+    const existingTrip = await prisma.tnp_trips.findFirst({
+      where: {
+        AND: [
+          { trip_package_id: body.trip_package_id },
+          { trip_date: new Date(body.trip_date) },
+        ],
+      },
+    });
+
+    if (existingTrip) {
+      const updatedTrip = await prisma.tnp_trips.update({
+        where: { trip_id: existingTrip.trip_id },
+        data: {
+          trip_booked_count: existingTrip.trip_booked_count + body.trip_booked_count,
+        },
+      });
+      return new NextResponse(JSON.stringify(updatedTrip), { status: 200 });
+    } else {
+      const newTrip = await prisma.tnp_trips.create({
+        data: {
+          trip_package_id: body.trip_package_id,
+          trip_date: new Date(body.trip_date),
+          trip_booked_count: body.trip_booked_count,
+        },
+      });
+      return new NextResponse(JSON.stringify(newTrip), { status: 201 });
     }
+  } catch (error) {
+    console.error("Error in POST handler:", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
 }
 
+
 export async function PUT(request: Request) {
-    try {
-        const body = await request.json();
-        const updatedTrip = await prisma.tnp_trips.update({
-            where: { trip_id: parseInt(body.trip_id) },
-            data: {
-                trip_package_id: body.trip_package_id,
-                trip_date: new Date(body.trip_date),
-                trip_booked_count: body.trip_total_members,
-            },
-        });
-        return new NextResponse(JSON.stringify(updatedTrip), { status: 200 });
-    } catch (error) {
-        console.error('Error in PUT handler:', error);
-        return new NextResponse('Internal Server Error', { status: 500 });
-    }
+  try {
+    const body = await request.json();
+    const updatedTrip = await prisma.tnp_trips.update({
+      where: { trip_id: parseInt(body.trip_id) },
+      data: {
+        trip_package_id: body.trip_package_id,
+        trip_date: new Date(body.trip_date),
+        trip_booked_count: parseInt(body.trip_booked_count),
+      },
+    });
+    return new NextResponse(JSON.stringify(updatedTrip), { status: 200 });
+  } catch (error) {
+    console.error("Error in PUT handler:", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
 }
 
 export async function DELETE(request: Request) {

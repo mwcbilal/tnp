@@ -6,7 +6,7 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 interface Props {
   hoverImage: string | StaticImport;
   normalImage: string | StaticImport;
-  isSelected : boolean
+  isSelected: boolean;
 }
 
 const SvgImage: NextPage<Props> = ({ hoverImage, normalImage, isSelected }) => {

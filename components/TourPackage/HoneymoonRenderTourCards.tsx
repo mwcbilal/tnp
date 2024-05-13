@@ -38,7 +38,7 @@ const HoneymoonRenderTourCards: NextPage<Props> = ({ PackageItems }) => {
     <div className="w-full flex flex-row flex-wrap gap-10 xl:gap-24 my-4">
       {PackageItems.map((item, index) => {
         const tripDetails: TripDetails = JSON.parse(item.package_details);
-        console.log("package_details", tripDetails);
+        // console.log("package_details", tripDetails);
         return (
           <TourCard
             key={5000 + index}

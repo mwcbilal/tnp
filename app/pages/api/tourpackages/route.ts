@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import prisma from "../db";
 import { NextRequest, NextResponse } from "next/server";
-import multer from 'multer';
+import multer from "multer";
 
 interface InsertBodyRequest {
   package_id: number;
@@ -95,15 +95,23 @@ export async function POST(request: Request) {
       data: {
         package_name: body.get("package_name").toString(),
         package_description: body.get("package_description").toString(),
-        package_rate_normal: parseInt(body.get("package_rate_normal").toString()),
-        package_rate_deluxe: parseInt(body.get("package_rate_deluxe").toString()),
-        package_total_persons: parseInt(body.get("package_total_persons").toString()),
+        package_rate_normal: parseInt(
+          body.get("package_rate_normal").toString(),
+        ),
+        package_rate_deluxe: parseInt(
+          body.get("package_rate_deluxe").toString(),
+        ),
+        package_total_persons: parseInt(
+          body.get("package_total_persons").toString(),
+        ),
         package_details: body.get("package_details").toString(),
         package_type_id: parseInt(body.get("package_type_id").toString()),
         package_isfeatured: Boolean(body.get("package_isfeatured")),
         package_bestseller: Boolean(body.get("package_bestseller").toString()),
         package_duration: parseInt(body.get("package_duration").toString()),
-        package_destination_id: parseInt(body.get("package_destination_id").toString()),
+        package_destination_id: parseInt(
+          body.get("package_destination_id").toString(),
+        ),
       },
     });
     console.log("Insert", insert);

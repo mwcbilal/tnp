@@ -2,20 +2,6 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../db";
 
-interface InsertBodyRequest {
-  package_id: number;
-  package_name: string;
-  package_total_persons: number;
-  package_category_id: number;
-  package_type_id: number;
-  package_region_id: number;
-  package_description: string;
-  package_rate_normal: number;
-  package_rate_deluxe: number;
-  package_details: string | null;
-  package_destination_id: number;
-}
-
 interface PackageStructure {
   package_id: number;
   package_name: string;
@@ -86,9 +72,11 @@ export async function GET(request: NextRequest) {
     let skip = 0;
     let take = 8;
 
+    
     if (!searchParams?.get("limit")) {
       return new NextResponse("limit parameter is required", { status: 400 });
     }
+    console.log("search params", searchParams);
 
     if (!searchParams?.get("offset")) {
       return new NextResponse("offset parameter is required", { status: 400 });
@@ -108,7 +96,7 @@ export async function GET(request: NextRequest) {
     const package_isfeatured = searchParams.get("featured");
     const package_bestseller = searchParams.get("bestseller");
     const sort = searchParams.get("sort");
-    console.log(sort,"SORTTTTTTTT")
+    console.log(sort, "SORTTTTTTTT");
 
     if (category) filterParams.category = category;
     if (region) filterParams.region = region;
@@ -123,7 +111,7 @@ export async function GET(request: NextRequest) {
     whereClause = {
       AND: [
         { tnp_destinations: { destination_name: filterParams.destination } },
-        { tnp_package_types: { package_type_name: filterParams.package_type } },
+        { tnp_package_types: { package_type_value: filterParams.package_type } },
         { package_isfeatured: filterParams.package_isfeatured },
         { package_bestseller: filterParams.package_bestseller },
       ],

@@ -34,7 +34,6 @@ const Page: NextPage<Props> = ({}) => {
   // const {id} = useParams();
 
   const { category, id } = useParams();
-  console.log("paramssss founddd", { category, id });
 
   const bgClass =
     (id && id[0] === "honeymoon") || (category && category[0] === "honeymoon")
@@ -44,8 +43,7 @@ const Page: NextPage<Props> = ({}) => {
   return (
     <div className="hidden lg:block">
       <header
-        className={`w-full text-sm flex justify-between px-10 ${bgClass} text-white`}
-      >
+        className={`w-full text-sm flex justify-between px-10 ${bgClass} text-white`}>
         <div className="flex">
           <div className="flex px-1 py-2 mx-1 items-center">
             <FaPhoneAlt />
@@ -85,12 +83,11 @@ const Page: NextPage<Props> = ({}) => {
                       lname: "",
                       email: "",
                       id: null,
-                    }),
+                    })
                   );
                   router.push("/");
                 }}
-                className="mx-1"
-              >
+                className="mx-1">
                 Logout
               </button>
             ) : (
@@ -98,15 +95,17 @@ const Page: NextPage<Props> = ({}) => {
                 User login
               </Link>
             )}
-            <p>|</p>
-            <p className="mx-1">Agent login</p>
+            {/* <p>|</p>
+            <p className="mx-1">Agent login</p> */}
           </div>
         </div>
       </header>
 
       <header className="w-full text-sm flex justify-between px-10 bg-white">
         <div className="flex py- items-center">
-          <Image src={Logo} alt="logo image" height={60} width={200} />
+          <Link href={"/"}>
+            <Image src={Logo} alt="logo image" height={60} width={200} />
+          </Link>
         </div>
 
         <div className="bg-white-500 relative w-3/5">
@@ -116,21 +115,20 @@ const Page: NextPage<Props> = ({}) => {
             </Link>
             <div
               onMouseOver={() => setShowTourDropdown(true)}
-              className="relative cursor-pointer font-bold"
-            >
+              onMouseOut={() => setShowTourDropdown(false)}
+              className="relative cursor-pointer font-bold">
               <p>Tour</p>
               <div
-                onMouseOut={() => setShowTourDropdown(false)}
-                className={` ${
-                  showTourDropdown ? "" : "w-0 overflow-hidden"
-                } expansion absolute z-[100] top-[40px] left-[-5px]`}
-              >
-                <div className=" bg-white h-[8.5rem] w-max flex rounded mt-8 py-2 px-4 shadow-md">
+                className={`expansion absolute z-[100] top-[40px] left-[-5px] ${
+                  showTourDropdown
+                    ? "opacity-100 scale-y-100"
+                    : "opacity-0 scale-y-0"
+                } transition-transform duration-300 ease-in-out transform-origin-top`}>
+                <div className="bg-white h-[8.5rem] w-max flex rounded mt-8 py-2 px-4 shadow-md">
                   <ul>
                     <li
                       onMouseOver={() => setCurrTour("International")}
-                      className="hover:text-[#FBAD17] flex cursor-pointer items-center justify-between px-2 py-1 text-black rounded"
-                    >
+                      className="hover:text-[#FBAD17] flex cursor-pointer items-center justify-between px-2 py-2 text-black rounded">
                       <Link href="/pages/tourpackages/international">
                         International
                       </Link>
@@ -138,8 +136,7 @@ const Page: NextPage<Props> = ({}) => {
                     </li>
                     <li
                       onMouseOver={() => setCurrTour("Domestic")}
-                      className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded"
-                    >
+                      className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-2 text-black rounded">
                       <Link href="/pages/tourpackages/domestic">Domestic</Link>
                       <IoIosArrowForward className="ms-5" />
                     </li>
@@ -150,72 +147,60 @@ const Page: NextPage<Props> = ({}) => {
                       currTour === "International"
                         ? "min-w-96"
                         : "w-0 overflow-hidden"
-                    }`}
-                  >
+                    }`}>
                     <Link
                       href={"/pages/tourpackages/international/dubai"}
-                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2"
-                    >
+                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Dubai
                     </Link>
                     <Link
                       href={"/pages/tourpackages/international/thailand"}
-                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2"
-                    >
+                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Thailand
                     </Link>
                     <Link
                       href={"/pages/tourpackages/international/turkey"}
-                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2"
-                    >
+                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Turkey
                     </Link>
                     <Link
                       href={"/pages/tourpackages/international/malaysia"}
-                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2 "
-                    >
+                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2 ">
                       Malaysia
                     </Link>
                     <Link
                       href={"/pages/tourpackages/international/baku"}
-                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2"
-                    >
+                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Baku
                     </Link>
                     <Link
                       href={"/pages/tourpackages/international/singapore"}
-                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2"
-                    >
+                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Singapore
                     </Link>
                     <Link
                       href={"/pages/tourpackages/international/srilanka"}
-                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2"
-                    >
+                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Srilanka
                     </Link>
                     <Link
                       href={"/pages/tourpackages/international/maldives"}
-                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2"
-                    >
+                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       Maldives
                     </Link>
                   </div>
                   <div
                     className={`flex flex-col flex-wrap ${
                       currTour === "Domestic" ? "" : "w-0 overflow-hidden"
-                    }`}
-                  >
+                    }`}>
                     <Link
                       href={"/pages/tourpackages/domestic/north"}
-                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2"
-                    >
+                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       North
                     </Link>
                     <Link
                       href={"/pages/tourpackages/domestic/south"}
-                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2"
-                    >
+                      className="mx-8 cursor-pointer hover:text-[#FBAD17] my-2">
                       South
                     </Link>
                   </div>
@@ -223,7 +208,7 @@ const Page: NextPage<Props> = ({}) => {
               </div>
             </div>
 
-            <p className="cursor-pointer font-bold">Activities</p>
+            {/* <p className="cursor-pointer font-bold">Activities</p> */}
             <Link href="/pages/hotel" className="cursor-pointer font-bold">
               Hotels
             </Link>
@@ -235,43 +220,39 @@ const Page: NextPage<Props> = ({}) => {
             </Link>
             <div
               onMouseOver={() => setShowPackageDropdown(true)}
-              className="cursor-pointer font-bold relative"
-            >
+              className="cursor-pointer font-bold relative">
               <Link href="/pages/tourpackages">Packages</Link>
               <div
                 onMouseOut={() => setShowPackageDropdown(false)}
-                className={` ${
-                  showPackageDropdown ? "" : "w-0 overflow-hidden"
-                } expansion absolute z-[100] top-[40px] left-[-5px]`}
-              >
+                className={`expansion absolute z-[100] top-[40px] left-[-5px] ${
+                  showPackageDropdown
+                    ? "opacity-100 scale-y-100"
+                    : "opacity-0 scale-y-0"
+                } transition-transform duration-300 ease-in-out transform-origin-top`}>
                 <div className=" bg-white flex rounded mt-8 py-2 px-4 shadow-md">
                   <ul>
                     <li
                       onMouseOver={() => setCurrTour("International")}
-                      className="hover:text-[#FBAD17] flex cursor-pointer items-center justify-between px-2 py-1 text-black rounded"
-                    >
+                      className="hover:text-[#FBAD17] flex cursor-pointer items-center justify-between px-2 py-1 text-black rounded">
                       <Link href="/pages/tourpackages/group">Group</Link>
                     </li>
                     <li
                       onMouseOver={() => setCurrTour("Domestic")}
-                      className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded"
-                    >
+                      className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded">
                       <Link href="/pages/tourpackages/honeymoon">
                         Honeymoon
                       </Link>
                     </li>
                     <li
                       onMouseOver={() => setCurrTour("Domestic")}
-                      className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded"
-                    >
+                      className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded w-32">
                       <Link href="/pages/tourpackages/private-family">
                         Private Family
                       </Link>
                     </li>
                     <li
                       onMouseOver={() => setCurrTour("Domestic")}
-                      className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded"
-                    >
+                      className="hover:text-[#FBAD17] flex items-center cursor-pointer justify-between px-2 py-1 text-black rounded">
                       <Link href="/pages/tourpackages/corporate">
                         Corporate
                       </Link>
@@ -285,8 +266,7 @@ const Page: NextPage<Props> = ({}) => {
             </Link>
             <Link
               href={"/pages/offer"}
-              className={` ${bgClass} px-4 py-2 rounded shadow-lg cursor-pointer text-white`}
-            >
+              className={` ${bgClass} px-4 py-2 rounded shadow-lg cursor-pointer text-white`}>
               Make your trip
             </Link>
           </div>
@@ -297,18 +277,17 @@ const Page: NextPage<Props> = ({}) => {
               borderRight: "24px solid transparent",
               bottom: "-20px",
             }}
-            className="w-full absolute z-10 bg-transparent-500 items-center"
-          ></div>
+            className="w-full absolute z-10 bg-transparent-500 items-center"></div>
         </div>
 
         <div className="flex">
           <div className="flex items-center ms-8">
-            <p className="flex items-center text-black mx-1">
+            {/* <p className="flex items-center text-black mx-1">
               <FaGlobeEurope className="mx-1" />
               English
             </p>
             <p>|</p>
-            <p className="text-black mx-1">USD</p>
+            <p className="text-black mx-1">USD</p> */}
           </div>
         </div>
       </header>

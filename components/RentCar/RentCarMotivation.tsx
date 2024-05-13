@@ -8,7 +8,7 @@ interface Props {}
 
 const RentCarMotivation: NextPage<Props> = ({}) => {
   return (
-    <div className="flex flex-col items-center justify-center py-20">
+    <div className="flex flex-col items-center justify-center pb-10">
       <RentBannerHeader
         Title="Better Way to Find Your Perfect Car"
         Description="In hac habitasse platea dictumst. In pharetra tellus eu justo tincidunt bibendum. Morbi rutrum elit ligula, eget fringilla sem pellentesque aliquam suspendisse."

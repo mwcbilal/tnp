@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextIndex", "fullTextSearch"]
 }
 
 datasource db {
@@ -61,14 +61,16 @@ model tnp_user {
 }
 
 model tnp_destinations {
-  destination_id          Int                    @id @default(autoincrement())
-  destination_category_id Int
-  destination_region_id   Int
-  destination_name        String?                @db.VarChar(255)
-  tnp_package_regions     tnp_package_regions    @relation(fields: [destination_region_id], references: [region_id], onUpdate: Restrict, map: "tnp_destinations_ibfk_1")
-  tnp_package_categories  tnp_package_categories @relation(fields: [destination_category_id], references: [package_category_id], onUpdate: Restrict, map: "tnp_destinations_ibfk_2")
-  tnp_hotels              tnp_hotels[]
-  tnp_packages            tnp_packages[]
+  destination_id                Int                    @id @default(autoincrement())
+  destination_category_id       Int
+  destination_region_id         Int
+  destination_name              String?                @db.VarChar(255)
+  destination_minimum_tour_days Int
+  tnp_package_regions           tnp_package_regions    @relation(fields: [destination_region_id], references: [region_id], onUpdate: Restrict, map: "tnp_destinations_ibfk_1")
+  tnp_package_categories        tnp_package_categories @relation(fields: [destination_category_id], references: [package_category_id], onUpdate: Restrict, map: "tnp_destinations_ibfk_2")
+  tnp_fuel_estimation           tnp_fuel_estimation[]
+  tnp_hotels                    tnp_hotels[]
+  tnp_packages                  tnp_packages[]
 
   @@index([destination_category_id], map: "destination_category_id")
   @@index([destination_region_id], map: "destination_region_id")
@@ -151,20 +153,25 @@ model tnp_car_class {
 }
 
 model tnp_cars {
-  car_id          Int               @id @default(autoincrement())
-  car_name        String            @db.VarChar(255)
-  class_id        Int
-  make            String?
-  model           String?
-  year            Int?
-  color           String?
-  engine          String?
-  transmission    String?
-  fuelType        String?
-  pricePerDay     Float?
-  mileage         Float?
-  tnp_car_booking tnp_car_booking[]
-  tnp_car_class   tnp_car_class     @relation(fields: [class_id], references: [car_class_id], onUpdate: Restrict, map: "tnp_cars_class_ibfk_1")
+  car_id              Int                   @id @default(autoincrement())
+  car_name            String                @db.VarChar(255)
+  class_id            Int
+  make                String?
+  model               String?
+  year                Int?
+  color               String?
+  engine              String?
+  transmission        String?
+  fuelType            String?
+  pricePerDay         Float?
+  mileage             Float?
+  car_image           String                @db.Text
+  pricePerKm          Int
+  imageRef            String?               @db.VarChar(255)
+  carRoom             Int?
+  tnp_car_booking     tnp_car_booking[]
+  tnp_car_class       tnp_car_class         @relation(fields: [class_id], references: [car_class_id], onUpdate: Restrict, map: "tnp_cars_class_ibfk_1")
+  tnp_fuel_estimation tnp_fuel_estimation[]
 
   @@index([class_id], map: "tnp_cars_class_ibfk_1")
 }
@@ -174,4 +181,23 @@ model tnp_banner {
   tnp_banner_name String @db.Text
   tnp_banner_page String @db.Text
   tnp_banner_url  String @db.Text
+}
+
+model tnp_testimonials {
+  testimonial_id          Int     @id @default(autoincrement())
+  testimonial_user_name   String? @db.VarChar(255)
+  testimonial_user_email  String? @db.VarChar(255)
+  testimonial_description String? @db.Text
+}
+
+model tnp_fuel_estimation {
+  fuel_estimation_id             Int               @id @default(autoincrement())
+  fuel_estimation_destination_id Int?
+  fuel_estimation_car_id         Int?
+  fuel_estimation_cost           Int
+  tnp_cars                       tnp_cars?         @relation(fields: [fuel_estimation_car_id], references: [car_id], onUpdate: SetNull, map: "tnp_fuel_estimation_ibfk_1")
+  tnp_destinations               tnp_destinations? @relation(fields: [fuel_estimation_destination_id], references: [destination_id], onUpdate: SetNull, map: "tnp_fuel_estimation_ibfk_2")
+
+  @@index([fuel_estimation_car_id], map: "fuel_estimation_car_id")
+  @@index([fuel_estimation_destination_id], map: "fuel_estimation_destination_id")
 }

@@ -1,9 +1,10 @@
 "use client";
 
 import Rings from "../public/home/rungs.png";
+import { Spin } from "antd";
 import BannerDesign from "../public/home/bgleft.png";
 import UselessImage from "../public/home/useless.png";
-import { Button, Modal, Select } from "antd";
+import { Modal, Select } from "antd";
 import ArrowLeft from "../public/home/arrLeft (1).png";
 import PlanePath1 from "../public/home/arrLeft (2).png";
 import PlanePath2 from "../public/home/arrLeft (3).png";
@@ -76,34 +77,13 @@ import { useAppDispatch } from "@/lib/store";
 import { setUserData } from "@/lib/feature/user/userSlice";
 import { getTourPackagesByCategory } from "./actions/tourpackages";
 import axios from "axios";
+import { getDesiredAreas } from "@/apiFunctions/destination";
 
-// const settings = {
-//   dots: true,
-//   infinite: true,
-//   speed: 500,
-//   slidesToShow: 3,
-//   slidesToScroll: 3,
-// };
-
-// const responsive = {
-//   superLargeDesktop: {
-//     // the naming can be any, depends on you.
-//     breakpoint: { max: 4000, min: 3000 },
-//     items: 5,
-//   },
-//   desktop: {
-//     breakpoint: { max: 3000, min: 1024 },
-//     items: 3,
-//   },
-//   tablet: {
-//     breakpoint: { max: 1024, min: 464 },
-//     items: 2,
-//   },
-//   mobile: {
-//     breakpoint: { max: 464, min: 0 },
-//     items: 1,
-//   },
-// };
+interface Destinations {
+  destination_id: number;
+  destination_name: string;
+  destination_minimum_tour_days: number;
+}
 
 const inter = Yesteryear({
   subsets: ["latin"],
@@ -144,109 +124,34 @@ const featuredata2 = [
   },
 ];
 
-const featuredata = [
-  {
-    img: NaltarImage,
-    location: "Pakistan-North",
-    title: "6 days Hunza & Naltar",
-    duration: "6days",
-    people: 12,
-    price: 32000,
-    discountedPrice: 20987,
-    reviewCount: 1,
-  },
-  {
-    img: SkarduImage,
-    location: "Pakistan-North",
-    title: "6 days Hunza & Skardu",
-    duration: "7days",
-    people: 12,
-    price: 34000,
-    discountedPrice: 31950,
-    reviewCount: 1,
-    imageCount: 5,
-    videoCount: 2,
-  },
-  {
-    img: BashaImage,
-    location: "Pakistan-North",
-    title: "6 days Skardu & Bashu",
-    duration: "7days",
-    people: 12,
-    price: 45000,
-    discountedPrice: 42950,
-    reviewCount: 1,
-    imageCount: 5,
-    videoCount: 2,
-  },
-  {
-    img: GalsImage,
-    location: "Pakistan-North",
-    title: "All girls trip to Kashmir",
-    duration: "7days",
-    people: 12,
-    price: 32000,
-    discountedPrice: 29500,
-    reviewCount: 1,
-    imageCount: 5,
-    videoCount: 2,
-  },
-  {
-    img: img5,
-    location: "Pakistan-North",
-    title: "7 days Hunza and Skardu",
-    duration: "7days",
-    people: 12,
-    price: 37500,
-    discountedPrice: 35450,
-    reviewCount: 1,
-    imageCount: 5,
-    videoCount: 2,
-  },
-  {
-    img: img6,
-    location: "Pakistan-North",
-    title: "6 Days Hunza and Naltar",
-    duration: "6days",
-    people: 12,
-    price: 37500,
-    discountedPrice: 37500,
-    reviewCount: 1,
-    imageCount: 5,
-    videoCount: 2,
-  },
-  {
-    img: img7,
-    location: "Pakistan-North",
-    title: "8 days Skardu and Bashu",
-    duration: "8days",
-    people: 12,
-    price: 32000,
-    discountedPrice: 20987,
-    reviewCount: 1,
-    imageCount: 5,
-    videoCount: 2,
-  },
-  {
-    img: img8,
-    location: "Pakistan-North",
-    title: "7 Days Hunza and Fairy Meadows",
-    duration: "7days",
-    people: 12,
-    price: 37500,
-    discountedPrice: 35450,
-    reviewCount: 1,
-    imageCount: 5,
-    videoCount: 2,
-  },
-];
-
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
   const [bestSellerData, setBestSellerData] = useState([]);
   const [bannerImage, setBannerImage] = useState("");
   console.log("Best Seller Data", bestSellerData);
+  const [desiredArea, setDesiredArea] = useState<Destinations[]>([]);
+
+  const [selectedType, setSelectedType] = useState("Group");
+  const [selectedDuration, setSelectedDuration] = useState("2-4 days");
+  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedGuest, setSelectedGuest]= useState("5");
+
+  const handleTypeChange = (selectedType) => {
+    setSelectedType(selectedType);
+  };
+
+  const handleDurationChange = (selectedDuration) => {
+    setSelectedDuration(selectedDuration);
+  };
+
+  const handleSelectChange = (selectedGuest) => {
+    setSelectedGuest(selectedGuest);
+  };
+
+  const handleDestinationChange = (selectedValue) => {
+    console.log("destination change to", selectedValue);
+  };
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const searchParams = useSearchParams();
@@ -262,7 +167,7 @@ export default function Home() {
     let res = await axios.get(
       `pages/api/admin/getBanners/single?pagename=home`
     );
-    console.log(res.data.data[0].tnp_banner_url);
+    // console.log(res.data.data[0].tnp_banner_url);
     setBannerImage(res.data.data[0].tnp_banner_url);
     // setLoading(false);
   };
@@ -271,7 +176,7 @@ export default function Home() {
     const getPackages = async () => {
       try {
         const response = await getTourPackagesByCategory(
-          "/tourpackages/filter?limit=8&offset=0&bestseller=true&featured=true",
+          "/tourpackages/filter?limit=8&offset=0&bestseller=true&featured=true"
         );
         console.log("Home API Response:", response);
         if (response) {
@@ -296,6 +201,21 @@ export default function Home() {
     }
   }, []);
 
+  useEffect(() => {
+    const fetchPackageDestinations = async () => {
+      try {
+        const response = await getDesiredAreas();
+        // const response = await axios.get(apiURL);
+        console.log("response===>", response);
+        setDesiredArea(response.data?.destinations);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchPackageDestinations();
+  }, []);
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -311,7 +231,7 @@ export default function Home() {
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      Math.min(prevIndex + cardsPerPage, featuredata.length - 1),
+      Math.min(prevIndex + cardsPerPage, bestSellerData.length - 1)
     );
   };
 
@@ -327,8 +247,7 @@ export default function Home() {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        className=""
-      >
+        className="">
         <div className="flex h-96 justify-center items-center">
           <video className="w-full" controls>
             <source src="mov_bbb.mp4" type="video/mp4" />
@@ -376,10 +295,22 @@ export default function Home() {
                   <div className="w-full">
                     <p>Destination</p>
                     <Select
-                      defaultValue="lucy"
-                      style={{ height: 20 }}
                       className="w-full g-red-300 border-0 hide-border p-0"
-                      options={[{ value: "lucy", label: "New York" }]}
+                      options={desiredArea.map((type) => ({
+                        value: type.destination_name.toLocaleLowerCase(),
+                        label: type.destination_name
+                          .split(" ")
+                          .map(
+                            (word) =>
+                              word.charAt(0).toUpperCase() + word.slice(1)
+                          )
+                          .join(" "),
+                      }))}
+                      dropdownStyle={{
+                        width: 180,
+                      }}
+                      onChange={handleDestinationChange}
+                      defaultValue="Hunza"
                     />
                   </div>
                 </div>
@@ -394,10 +325,17 @@ export default function Home() {
                   <div className="w-full">
                     <p>Type</p>
                     <Select
-                      defaultValue="lucy"
+                      value={selectedType}
+                      onChange={handleTypeChange}
                       style={{ height: 20 }}
                       className="w-full g-red-300 border-0 hide-border p-0"
-                      options={[{ value: "lucy", label: "Booking type" }]}
+                      defaultValue="Group"
+                      options={[
+                        { value: "Group", label: "Group" },
+                        { value: "Honeymoon", label: "Honeymoon" },
+                        { value: "Private Family", label: "Private Family" },
+                        { value: "Corporate", label: "Corporate" },
+                      ]}
                     />
                   </div>
                 </div>
@@ -413,10 +351,16 @@ export default function Home() {
                   <div className="w-full">
                     <p>Duration</p>
                     <Select
-                      defaultValue="lucy"
+                      value={selectedDuration}
+                      onChange={handleDurationChange}
                       style={{ height: 20 }}
                       className="w-full g-red-300 border-0 hide-border p-0"
-                      options={[{ value: "lucy", label: "2-4 days" }]}
+                      defaultValue="2-4 days"
+                      options={[
+                        { value: "2-4 days", label: "2-4 days" },
+                        { value: "5-8 days", label: "5-8 days" },
+                        { value: "9-12 days", label: "9-12 days" },
+                      ]}
                     />
                   </div>
                 </div>
@@ -432,10 +376,16 @@ export default function Home() {
                   <div className="w-full">
                     <p>Guests</p>
                     <Select
-                      defaultValue="lucy"
+                      value={selectedGuest}
+                      onChange={handleSelectChange}
                       style={{ height: 20 }}
                       className="w-full g-red-300 border-0 hide-border p-0"
-                      options={[{ value: "lucy", label: "0" }]}
+                      defaultValue="04"
+                      options={[
+                        { value: "04", label: "04" },
+                        { value: "08", label: "08" },
+                        { value: "12", label: "12" },
+                      ]}
                     />
                   </div>
                 </div>
@@ -446,7 +396,7 @@ export default function Home() {
                 <div className="me-2">
                   <IoFilterCircleOutline className="text-[#FBAD17] text-3xl" />
                 </div>
-                <div className="bg-[#FBAD17] flex items-center justify-center md:w-auto -full text-center cursor-pointer text-xs text-white rounded-full px-5 py-2">
+                <div className="bg-[#FBAD17] !flex btn-deluxe items-center justify-center md:w-auto -full text-center cursor-pointer text-xs text-white rounded-full px-2 py-2">
                   <IoMdSearch className="me-1 w-5 h-5" />
                   <p>Search</p>
                 </div>
@@ -558,8 +508,7 @@ export default function Home() {
             Amazing Featured Tour
           </h1>
           <h2
-            className={`font-bold text-gray-400 text-center my-2 text-3xl ${inter.className}`}
-          >
+            className={`font-bold text-gray-400 text-center my-2 text-3xl ${inter.className}`}>
             Package
           </h2>
         </div>
@@ -581,18 +530,24 @@ export default function Home() {
             Manila
           </div>
         </div>
-        <div className="relative w-full  mt-8 z-0 ">
+        <div className="relative w-full lg:h-96 mt-8 z-0 ">
           <div className="absolute z-10 md:block w-full top-40 flex justify-center">
             <Image src={packbg} alt="bg image here" className=" w-full" />
           </div>
           <div className="relative z-20 w-full flex flex-col items-center gap-8 justify-center">
-            <div className="w-full px-2">
-              <TourCardPagination
-                featuredata={bestSellerData}
-                direction="row"
-                cardsPerPage={4}
-              />
-            </div>
+            {bestSellerData.length > 0 ? (
+              <div className="w-full px-2">
+                <TourCardPagination
+                  featuredata={bestSellerData}
+                  direction="row"
+                  cardsPerPage={4}
+                />
+              </div>
+            ) : (
+              <div className="w-full flex justify-center items-center mt-4 h-[384px] pt-2">
+                <Spin size="large" />
+              </div>
+            )}
 
             <div className="md:w-1/2 flex justify-center">
               <button className="bg-primary text-white px-6 rounded py-4 items-center shadow flex -full text-sm">
@@ -610,8 +565,7 @@ export default function Home() {
       <div className="flex px-3 mt-10 mb-32 2xl:mt-[25rem] justify-center flex-wrap flex-col items-center w-full bg-white">
         <div className="mb-10 relative">
           <h2
-            className={`font-bold text-primary text-center my-2 text-3xl ${inter.className}`}
-          >
+            className={`font-bold text-primary text-center my-2 text-3xl ${inter.className}`}>
             Explore the world
           </h2>
           <h1 className="text-black  text-center font-bold text-3xl lg:text-[2.7rem] lg:leading-[2.4rem] ">
@@ -732,7 +686,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex md:px-10 px-3 my-32 flex-col md:flex-row justify-start  flex-wrap  items-start w-full bg-white">
+      <div className="flex md:px-10 px-3 my-32 flex-col md:flex-row justify-start  flex-wrap  items-center w-full bg-white">
         <div className="md:w-3/12 my-10 bgblue-400">
           <h1 className="text-black font-bold text-3xl lg:text-[2.7rem] lg:leading-[2.4rem]">
             Tour Packages
@@ -787,8 +741,13 @@ export default function Home() {
             src={ArrowLeft}
             alt="bluebanner"
           />
-
-          <TourCardPagination featuredata={bestSellerData} direction="col" />
+          {bestSellerData.length > 0 ? (
+            <TourCardPagination featuredata={bestSellerData} direction="col" />
+          ) : (
+            <div className="w-full flex justify-center items-center mt-4 h-12 pt-2">
+              <Spin size="large" />
+            </div>
+          )}
         </div>
       </div>
 
@@ -863,31 +822,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex md:block lg:flex bg-gray-100 flex-col  mt-32  justify- flex-wrap   items-center w-full relative md:h-[40rem]">
-        <Image
-          src={TestimonialBackground}
-          alt="bg"
-          className="w-full absolute top-0 left-0 md:h-[40rem]"
-        />
-        <div className="w-full z-20 ">
-          <Image
-            src={PlanePNG}
-            alt="bg"
-            className=" w-20 h-20 md:w-24 md:h-24 z-0 absolute bottom-[14%] left-[10%] md:bottom-[20%] md:left-[10%] "
-          />
-          <div className="flex flex-col gap-6 my-10 bgopacity-50 py-6 z-30 justify-center items-center">
-            <h1 className="text-3xl text-black  text-center md:text-[2.7reml] md:leading-[2.4rem] font-bold">
-              Testimonials
-            </h1>
-            <div className="w-full my-10  px-2 ">
-              <TestimonialCarousel />
-            </div>
-            <button className="px-8 relative z-10 rounded py-3 shadow-2xl bg-primary text-white text-sm ">
-              VIEW MORE
-            </button>
-          </div>
-        </div>
-      </div>
+      <TestimonialCarousel />
 
       <div className="flex lg:flex flex-col md:px-10 mt-20 mb-20  justify- flex-wrap  items-center w-full relative md:h-[auto]">
         <p className="text-[#FBAD17] text-sm text-center">Explore the world</p>
@@ -904,8 +839,7 @@ export default function Home() {
             return (
               <div
                 key={index}
-                className="h-[30rem] m-5 w-[22rem] bg-gray-100 shadow-2xl"
-              >
+                className="h-[30rem] m-5 w-[22rem] bg-gray-100 shadow-2xl">
                 <div className="w-full relative h-1/2 ">
                   <Image src={Rect1} alt="card" className="w-full h-full" />
                   <div className="absolute text-white px-3 py-1 bottom-0 left-0 text-xs bg-[#FBAD17]">

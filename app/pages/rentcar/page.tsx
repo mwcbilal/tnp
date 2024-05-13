@@ -28,11 +28,11 @@ const Page: NextPage<Props> = ({}) => {
         Subheading=""
       />
 
-      <div className="flex justify-center relative md:h-0 h-40">
+      {/* <div className="flex justify-center relative md:h-0 h-40">
         <span className="absolute z-10 bottom-[-50px]">
           <SearchbarAndFilters />
         </span>
-      </div>
+      </div> */}
       {/* space generator to separate the banner and content */}
       <div className="h-10 bg-transparent"></div>
 
